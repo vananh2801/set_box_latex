@@ -1,0 +1,128 @@
+\documentclass[12pt,a4paper,twoside]{article}
+\usepackage[utf8]{vietnam}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{xcolor}
+\usepackage{ntheorem}
+\usepackage[loigiai]{ex_test}
+\usepackage{set_box}
+\usepackage{indentfirst}
+\usepackage{lipsum}
+\usepackage{needspace}
+%---- Cài đặt màu mặc định gói set_box ----
+\setboxColframeSetDefault{brown}
+\setboxColbackSetDefault{black!5}
+\setboxColbacktitleSetDefault{brown!30}
+%----------- Định dạng theorem ------------
+\theoremstyle{immini}
+\theoremseparator{.}
+\theoremheaderfont{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont}
+%--------------- Định nghĩa ---------------
+\newtheorem{dn}{Định nghĩa}
+\setTheoBox{dn}{2}
+%--------------- Tính chất ---------------
+\newtheorem{tc}{Tính chất}
+\setTheoBox{tc}{1}
+%------------------- ex ------------------
+\renewtheorem{ex}{Câu}
+\setTheoBox{ex}{4}
+% Gói lệnh sẽ áp dụng tương tự đối với chc
+%----------------- Lời giải --------------
+\def\loigiaiEX{\needspace{1cm}\parbox[c]{\linewidth-1mm}{\centering\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Lời giải.}}
+%----------- Định dạng theorem ------------
+\theoremseparator{:}
+\theoremheaderfont{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont}
+\theorembodyfont{\itshape}
+%----------------- Chú ý -----------------
+\newtheorem*{chuy}{Chú ý}
+\setTheoBox{chuy}{11}
+%--------------- Nhận xét ----------------
+\newtheorem*{nx}{Nhận xét}
+\setTheoBox{nx}{11}
+%----------------- Ví dụ -----------------
+\newenvironment{vd}{}{}
+\setEnvBox{vd}{3}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Ví dụ}
+%----------------- Dạng- -----------------
+\newenvironment{dang}{}{}
+\setEnvBox{dang}{12}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Dạng}
+%---------------- Ghi nhớ ----------------
+\newenvironment{ghinho}{}{}
+\setEnvBox{ghinho}{22}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Ghi nhớ}
+\begin{document}
+	\begin{dn}[Tên định nghĩa]
+		\lipsum[1]
+	\end{dn}
+	\begin{tc}[Tên tính chất]
+		\lipsum[1]
+	\end{tc}
+	\begin{vd}
+		\lipsum[1]
+		\loigiai{
+			\dotlineEX{3}
+		}
+	\end{vd}
+	\begin{vd}
+		\lipsum[1]
+		\loigiai{
+			\dotlineEX{3}
+		}
+	\end{vd}
+	\begin{chuy}
+		\begin{itemize}
+			\item Điều thứ nhất;
+			\item Điều thứ hai.
+		\end{itemize}
+	\end{chuy}
+	\begin{nx}
+		\lipsum[1]
+	\end{nx}
+	\begin{dang}[Tên dạng]
+		\lipsum[1]
+	\end{dang}
+	
+	\begin{ex}
+		\immini[thm]{
+			Nội dung câu hỏi con thứ nhất.
+		}{
+			\begin{tikzpicture}
+				\draw (0,0) -- (3,3);
+			\end{tikzpicture}
+		}
+		\begin{chc}
+			Nội dung câu hỏi con thứ nhất.
+			\loigiai{
+				<Lời giải câu hỏi con thứ nhất>
+			}
+		\end{chc}
+		\begin{chc}
+			Nội dung câu hỏi con thứ hai.
+			\loigiai{
+				<Lời giải câu hỏi con thứ hai>
+			}
+		\end{chc}
+	\end{ex}
+	\begin{ex}
+		\sochc{2}
+		\immini[thm]{
+			Nội dung câu hỏi con thứ nhất.
+		}{
+			\begin{tikzpicture}
+				\draw (0,0) -- (3,3);
+			\end{tikzpicture}
+		}
+		\begin{chc}
+			Nội dung câu hỏi con thứ nhất.
+			\loigiai{
+				<Lời giải câu hỏi con thứ nhất>
+			}
+		\end{chc}
+		\begin{chc}
+			Nội dung câu hỏi con thứ hai.
+			\loigiai{
+				<Lời giải câu hỏi con thứ hai>
+			}
+		\end{chc}
+	\end{ex}
+	\begin{ghinho}
+		\lipsum[1]
+	\end{ghinho}
+\end{document}

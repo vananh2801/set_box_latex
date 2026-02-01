@@ -1,0 +1,730 @@
+\documentclass[12pt,a4paper,twoside]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[vietnamese]{babel}
+\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+\usepackage{xcolor}
+\usepackage[breakable,most,many,skins]{tcolorbox}
+\usepackage{ntheorem}
+\usepackage[loigiai]{ex_test}
+\usepackage{set_box}
+\usepackage{indentfirst}
+\usepackage{lipsum}
+
+\usepackage{pdfpages}
+\usepackage{tikz}
+\usetikzlibrary{shapes.misc,shadows}
+%------------ Gán khung cho verbatim ----------
+\newtcolorbox{codeBox}{
+	breakable,
+	enhanced,
+	boxrule=0.4mm,
+	top=4mm,left=0mm,right=0mm,bottom=0mm,
+	colback=yellow!15,
+	colframe=brown}
+\BeforeBeginEnvironment{verbatim}{\begin{codeBox}}
+\AfterEndEnvironment{verbatim}{\end{codeBox}}
+%--------- Tạo môi trường Định nghĩa ----------
+\newtheorem{dn}{Định nghĩa}
+\setTheoBox{dn}{2}
+%----------- Tạo môi trường Ví dụ -------------
+\newtheorem{vd}{Ví dụ}
+\setTheoBox{vd}{4}
+%---------- Tạo môi trường Định lý ------------
+\newenvironment{dl}{}{}
+\setEnvBox{dl}{11}{\bf Định lý}
+%-------- Tạo môi trường Bài tập mẫu ----------
+\newenvironment{btm}{}{}
+\setEnvBox{btm}{2}{\bf Bài tập mẫu}
+%--------- Tạo môi trường Khởi động -----------
+\newenvironment{kd}{}{}
+\setEnvBox{kd}{15}{\bf Khởi động}
+\setboxColframe{kd}{red}
+\setboxColback{kd}{yellow!20}
+\setboxColbacktitle{kd}{orange}
+%--------- Tạo môi trường Tính chất -----------
+\newtheorem{tc}{Tính chất}
+\setTheoBox{tc}{1}
+\setboxColframe{tc}{brown}
+\setboxColback{tc}{blue!10}
+%-----------Khai báo môi trường lần 3----------
+\newtheorem{theorem0}{<Kiểu 0>}
+\setTheoBox{theorem0}{0}
+\newtheorem{theorem1}{<Kiểu 1>}
+\setTheoBox{theorem1}{1}
+\newtheorem{theorem2}{<Kiểu 2>}
+\setTheoBox{theorem2}{2}
+\newtheorem{theorem3}{<Kiểu 3>}
+\setTheoBox{theorem3}{3}
+\newtheorem{theorem4}{<Kiểu 4>}
+\setTheoBox{theorem4}{4}
+\newtheorem{theorem5}{<Kiểu 5>}
+\setTheoBox{theorem5}{5}
+\newtheorem{theorem6}{<Kiểu 6>}
+\setTheoBox{theorem6}{6}
+\newtheorem{theorem7}{<Kiểu 7>}
+\setTheoBox{theorem7}{7}
+\newtheorem{theorem8}{<Kiểu 8>}
+\setTheoBox{theorem8}{8}
+\newtheorem{theorem9}{<Kiểu 9>}
+\setTheoBox{theorem9}{9}
+\newtheorem{theorem10}{<Kiểu 10>}
+\setTheoBox{theorem10}{10}
+%-----------Khai báo môi trường lần 4----------
+\newenvironment{env0}{}{}
+\setEnvBox{env0}{0}{\bf<Kiểu 0>}
+\newenvironment{env1}{}{}
+\setEnvBox{env1}{1}{\bf<Kiểu 1>}
+\newenvironment{env2}{}{}
+\setEnvBox{env2}{2}{\bf<Kiểu 2>}
+\newenvironment{env3}{}{}
+\setEnvBox{env3}{3}{\bf<Kiểu 3>}
+\newenvironment{env4}{}{}
+\setEnvBox{env4}{4}{\bf<Kiểu 4>}
+\newenvironment{env5}{}{}
+\setEnvBox{env5}{5}{\bf<Kiểu 5>}
+\newenvironment{env6}{}{}
+\setEnvBox{env6}{6}{\bf<Kiểu 6>}
+\newenvironment{env7}{}{}
+\setEnvBox{env7}{7}{\bf<Kiểu 7>}
+\newenvironment{env8}{}{}
+\setEnvBox{env8}{8}{\bf<Kiểu 8>}
+\newenvironment{env9}{}{}
+\setEnvBox{env9}{9}{\bf<Kiểu 9>}
+\newenvironment{env10}{}{}
+\setEnvBox{env10}{10}{\bf<Kiểu 10>}
+\newenvironment{env11}{}{}
+\setEnvBox{env11}{11}{\bf<Kiểu 11>}
+\newenvironment{env12}{}{}
+\setEnvBox{env12}{12}{\bf<Kiểu 12>}
+\newenvironment{env13}{}{}
+\setEnvBox{env13}{13}{\bf<Kiểu 13>}
+\newenvironment{env14}{}{}
+\setEnvBox{env14}{14}{\bf<Kiểu 14>}
+\newenvironment{env15}{}{}
+\setEnvBox{env15}{15}{\bf<Kiểu 15>}
+\newenvironment{env16}{}{}
+\setEnvBox{env16}{16}{\bf<Kiểu 16>}
+\newenvironment{env17}{}{}
+\setEnvBox{env17}{17}{\bf<Kiểu 17>}
+\newenvironment{env18}{}{}
+\setEnvBox{env18}{18}{\bf<Kiểu 18>}
+\newenvironment{env19}{}{}
+\setEnvBox{env19}{19}{\bf<Kiểu 19>}
+\newenvironment{env20}{}{}
+\setEnvBox{env20}{20}{\bf<Kiểu 20>}
+\newenvironment{env21}{}{}
+\setEnvBox{env21}{21}{\bf<Kiểu 21>}
+\newenvironment{env22}{}{}
+\setEnvBox{env22}{22}{\bf<Kiểu 22>}
+%-------------------------------------------
+\newsavebox{\myverbcontent}
+%---------------- Bắt đầu ------------------
+\begin{document}
+	\pagestyle{plain}
+	\fontsize{12pt}{16pt}\selectfont
+	\begin{center}
+		\Large\bf\color{red!70!black}\fontfamily{lmss}\selectfont Hướng dẫn sử dụng gói lệnh set\_box.sty 1.2025.08.24\par
+	\end{center}
+	\tableofcontents
+	\newpage
+	\section{Giới thiệu sơ lược về gói lệnh}
+	\subsection{Nguyên nhân ra đời}
+	\begin{itemize}
+		\item Đơn giản hoá bước tạo các khung nội dung mới theo mẫu có sẵn.
+		\item Các khung được tạo tương thích tốt với gói lệnh \texttt{ex\_test.sty} đã rất phổ biến hiện nay.
+		\item Giải quyết được các vấn đề về lồng môi trường vào nhau, cũng như ẩn hiện môi trường được đóng khung.
+	\end{itemize}
+	\subsection{Một số lưu ý}
+	\begin{itemize}
+		\item Gói lệnh nên đi kèm và khai báo phía sau hai gói \texttt{ex\_test.sty} và \texttt{ntheorem.sty}. 
+		\item Chỉ nên cài đặt khung cho theorem hoặc environment mới hoặc đã áp dụng khung trước đó. Hạn chế áp dụng thêm các tác động khác ngoài gói này, có thể gây lỗi.
+	\end{itemize}
+	\subsection{Đôi lời muốn nói}
+	\begin{itemize}
+		\item Hiện tại gói lệnh vẫn còn mới, có thể xảy ra lỗi, mong quý thầy cô báo lỗi và góp ý.
+		\item Gói lệnh vẫn còn hạn chế ở hai điểm. Thứ nhất, gói lệnh vẫn còn tách riêng ở bước áp dụng. Trong thời gian sắp tới, có thể tôi sẽ cải tiến để đưa về cùng một cách khai báo duy nhất. Thứ hai, hiện vẫn chưa phát triển câu lệnh để thầy cô tự tạo khung riêng như lệnh \verb|\createbox| của gói lệnh \texttt{ex\_test}.
+	\end{itemize}
+	\newpage
+	\section{Hướng dẫn sử dụng}
+	\subsection{Phân loại}
+	Cần lưu ý rằng, gói lệnh này có sự khác nhau ở bước đầu (ở mục \textbf{2.2} và \textbf{2.3}) khi cài đặt khung cho hai loại \texttt{theorem} và \texttt{evironment}. Các lệnh còn lại áp dụng chung cho cả hai. Việc sử dụng tuỳ thuộc vào thầy cô, có thể dùng chung hoặc chỉ dùng một loại:
+	\begin{itemize}
+		\item Đối với \texttt{theorem}, tất cả tiêu đề, đánh số, nội dung nằm bên trong khung.
+		\item Đối với \texttt{evironment}, tiêu đề và đánh số có thể nằm bên ngoài khung tuỳ vào từng kiểu.
+	\end{itemize}
+	\subsection{Cài đặt khung cho \texttt{theorem} (định nghĩa bởi gói \texttt{ntheorem})}
+	\subsubsection{Giới thiệu lệnh}
+	\begin{itemize}
+		\item \textbf{Bước 1.} Tạo \texttt{theorem} mới bằng gói lệnh \texttt{ntheorem}.\par
+		\begin{lrbox}{\myverbcontent}
+			\verb|\setTheoBox{<tên theorem>}{<kiểu>}|
+		\end{lrbox}
+		\item \textbf{Bước 2.} Dùng lệnh \fbox{\usebox{\myverbcontent}} để cài đặt khung cho \texttt{theorem} vừa tạo theo kiểu mong muốn.\par
+	\end{itemize}
+	\subsubsection{Lưu ý}
+	\begin{itemize}
+		\item Mọi \texttt{theorem} mà nội dung có chứa \verb|\loigiai| đều phải áp dụng lệnh này. Nếu không muốn tạo khung thì dùng kiểu số 0.
+		\item Lời giải mặc định được đưa ra ngoài khung.
+		\item Phiên bản \texttt{set\_box} hiện tại có tất cả 11 kiểu (từ 0 đến 10, xem chi tiết ở mục \textbf{3.1}).
+	\end{itemize}
+	\subsubsection{Minh hoạ}
+	\begin{verbatim}
+		\documentclass[12pt,a4paper,twoside]{article}
+		\usepackage[utf8]{vietnam}
+		\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+		\usepackage{ntheorem}
+		\usepackage[loigiai]{ex_test}
+		\usepackage{set_box}
+		%---------- Định nghĩa -----------
+		\newtheorem{dn}{Định nghĩa}
+		\setTheoBox{dn}{2}
+		%------------- Ví dụ -------------
+		\newtheorem{vd}{Ví dụ}
+		\setTheoBox{vd}{4}
+		%-------- Nội dung chính ---------
+		\begin{document}
+			\begin{dn}[Tên định nghĩa]
+				Nội dung Định nghĩa...
+			\end{dn}
+			\begin{vd}
+				Đề bài...
+				\loigiai{
+					Lời giải...
+				}
+			\end{vd}
+		\end{document}
+	\end{verbatim}
+	\subsubsection{Kết quả thu được}
+	\begin{dn}[Tên định nghĩa]
+		Nội dung Định nghĩa...
+	\end{dn}
+	\begin{vd}
+		Đề bài...
+		\loigiai{
+			Lời giải...
+		}
+	\end{vd}
+	\subsection{Cài đặt khung cho \texttt{environment}}
+	\subsubsection{Giới thiệu lệnh}
+	\begin{itemize}
+		\item \textbf{Bước 1.} Tạo \texttt{environment} mới.\par
+		\begin{lrbox}{\myverbcontent}
+			\verb|\setEnvBox{<tên environment>}{<kiểu>}{Tên hiển thị}|
+		\end{lrbox}
+		\item \textbf{Bước 2.} Dùng lệnh \fbox{\usebox{\myverbcontent}} để cài đặt khung cho \texttt{environment} vừa tạo theo kiểu mong muốn.\par
+	\end{itemize}
+	\subsubsection{Lưu ý}
+	\begin{itemize}
+		\item Mọi \texttt{environment} mà nội dung có chứa \verb|\loigiai| đều phải áp dụng lệnh này. Nếu không muốn tạo khung thì dùng kiểu số 0.
+		\item Lời giải mặc định được đưa ra ngoài khung.
+		\item Phiên bản \texttt{set\_box} hiện tại có tất cả 23 kiểu (từ 0 đến 22 xem chi tiết ở mục \textbf{3.2}).
+	\end{itemize}
+	\subsubsection{Minh hoạ}
+	\begin{verbatim}
+		\documentclass[12pt,a4paper,twoside]{article}
+		\usepackage[utf8]{vietnam}
+		\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+		\usepackage{ntheorem}
+		\usepackage[loigiai]{ex_test}
+		\usepackage{set_box}
+		%----------- Định lý -------------
+		\newenvironment{dl}{}{}
+		\setEnvBox{dl}{11}{\bf Định lý}
+		%---------- Bài tập mẫu ----------
+		\newenvironment{btm}{}{}
+		\setEnvBox{btm}{2}{\bf Bài tập mẫu}
+		%-------- Nội dung chính ---------
+		\begin{document}
+			\begin{dl}[Tên định lý]
+				Nội dung Định lý...
+			\end{dl}
+			\begin{btm}
+				Đề bài...
+				\loigiai{
+					Lời giải...
+				}
+			\end{btm}
+		\end{document}
+	\end{verbatim}
+	\subsubsection{Kết quả thu được}
+	\begin{dl}[Tên định lý]
+		Nội dung Định lý...
+	\end{dl}
+	\begin{btm}
+		Đề bài...
+		\loigiai{
+			Lời giải...
+		}
+	\end{btm}
+	\subsection{Thay đổi màu khung và màu nền}
+	\subsubsection{Giới thiệu lệnh}
+	Để đổi màu mặc định, trước \verb|\setTheoBox| và \verb|\setEnvBox|, ta dùng các lệnh sau:
+	\begin{itemize}
+		\begin{lrbox}{\myverbcontent}
+			\verb|\setboxColframeSetDefault{<màu>}|
+		\end{lrbox}
+		\item Lệnh \fbox{\usebox{\myverbcontent}}: đổi màu khung mặc định.
+		\begin{lrbox}{\myverbcontent}
+			\verb|\setboxColbackSetDefault{<màu>}|
+		\end{lrbox}
+		\item Lệnh \fbox{\usebox{\myverbcontent}}: đổi màu nền mặc định.
+		\begin{lrbox}{\myverbcontent}
+			\verb|\setboxColbacktitleSetDefault{<màu>}|
+		\end{lrbox}
+		\item Lệnh \fbox{\usebox{\myverbcontent}}: đổi màu nền tiêu đề mặc định.
+	\end{itemize}\par
+	Để đổi màu riêng, sau \verb|\setTheoBox| và \verb|\setEnvBox|, ta dùng các lệnh sau:
+	\begin{itemize}
+		\begin{lrbox}{\myverbcontent}
+			\verb|\setboxColframe{<tên môi trường>}{<màu>}|
+		\end{lrbox}
+		\item Lệnh \fbox{\usebox{\myverbcontent}}: đổi màu khung của môi trường.
+		\begin{lrbox}{\myverbcontent}
+			\verb|\setboxColback{<tên môi trường>}{<màu>}|
+		\end{lrbox}
+		\item Lệnh \fbox{\usebox{\myverbcontent}}: đổi màu nền của môi trường.
+		\begin{lrbox}{\myverbcontent}
+			\verb|\setboxColbacktitle{<tên môi trường>}{<màu>}|
+		\end{lrbox}
+		\item Lệnh \fbox{\usebox{\myverbcontent}}: đổi màu nền tiêu đề của môi trường.
+	\end{itemize}\par
+	\subsubsection{Minh hoạ}
+	\begin{verbatim}
+		\documentclass[12pt,a4paper,twoside]{article}
+		\usepackage[utf8]{vietnam}
+		\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+		\usepackage{ntheorem}
+		\usepackage[loigiai]{ex_test}
+		\usepackage{set_box}
+		%--------- Khởi động -----------
+		\newenvironment{kd}{}{}
+		\setEnvBox{kd}{15}{\bf Khởi động}
+		\setboxColframe{kd}{red}
+		\setboxColback{kd}{yellow!20}
+		\setboxColbacktitle{kd}{orange}
+		%--------- Tính chất -----------
+		\newtheorem{tc}{Tính chất}
+		\setTheoBox{tc}{1}
+		\setboxColframe{tc}{brown}
+		\setboxColback{tc}{blue!10}
+		%------- Nội dung chính --------
+		\begin{document}
+			\begin{kd}
+				Nội dung Khởi động...
+			\end{kd}
+			\begin{tc}[Tên tính chất]
+				Nội dung Tính chất...
+			\end{tc}
+		\end{document}
+	\end{verbatim}
+	\subsubsection{Kết quả thu được}
+	\begin{kd}
+		Nội dung Khởi động...
+	\end{kd}
+	\begin{tc}[Tên tính chất]
+		Nội dung Tính chất...
+	\end{tc}
+	\newpage
+	\subsection{Ẩn khung tự động khi sử dụng môi trường bên trong \texttt{tcolorbox}}
+	\subsubsection{Giới thiệu lệnh}
+	\begin{itemize}
+		\begin{lrbox}{\myverbcontent}
+			\verb|\showboxInTcb{<tên môi trường>}|
+		\end{lrbox}
+		\item Lệnh \fbox{\usebox{\myverbcontent}} (mặc định): hiện ``khung'' khi sử dụng môi trường trong \verb|\begin{tcolorbox}...\end{tcolorbox}|.
+		\begin{lrbox}{\myverbcontent}
+			\verb|\hideboxInTcb{<tên môi trường>}|
+		\end{lrbox}
+		\item Lệnh \fbox{\usebox{\myverbcontent}}: ẩn ``khung'' khi sử dụng môi trường trong trong \verb|\begin{tcolorbox}...\end{tcolorbox}|.
+	\end{itemize}\par
+	\subsubsection{Minh hoạ}
+	\begin{verbatim}
+		\hideboxInTcb{dl} % Ẩn khung
+		\hideboxInTcb{btm} % Ẩn khung
+		\begin{tcolorbox}[frame empty,colback=red!5]
+			\begin{dl}[Tên định lý]
+				Nội dung Định lý...
+			\end{dl}
+			\begin{btm}
+				Đề bài...
+				\loigiai{
+					Lời giải...
+				}
+			\end{btm}
+		\end{tcolorbox}
+		\showboxInTcb{dl} % Hiện khung
+		\showboxInTcb{btm} % Hiện khung
+		\begin{tcolorbox}[frame empty,colback=red!5]
+			\begin{dl}[Tên định lý]
+				Nội dung Định lý...
+			\end{dl}
+			\begin{btm}
+				Đề bài...
+				\loigiai{
+					Lời giải...
+				}
+			\end{btm}
+		\end{tcolorbox}
+	\end{verbatim}
+	\newpage
+	\subsubsection{Kết quả thu được}
+	\setcounter{dl}{0}
+	\setcounter{btm}{0}
+	\hideboxInTcb{dl}
+	\hideboxInTcb{btm}
+	\begin{tcolorbox}[frame empty,colback=red!5]
+		\begin{dl}[Tên định lý]
+			Nội dung Định lý...
+		\end{dl}
+		\begin{btm}
+			Đề bài...
+			\loigiai{
+				Lời giải...
+			}
+		\end{btm}
+	\end{tcolorbox}
+	\showboxInTcb{dl}
+	\showboxInTcb{btm}
+	\begin{tcolorbox}[frame empty,colback=red!5]
+		\begin{dl}[Tên định lý]
+			Nội dung Định lý...
+		\end{dl}
+		\begin{btm}
+			Đề bài...
+			\loigiai{
+				Lời giải...
+			}
+		\end{btm}
+	\end{tcolorbox}
+	\subsubsection{Lưu ý}
+	Để tạo một \texttt{tcolorbox} nền mà các lệnh \verb|\showboxInTcb| và \verb|\hideboxInTcb| \textit{có thể} tác động lên các môi trường bên trong, ta có thể thử sử dụng cấu trúc khai báo sau để chèn \verb|\begin{tcolorbox}| và \verb|\end{tcolorbox}|:
+	\begin{verbatim}
+		% Khai báo bắt đầu tcolorbox cho môi trường nen (Nền)
+		\def\beginNen{
+			\begin{tcolorbox}[<option>]
+			}
+		% Khai báo kết thúc tcolorbox cho môi trường nen (Nền)
+		\def\endNen{ % Không nên dùng \endbox
+			\end{tcolorbox}
+		}
+		% Tạo môi trường nen (Nền)
+		\newenvironment{nen}{\beginNen}{\endNen}
+	\end{verbatim}
+	Để tạo một \texttt{tcolorbox} nền mà các lệnh \verb|\showboxInTcb| và \verb|\hideboxInTcb| \textit{không thể} tác động lên các môi trường bên trong, ta có thể thử sử dụng cấu trúc khai báo sau để chèn \verb|\begin{tcolorbox}| và \verb|\end{tcolorbox}|:
+	\begin{verbatim}
+		% Tạo tcolorbox mới nen (Nền)
+		\newtcolorbox{nen}{<option>}
+	\end{verbatim}
+	\subsection{Ẩn môi trường}
+	\subsubsection{Giới thiệu lệnh}
+	\begin{itemize}
+		\begin{lrbox}{\myverbcontent}
+			\verb|\setboxHide{<tên môi trường>}|
+		\end{lrbox}
+		\item Lệnh \fbox{\usebox{\myverbcontent}}: ẩn môi trường hoàn toàn kể từ khi áp dụng lệnh này.
+		\begin{lrbox}{\myverbcontent}
+			\verb|\setboxHide[<danh sách>]{<tên môi trường>}|
+		\end{lrbox}
+		\item Lệnh \fbox{\usebox{\myverbcontent}}: ẩn môi trường theo danh sách kể tử khi áp dụng lệnh này.
+	\end{itemize}
+	\subsubsection{Lưu ý}
+	\begin{itemize}
+		\item Chỉ số sau khi ẩn vẫn đánh giống như chỉ số gốc khi không ẩn.
+		\item Hai lệnh này là lệnh mới của gói \texttt{set\_box}, không phải là lệnh \verb|\hideenviron| và \verb|\print| của \texttt{ex\_test}, chỉ áp dụng với các môi trường đã được xử lý bởi \verb|\setTheoBox| hoặc \verb|\setEnvBox|.
+		\item Khi cần ẩn các câu hỏi, ta có thể khai báo danh sách tương tự khi dùng \verb|\foreach|.Chẳng hạn, danh sách gồm các số từ 3 đến 5 và 10 đến 15 thì ta dùng
+		\begin{center}
+			\verb|\setboxHide[3,...,5,10,...,15]{<tên môi trường>}|.
+		\end{center}
+	\end{itemize}\par
+	\subsubsection{Minh hoạ}
+	\begin{verbatim}
+		\setcounter{dn}{0}
+		\setboxHide{dn} % Lệnh ẩn môi trường Định nghĩa
+		\begin{dn}
+			Nội dung của Định nghĩa đầu tiên...
+		\end{dn}
+		\begin{dn}
+			Nội dung của Định nghĩa thứ hai...
+		\end{dn}
+		\setcounter{dn}{0}
+		\setboxHide[2,4]{dn} % Lệnh ẩn môi trường Định nghĩa
+		\begin{dn}
+			Nội dung của Định nghĩa 1...
+		\end{dn}
+		\begin{dn}
+			Nội dung của Định nghĩa 2...
+		\end{dn}
+		\begin{dn}
+			Nội dung của Định nghĩa 3...
+		\end{dn}
+		\begin{dn}
+			Nội dung của Định nghĩa 4...
+		\end{dn}
+	\end{verbatim}
+	\subsubsection{Kết quả thu được}
+	\setcounter{dn}{0}
+	\setboxHide{dn} % Lệnh ẩn Định nghĩa
+	\begin{dn}
+		Nội dung của Định nghĩa đầu tiên...
+	\end{dn}
+	\setcounter{dn}{0}
+	\setboxHide[2,4]{dn} % Lệnh ẩn Định nghĩa
+	\begin{dn}
+		Nội dung của Định nghĩa 1...
+	\end{dn}
+	\begin{dn}
+		Nội dung của Định nghĩa 2...
+	\end{dn}
+	\begin{dn}
+		Nội dung của Định nghĩa 3...
+	\end{dn}
+	\begin{dn}
+		Nội dung của Định nghĩa 4...
+	\end{dn}
+	\newpage
+	\section{Các kiểu khung có sẵn ở phiên bản hiện tại}
+	\subsection{Các kiểu khung có thể cài đặt cho \texttt{theorem}}
+	\begin{theorem0}
+		Nội dung của kiểu 0...
+	\end{theorem0}
+	\begin{theorem1}
+		Nội dung của kiểu 1...
+	\end{theorem1}
+	\begin{theorem2}
+		Nội dung của kiểu 2...
+	\end{theorem2}
+	\begin{theorem3}
+		Nội dung của kiểu 3...
+	\end{theorem3}
+	\begin{theorem4}
+		Nội dung của kiểu 4...
+	\end{theorem4}
+	\begin{theorem5}
+		Nội dung của kiểu 5...
+	\end{theorem5}
+	\begin{theorem6}
+		Nội dung của kiểu 6...
+	\end{theorem6}
+	\begin{theorem7}
+		Nội dung của kiểu 7...
+	\end{theorem7}
+	\begin{theorem8}
+		Nội dung của kiểu 8...
+	\end{theorem8}
+	\begin{theorem9}
+		Nội dung của kiểu 9...
+	\end{theorem9}
+	\begin{theorem10}
+		Nội dung của kiểu 10...
+	\end{theorem10}
+	\subsection{Các kiểu khung có thể cài đặt cho \texttt{environment}}
+	\begin{env0}
+		Nội dung của kiểu 0...
+	\end{env0}
+	\begin{env1}
+		Nội dung của kiểu 1...
+	\end{env1}
+	\begin{env2}
+		Nội dung của kiểu 2...
+	\end{env2}
+	\begin{env3}
+		Nội dung của kiểu 3...
+	\end{env3}
+	\begin{env4}
+		Nội dung của kiểu 4...
+	\end{env4}
+	\begin{env5}
+		Nội dung của kiểu 5...
+	\end{env5}
+	\begin{env6}
+		Nội dung của kiểu 6...
+	\end{env6}
+	\begin{env7}
+		Nội dung của kiểu 7...
+	\end{env7}
+	\begin{env8}
+		Nội dung của kiểu 8...
+	\end{env8}
+	\begin{env9}
+		Nội dung của kiểu 9...
+	\end{env9}
+	\begin{env10}
+		Nội dung của kiểu 10...
+	\end{env10}
+	\begin{env11}
+		Nội dung của kiểu 11...
+	\end{env11}
+	\begin{env12}
+		Nội dung của kiểu 12...
+	\end{env12}
+	\begin{env13}
+		Nội dung của kiểu 13...
+	\end{env13}
+	\begin{env14}
+		Nội dung của kiểu 14...
+	\end{env14}
+	\begin{env15}
+		Nội dung của kiểu 15...
+	\end{env15}
+	\begin{env16}
+		Nội dung của kiểu 16...
+	\end{env16}
+	\begin{env17}
+		Nội dung của kiểu 17...
+	\end{env17}
+	\begin{env18}
+		Nội dung của kiểu 18...
+	\end{env18}
+	\begin{env19}
+		Nội dung của kiểu 19...
+	\end{env19}
+	\begin{env20}
+		Nội dung của kiểu 20...
+	\end{env20}
+	\begin{env21}
+		Nội dung của kiểu 21...
+	\end{env21}
+	\begin{env22}
+		Nội dung của kiểu 22...
+	\end{env22}
+	\newpage
+	\section{Ví dụ hoàn chỉnh}
+	\subsection{Minh hoạ}
+	\begin{verbatim}
+		\documentclass[12pt,a4paper,twoside]{article}
+		\usepackage[utf8]{vietnam}
+		\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+		\usepackage{xcolor}
+		\usepackage{ntheorem}
+		\usepackage[loigiai]{ex_test}
+		\usepackage{set_box}
+		\usepackage{indentfirst}
+		\usepackage{lipsum}
+		%---- Cài đặt màu mặc định gói set_box ----
+		\setboxColframeSetDefault{brown}
+		\setboxColbackSetDefault{black!5}
+		\setboxColbacktitleSetDefault{brown!30}
+		%----------- Định dạng theorem ------------
+		\theoremstyle{immini}
+		\theoremseparator{.}
+		\theoremheaderfont{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont}
+		%--------------- Định nghĩa ---------------
+		\newtheorem{dn}{Định nghĩa}
+		\setTheoBox{dn}{2}
+		%--------------- Tính chất ---------------
+		\newtheorem{tc}{Tính chất}
+		\setTheoBox{tc}{1}
+		%------------------- ex ------------------
+		\renewtheorem{ex}{Câu}
+		\setTheoBox{ex}{4}
+		% Gói lệnh sẽ áp dụng tương tự đối với chc
+		%----------------- Lời giải --------------
+		\def\loigiaiEX{\parbox[c]{\linewidth-1mm}{\centering\color{brown!70!black}
+			\bf\fontfamily{lmss}\selectfont Lời giải.}}
+		%----------- Định dạng theorem ------------
+		\theoremseparator{:}
+		\theoremheaderfont{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont}
+		\theorembodyfont{\itshape}
+		%----------------- Chú ý -----------------
+		\newtheorem*{chuy}{Chú ý}
+		\setTheoBox{chuy}{11}
+		%--------------- Nhận xét ----------------
+		\newtheorem*{nx}{Nhận xét}
+		\setTheoBox{nx}{11}
+		%----------------- Ví dụ -----------------
+		\newenvironment{vd}{}{}
+		\setEnvBox{vd}{3}{\color{brown!70!black}\bf\fontfamily{lmss}
+			\selectfont Ví dụ}
+		%----------------- Dạng- -----------------
+		\newenvironment{dang}{}{}
+		\setEnvBox{dang}{12}{\color{brown!70!black}\bf\fontfamily{lmss}
+			\selectfont Dạng}
+		%---------------- Ghi nhớ ----------------
+		\newenvironment{ghinho}{}{}
+		\setEnvBox{ghinho}{22}{\color{brown!70!black}\bf\fontfamily{lmss}
+			\selectfont Ghi nhớ}
+		\begin{document}
+			\begin{dn}[Tên định nghĩa]
+				\lipsum[1]
+			\end{dn}
+			\begin{tc}[Tên tính chất]
+				\lipsum[1]
+			\end{tc}
+			\begin{vd}
+				\lipsum[1]
+				\loigiai{
+					\dotlineEX{3}
+				}
+			\end{vd}
+			\begin{vd}
+				\lipsum[1]
+				\loigiai{
+					\dotlineEX{3}
+				}
+			\end{vd}
+			\begin{chuy}
+				\begin{itemize}
+					\item Điều thứ nhất;
+					\item Điều thứ hai.
+				\end{itemize}
+			\end{chuy}
+			\begin{nx}
+				\lipsum[1]
+			\end{nx}
+			\begin{dang}[Tên dạng]
+				\lipsum[1]
+			\end{dang}
+			
+			\begin{ex}
+				\immini[thm]{
+					Nội dung câu hỏi con thứ nhất.
+				}{
+					\begin{tikzpicture}
+						\draw (0,0) -- (3,3);
+					\end{tikzpicture}
+				}
+				\begin{chc}
+					Nội dung câu hỏi con thứ nhất.
+					\loigiai{
+						<Lời giải câu hỏi con thứ nhất>
+					}
+				\end{chc}
+				\begin{chc}
+					Nội dung câu hỏi con thứ hai.
+					\loigiai{
+						<Lời giải câu hỏi con thứ hai>
+					}
+				\end{chc}
+			\end{ex}
+			\begin{ex}
+				\sochc{2}
+				\immini[thm]{
+					Nội dung câu hỏi con thứ nhất.
+				}{
+					\begin{tikzpicture}
+						\draw (0,0) -- (3,3);
+					\end{tikzpicture}
+				}
+				\begin{chc}
+					Nội dung câu hỏi con thứ nhất.
+					\loigiai{
+						<Lời giải câu hỏi con thứ nhất>
+					}
+				\end{chc}
+				\begin{chc}
+					Nội dung câu hỏi con thứ hai.
+					\loigiai{
+						<Lời giải câu hỏi con thứ hai>
+					}
+				\end{chc}
+			\end{ex}
+			\begin{ghinho}
+				\lipsum[1]
+			\end{ghinho}
+		\end{document}
+	\end{verbatim}
+	\subsection{Kết quả thu được}
+	Xem ở trang tiếp theo.
+	\newpage
+	\includepdf[pages=-]{example.pdf}
+\end{document}
