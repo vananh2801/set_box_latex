@@ -1763,14 +1763,14 @@
 %%% Tạo biến kiểm tra cấp độ của box
 \newcounter{sb@boxLevel}
 %%% Tạo lệnh đổi khung cho theorem
-\newcommand{\setTheoBox}[2]{
+\newcommand{\setTheoBox}[3]{
 	% Cài đặt màu khung và nền của tcolorbox theo tên môi trường
 	\@ifundefined{sb@#1Colframe}{\setboxColframe{#1}{\sb@defaultColframe}}{}
 	\@ifundefined{sb@#1Colback}{\setboxColback{#1}{\sb@defaultColback}}{}
 	\@ifundefined{sb@#1Colbacktitle}{\setboxColbacktitle{#1}{\sb@defaultColbacktitle}}{}
 	% Bật hiển thị khung khi dùng trong tcolorbox khác theo mặc định
 	\showboxInTcb{#1}
-	% Tạo counter mới nếu không tồn tại (áp dụng cho cả các môi trường không đánh số)
+	% Khởi tạo đánh số mới nếu không tồn tại (áp dụng cho cả các môi trường không đánh số)
 	\ifcsname c@#1\endcsname
 	\else
 	\newcounter{#1}
@@ -1781,6 +1781,11 @@
 	\expandafter\let\csname sb@saved#1\expandafter\endcsname\csname #1\endcsname
 	\expandafter\let\csname endsb@saved#1\expandafter\endcsname\csname end#1\endcsname
 	\fi
+	% Xoá hiển thị đánh số đầu đoạn và
+	{
+		\theoremstyle{inboxtitle}
+		\renewtheorem{sb@saved#1}{#3}
+	}
 	% Khai báo lại môi trường
 	\RenewEnviron{#1}[1][]{
 		\checkSkipFlag{#1}
@@ -1788,18 +1793,16 @@
 			\stepcounter{#1}
 		\else
 			% Áp dụng khung
-			\sb@applyTheoBox{#1}{#2}
+			\sb@applyEnvBox{#1}{#2}{##1}
 			% Tăng cấp box
 			\addtocounter{sb@boxLevel}{1}
 			% Lưu \endbox theo cấp box
 			\expandafter\edef\csname sb@currBoxLevel\endcsname{\roman{sb@boxLevel}}
 			\expandafter\let\csname endbox\sb@currBoxLevel\endcsname\endbox
 			% Bắt đầu tcolorbox
-			\sb@beginboxT
+			\sb@beginboxE{#3}
 			% Bắt đầu theorem
-			\ifthenelse{\equal{##1}{}}
-			{\csname sb@saved#1\endcsname}
-			{\csname sb@saved#1\endcsname[##1]}
+			\csname sb@saved#1\endcsname
 			% Nội dung
 			\BODY
 			% Kết thúc theorem
@@ -1823,7 +1826,7 @@
 	{
 		\ifthenelse{\equal{#1}{ex}}
 		{
-			\setTheoBox{chc}{#2}
+			\setTheoBox{chc}{#2}{#3}
 		}{}
 		\fixshowans{#1}
 		\listenumerate{#1}
