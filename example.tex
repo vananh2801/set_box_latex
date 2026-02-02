@@ -18,13 +18,13 @@
 \theoremheaderfont{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont}
 %--------------- Định nghĩa ---------------
 \newtheorem{dn}{Định nghĩa}
-\setTheoBox{dn}{2}
+\setTheoBox{dn}{2}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Định nghĩa}
 %--------------- Tính chất ---------------
 \newtheorem{tc}{Tính chất}
-\setTheoBox{tc}{1}
+\setTheoBox{tc}{1}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Tính chất}
 %------------------- ex ------------------
 \renewtheorem{ex}{Câu}
-\setTheoBox{ex}{4}
+\setTheoBox{ex}{14}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Câu}
 % Gói lệnh sẽ áp dụng tương tự đối với chc
 %----------------- Lời giải --------------
 \def\loigiaiEX{\needspace{1cm}\parbox[c]{\linewidth-1mm}{\centering\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Lời giải.}}
@@ -34,10 +34,10 @@
 \theorembodyfont{\itshape}
 %----------------- Chú ý -----------------
 \newtheorem*{chuy}{Chú ý}
-\setTheoBox{chuy}{11}
+\setTheoBox{chuy}{11}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Chú ý}
 %--------------- Nhận xét ----------------
 \newtheorem*{nx}{Nhận xét}
-\setTheoBox{nx}{11}
+\setTheoBox{nx}{11}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Nhận xét}
 %----------------- Ví dụ -----------------
 \newenvironment{vd}{}{}
 \setEnvBox{vd}{3}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Ví dụ}
@@ -48,6 +48,9 @@
 \newenvironment{ghinho}{}{}
 \setEnvBox{ghinho}{22}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Ghi nhớ}
 \begin{document}
+	\begin{dn}[Tên định nghĩa]
+		\lipsum[1]
+	\end{dn}
 	\begin{dn}[Tên định nghĩa]
 		\lipsum[1]
 	\end{dn}
@@ -66,6 +69,12 @@
 			\dotlineEX{3}
 		}
 	\end{vd}
+	\begin{chuy}
+		\begin{itemize}
+			\item Điều thứ nhất;
+			\item Điều thứ hai.
+		\end{itemize}
+	\end{chuy}
 	\begin{chuy}
 		\begin{itemize}
 			\item Điều thứ nhất;
@@ -125,4 +134,21 @@
 	\begin{ghinho}
 		\lipsum[1]
 	\end{ghinho}
+	\begin{ex}
+		<Câu dẫn cho câu hỏi nhiều lựa chọn>.
+		\choiceTF[1t]
+		{\True Phương án A}
+		{Phương án B}
+		{Phương án C}
+		{\True Phương án D}
+	\end{ex}
+	\begin{ex}
+		<Câu dẫn cho câu hỏi nhiều lựa chọn>.
+		\choiceTF[1t]
+		{\True Phương án A}
+		{Phương án B}
+		{Phương án C}
+		{\True Phương án D}
+	\end{ex}
+	
 \end{document}
