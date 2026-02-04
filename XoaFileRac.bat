@@ -4,3 +4,5 @@ del *.snm
 del *.gz
 del *.upa
 del *.answers
+del *.fls
+del *.fdb_latexmk
