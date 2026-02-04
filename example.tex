@@ -18,10 +18,19 @@
 \theoremheaderfont{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont}
 %--------------- Định nghĩa ---------------
 \newtheorem{dn}{Định nghĩa}
-\setTheoBox{dn}{2}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Định nghĩa}
+\setTheoBox{dn}{24}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Định nghĩa}
 %--------------- Tính chất ---------------
 \newtheorem{tc}{Tính chất}
-\setTheoBox{tc}{1}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Tính chất}
+\setTheoBox{tc}{27}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Tính chất}
+%----------------- Ví dụ -----------------
+\newtheorem{vd}{Ví dụ}
+\setTheoBox{vd}{23}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Ví dụ}
+%----------------- Dạng- -----------------
+\newtheorem{dang}{Dạng}
+\setTheoBox{dang}{12}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Dạng}
+%---------------- Ghi nhớ ----------------
+\newtheorem{ghinho}{Ghi nhớ}
+\setTheoBox{ghinho}{22}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Ghi nhớ}
 %------------------- ex ------------------
 \renewtheorem{ex}{Câu}
 \setTheoBox{ex}{14}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Câu}
@@ -34,19 +43,10 @@
 \theorembodyfont{\itshape}
 %----------------- Chú ý -----------------
 \newtheorem*{chuy}{Chú ý}
-\setTheoBox{chuy}{11}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Chú ý}
+\setTheoBox{chuy}{25}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Chú ý}
 %--------------- Nhận xét ----------------
 \newtheorem*{nx}{Nhận xét}
-\setTheoBox{nx}{11}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Nhận xét}
-%----------------- Ví dụ -----------------
-\newenvironment{vd}{}{}
-\setEnvBox{vd}{3}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Ví dụ}
-%----------------- Dạng- -----------------
-\newenvironment{dang}{}{}
-\setEnvBox{dang}{12}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Dạng}
-%---------------- Ghi nhớ ----------------
-\newenvironment{ghinho}{}{}
-\setEnvBox{ghinho}{22}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Ghi nhớ}
+\setTheoBox{nx}{5}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Nhận xét}
 \begin{document}
 	\begin{dn}[Tên định nghĩa]
 		\lipsum[1]
@@ -136,11 +136,14 @@
 	\end{ghinho}
 	\begin{ex}
 		<Câu dẫn cho câu hỏi nhiều lựa chọn>.
-		\choiceTF[1t]
+		\choice
 		{\True Phương án A}
 		{Phương án B}
 		{Phương án C}
-		{\True Phương án D}
+		{Phương án D}
+		\loigiai{
+			...
+		}
 	\end{ex}
 	\begin{ex}
 		<Câu dẫn cho câu hỏi nhiều lựa chọn>.
@@ -149,6 +152,9 @@
 		{Phương án B}
 		{Phương án C}
 		{\True Phương án D}
+		\loigiai{
+			...
+		}
 	\end{ex}
 	
 \end{document}
