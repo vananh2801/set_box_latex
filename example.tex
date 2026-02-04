@@ -14,38 +14,33 @@
 \setboxColbacktitleSetDefault{brown!30}
 %----------- Định dạng theorem ------------
 \theoremstyle{immini}
-\theoremseparator{.}
-\theoremheaderfont{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont}
 %--------------- Định nghĩa ---------------
 \newtheorem{dn}{Định nghĩa}
-\setTheoBox{dn}{24}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Định nghĩa}
+\setTheoBox{dn}{23}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Định nghĩa}
 %--------------- Tính chất ---------------
 \newtheorem{tc}{Tính chất}
-\setTheoBox{tc}{27}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Tính chất}
+\setTheoBox{tc}{26}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Tính chất}
 %----------------- Ví dụ -----------------
 \newtheorem{vd}{Ví dụ}
-\setTheoBox{vd}{23}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Ví dụ}
+\setTheoBox{vd}{22}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Ví dụ}
 %----------------- Dạng- -----------------
 \newtheorem{dang}{Dạng}
-\setTheoBox{dang}{12}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Dạng}
+\setTheoBox{dang}{11}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Dạng}
 %---------------- Ghi nhớ ----------------
 \newtheorem{ghinho}{Ghi nhớ}
-\setTheoBox{ghinho}{22}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Ghi nhớ}
+\setTheoBox{ghinho}{21}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Ghi nhớ}
 %------------------- ex ------------------
 \renewtheorem{ex}{Câu}
 \setTheoBox{ex}{14}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Câu}
 % Gói lệnh sẽ áp dụng tương tự đối với chc
 %----------------- Lời giải --------------
 \def\loigiaiEX{\needspace{1cm}\parbox[c]{\linewidth-1mm}{\centering\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Lời giải.}}
-%----------- Định dạng theorem ------------
-\theoremseparator{:}
-\theoremheaderfont{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont}
 \theorembodyfont{\itshape}
 %----------------- Chú ý -----------------
-\newtheorem*{chuy}{Chú ý}
-\setTheoBox{chuy}{25}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Chú ý}
+\newtheorem{chuy}{Chú ý}
+\setTheoBox{chuy}{24}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Chú ý}
 %--------------- Nhận xét ----------------
-\newtheorem*{nx}{Nhận xét}
+\newtheorem{nx}{Nhận xét}
 \setTheoBox{nx}{5}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Nhận xét}
 \begin{document}
 	\begin{dn}[Tên định nghĩa]
@@ -156,5 +151,4 @@
 			...
 		}
 	\end{ex}
-	
 \end{document}
