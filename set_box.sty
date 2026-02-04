@@ -543,55 +543,6 @@
 		\fi
 	\or %7
 		\def\sb@beginbox{
-			\begin{tcolorbox}[
-				enhanced,
-				breakable,
-				frame hidden,
-				opacityback=0,
-				top=3mm,left=3mm,bottom=3mm,right=3mm,
-				frame code={
-					\fill[\setboxColbackValue{#1}] 
-					(frame.north west) rectangle (frame.south east);
-					\fill[\setboxColframeValue{#1}] 
-					(frame.north west) rectangle ([xshift=1mm]frame.south west);
-				},
-				skin first is subskin of={emptyfirst}{%
-					frame code={
-						\fill[\setboxColbackValue{#1}] 
-						(frame.north west) rectangle (frame.south east);
-						\fill[\setboxColframeValue{#1}] 
-						(frame.north west) rectangle ([xshift=1mm]frame.south west);
-					},
-				},
-				skin middle is subskin of={emptymiddle}{%
-					frame code={
-						\fill[\setboxColbackValue{#1}] 
-						(frame.north west) rectangle (frame.south east);
-						\fill[\setboxColframeValue{#1}] 
-						(frame.north west) rectangle ([xshift=1mm]frame.south west);
-					},
-				},
-				skin last is subskin of={emptylast}{%
-					frame code={
-						\fill[\setboxColbackValue{#1}] 
-						(frame.north west) rectangle (frame.south east);
-						\fill[\setboxColframeValue{#1}] 
-						(frame.north west) rectangle ([xshift=1mm]frame.south west);
-					},
-				},
-				]
-			\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\par
-			}
-		\def\endbox{\end{tcolorbox}}
-		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
-		\ifsb@InTcolorbox
-			\Ifsb@hideboxInTcb
-				\def\sb@beginbox{\par\noindent{\normalfont\normalcolor \sb@titlethmfull~}}
-				\def\endbox{\par}
-			\fi
-		\fi
-	\or %8
-		\def\sb@beginbox{
 			\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\par
 			\begin{tcolorbox}[
 				enhanced,
@@ -639,7 +590,7 @@
 				\def\endbox{\par}
 			\fi
 		\fi
-	\or %9
+	\or %8
 		\def\sb@beginbox{
 			\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\par
 			\begin{tcolorbox}[
@@ -662,7 +613,7 @@
 				\def\endbox{\par}
 			\fi
 		\fi
-	\or %10
+	\or %9
 		\def\sb@beginbox{
 			\settowidth\sb@titleWidth{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}
 			\setlength\sb@titleMaxWidth{\linewidth-6mm}
@@ -734,7 +685,7 @@
 				\def\endbox{\par}
 			\fi
 		\fi
-	\or %11
+	\or %10
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				enhanced,
@@ -759,7 +710,7 @@
 				\def\endbox{\par}
 			\fi
 		\fi
-	\or %12
+	\or %11
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				enhanced,
@@ -784,7 +735,7 @@
 				\def\endbox{\par}
 			\fi
 		\fi
-	\or %13
+	\or %12
 		\def\sb@beginbox{
 			\settowidth\sb@titleWidth{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel}
 			\begin{tcolorbox}[
@@ -846,7 +797,7 @@
 				\def\endbox{\par}
 			\fi
 		\fi
-	\or %14
+	\or %13
 		\def\sb@beginbox{
 			\settowidth\sb@titleWidth{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel}
 			\begin{tcolorbox}[
@@ -908,7 +859,7 @@
 				\def\endbox{\par}
 			\fi
 		\fi
-	\or %15
+	\or %14
 		\def\sb@beginbox{
 			\settowidth\sb@titleWidth{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel}
 			\begin{tcolorbox}[
@@ -974,7 +925,7 @@
 				\def\endbox{\par}
 			\fi
 		\fi
-	\or %16
+	\or %15
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				enhanced,
@@ -1011,7 +962,7 @@
 					},
 				}
 				]
-				\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\vspace{3mm}\par
+				\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\par
 			}
 		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
@@ -1021,7 +972,7 @@
 				\def\endbox{\par}
 			\fi
 		\fi
-	\or
+	\or %16
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				enhanced,
@@ -1096,7 +1047,7 @@
 					},
 				},
 				]
-				\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\vspace{3mm}\par
+				\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\par
 			}
 		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
@@ -1106,7 +1057,7 @@
 				\def\endbox{\par}
 			\fi
 		\fi
-	\or %18
+	\or %17
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				enhanced,
@@ -1149,7 +1100,7 @@
 				\def\endbox{\par}
 			\fi
 		\fi
-	\or %19
+	\or %18
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				enhanced,
@@ -1192,7 +1143,7 @@
 				\def\endbox{\par}
 			\fi
 		\fi
-	\or %20
+	\or %19
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				enhanced,
@@ -1235,7 +1186,7 @@
 				\def\endbox{\par}
 			\fi
 		\fi
-	\or %21
+	\or %20
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				enhanced,
@@ -1287,7 +1238,7 @@
 				\def\endbox{\par}
 			\fi
 		\fi
-	\or %22
+	\or %21
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				enhanced,
@@ -1339,7 +1290,7 @@
 				\def\endbox{\par}
 			\fi
 		\fi
-	\or %23
+	\or %22
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				breakable,
@@ -1352,7 +1303,7 @@
 				colback=\setboxColbackValue{#1},
 				colframe=\setboxColframeValue{#1}
 				]
-				\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\vspace{3mm}\par
+				\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\par
 			}
 		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
@@ -1362,7 +1313,7 @@
 				\def\endbox{\par}
 			\fi
 		\fi
-	\or %24
+	\or %23
 		\def\sb@beginbox{\begin{tcolorbox}[
 			breakable,
 			enhanced,
@@ -1402,7 +1353,7 @@
 				},
 			},
 			]
-			\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\vspace{3mm}\par
+			\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\par
 		}
 		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
@@ -1412,7 +1363,7 @@
 				\def\endbox{\par}
 			\fi
 		\fi
-	\or %25
+	\or %24
 		\def\sb@beginbox{
 		\begin{tcolorbox}[
 			enhanced,
@@ -1431,7 +1382,7 @@
 				\path[fill=\setboxColframeValue{#1},draw=none] (interior.south west) rectangle node[white]{\Huge\bfseries !} ([xshift=4mm]interior.north west);
 			}
 			]
-			\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\vspace{3mm}\par
+			\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\par
 		}
 		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
@@ -1441,7 +1392,7 @@
 				\def\endbox{\par}
 			\fi
 		\fi
-	\or %26
+	\or %25
 		\def\sb@beginbox{
 		\begin{tcolorbox}[
 			enhanced,
@@ -1526,7 +1477,7 @@
 				},
 			},
 			]
-			\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\vspace{3mm}\par
+			\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}
 		}
 		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
@@ -1536,7 +1487,7 @@
 				\def\endbox{\par}
 			\fi
 		\fi
-	\or %27
+	\or %26
 		\def\sb@beginbox{\begin{tcolorbox}[
 			breakable,
 			enhanced,
@@ -1617,7 +1568,7 @@
 				},
 			},
 		]
-		\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\vspace{3mm}\par
+		\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\par
 		}
 		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
@@ -1627,7 +1578,7 @@
 				\def\endbox{\par}
 			\fi
 		\fi
-	\or %28
+	\or %27
 		\def\sb@beginbox{\begin{tcolorbox}[
 			breakable,
 			enhanced,
@@ -1685,7 +1636,7 @@
 				},
 			},
 			]
-			\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\vspace{3mm}\par
+			\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\par
 		}
 		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
@@ -1695,7 +1646,7 @@
 				\def\endbox{\par}
 			\fi
 		\fi
-	\or %29
+	\or %28
 		\def\sb@beginbox{\begin{tcolorbox}[
 			breakable,
 			enhanced,
@@ -1779,7 +1730,7 @@
 				},
 			},
 			]
-			\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\vspace{3mm}\par
+			\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\par
 		}
 		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
@@ -1789,7 +1740,7 @@
 				\def\endbox{\par}
 			\fi
 		\fi
-	\or %30
+	\or %29
 		\def\sb@beginbox{\begin{tcolorbox}[
 			breakable,
 			enhanced,
@@ -1834,7 +1785,7 @@
 				},
 			},
 			]
-			\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\vspace{3mm}\par
+			\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\par
 		}
 		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
@@ -1844,141 +1795,7 @@
 				\def\endbox{\par}
 			\fi
 		\fi
-	\or %31
-		\def\sb@beginbox{\begin{tcolorbox}[
-			enhanced,
-			breakable,
-			frame hidden,
-			top=3mm,left=3mm,bottom=3mm,right=3mm,
-			opacityback=0,
-			frame code={
-				\fill[\setboxColbackValue{#1}] 
-				(frame.north west) rectangle (frame.south east);
-				\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=3pt,amplitude=1pt},line width=0.4mm] (frame.north west) rectangle (frame.south east);
-			},
-			skin first is subskin of={emptyfirst}{%
-				frame code={
-					\fill[\setboxColbackValue{#1}] 
-					(frame.north west) rectangle (frame.south east);
-					\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=3pt,amplitude=1pt},line width=0.4mm] 
-					(frame.south west) -- (frame.north west) -- (frame.north east) -- (frame.south east);
-				},
-			},
-			skin middle is subskin of={emptymiddle}{%
-				top=3mm,
-				frame code={
-					\fill[\setboxColbackValue{#1}] 
-					(frame.north west) rectangle (frame.south east);
-					\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=3pt,amplitude=1pt},line width=0.4mm] 
-					(frame.north west) -- (frame.south west)
-					(frame.north east) -- (frame.south east);
-				},
-			},
-			skin last is subskin of={emptylast}{%
-				top=3mm,
-				frame code={
-					\fill[\setboxColbackValue{#1}] 
-					(frame.north west) rectangle (frame.south east);
-					\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=3pt,amplitude=1pt},line width=0.4mm] 
-					(frame.north west) --  (frame.south west) -- (frame.south east) -- (frame.north east);
-				},
-			}
-			]
-			\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\vspace{3mm}\par
-		}
-		\def\endbox{\end{tcolorbox}}
-		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
-		\ifsb@InTcolorbox
-			\Ifsb@hideboxInTcb
-				\def\sb@beginbox{\par\noindent{\normalfont\normalcolor\sb@labelthmfull~}}
-				\def\endbox{\par}
-			\fi
-		\fi
-	\or %32
-		\def\sb@beginbox{\begin{tcolorbox}[
-			enhanced,
-			breakable,
-			frame hidden,
-			top=3mm,left=3mm,bottom=3mm,right=3mm,
-			opacityback=0,
-			frame code ={
-				\pgfmathrandominteger{\nw}{3}{3}%
-				\pgfmathrandominteger{\ne}{3}{3}%
-				\pgfmathrandominteger{\sw}{3}{3}%
-				\pgfmathrandominteger{\se}{3}{3}%
-				\fill[\setboxColbackValue{#1}, rounded corners=3mm] (frame.north west) rectangle (frame.south east);
-				\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
-				([xshift=\nw mm]frame.north west) -- ([xshift=-\ne mm]frame.north east);
-				\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
-				([yshift=-\ne mm]frame.north east) -- ([yshift=\se mm]frame.south east);
-				\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
-				([xshift=-\se mm]frame.south east) -- ([xshift=\sw mm]frame.south west);
-				\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
-				([yshift=-\nw mm]frame.north west) -- ([yshift=\sw mm]frame.south west);
-				\draw[\setboxColframeValue{#1},line width=0.4mm] 
-				([xshift=-\ne mm]frame.north east) arc[start angle=90, end angle=0,radius=\ne mm]
-				([yshift=\se mm]frame.south east) arc[start angle=360, end angle=270,radius=\se mm]
-				([xshift=\sw mm]frame.south west) arc[start angle=270, end angle=180,radius=\sw mm]
-				([yshift=-\nw mm]frame.north west) arc[start angle=180, end angle=90,radius=\nw mm]
-				;
-			},
-			skin first is subskin of={emptyfirst}{%
-				frame code ={
-					\pgfmathrandominteger{\nw}{2}{4}%
-					\pgfmathrandominteger{\ne}{2}{4}%
-					\fill[\setboxColbackValue{#1}] (frame.south west) -- ([yshift=-\nw mm]frame.north west) arc[start angle=180,end angle=90,radius=\nw mm] -- ([xshift=-\ne mm]frame.north east) arc[start angle=90,end angle=0,radius=\ne mm] -- (frame.south east) -- cycle;
-					\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
-					([xshift=\nw mm]frame.north west) -- ([xshift=-\ne mm]frame.north east);
-					\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm]
-					([yshift=-\ne mm]frame.north east) -- (frame.south east);
-					\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm]
-					([yshift=-\nw mm]frame.north west) -- (frame.south west);
-					\draw[\setboxColframeValue{#1},line width=0.4mm] 
-					([xshift=-\ne mm]frame.north east) arc[start angle=90, end angle=0,radius=\ne mm]
-					([yshift=-\nw mm]frame.north west) arc[start angle=180, end angle=90,radius=\nw mm]
-					;
-				},
-			},
-			skin middle is subskin of={emptymiddle}{%
-				top=3mm,
-				frame code ={
-					\fill[\setboxColbackValue{#1}] (frame.north west) rectangle (frame.south east);
-					\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
-					(frame.north west) -- (frame.south west);
-					\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
-					(frame.north east) -- (frame.south east);
-				},
-			},
-			skin last is subskin of={emptylast}{%
-				top=3mm,
-				frame code ={
-					\pgfmathrandominteger{\sw}{2}{4}%
-					\pgfmathrandominteger{\se}{2}{4}%
-					\fill[\setboxColbackValue{#1}] (frame.north west) -- ([yshift=\sw mm]frame.south west) arc[start angle=180,end angle=270,radius=\sw mm] -- ([xshift=-\se mm]frame.south east) arc[start angle=270,end angle=360,radius=\se mm] -- (frame.north east) -- cycle;
-					\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm]
-					(frame.north east) -- ([yshift=\se mm]frame.south east);
-					\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
-					([xshift=-\se mm]frame.south east) -- ([xshift=\sw mm]frame.south west);
-					\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
-					(frame.north west) -- ([yshift=\sw mm]frame.south west);
-					\draw[\setboxColframeValue{#1},line width=0.4mm] 
-					([yshift=\se mm]frame.south east) arc[start angle=360, end angle=270,radius=\se mm]
-					([xshift=\sw mm]frame.south west) arc[start angle=270, end angle=180,radius=\sw mm]
-					;
-				},
-			}
-			]
-			\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\vspace{3mm}\par
-		}
-		\def\endbox{\end{tcolorbox}}
-		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
-		\ifsb@InTcolorbox
-			\Ifsb@hideboxInTcb
-				\def\sb@beginbox{\par\noindent{\normalfont\normalcolor\sb@labelthmfull~}}
-				\def\endbox{\par}
-			\fi
-		\fi
-	\else %33 trở lên
+	\else %30 trở lên
 		\def\sb@beginbox{\par\noindent{\normalfont\normalcolor \sb@labelthmfull~}}
 		\def\endbox{\par}
 	\fi
@@ -2059,8 +1876,8 @@
 		{
 			\setTheoBox{chc}{#2}{#3}
 		}{}
-		\fixshowans{#1}
-		\listenumerate{#1}
+		% \fixshowans{#1}
+		% \listenumerate{#1}
 	}
 	{}
 }
