@@ -2008,7 +2008,7 @@
 	\RenewEnviron{#1}[1][]{
 		% Kiểm tra xem có bỏ qua không
 		\checkSkipFlag{#1}
-		% Tăng counter của môi trường #1 một đơn vị và 
+		% Tăng counter của môi trường #1 một đơn vị
 		\edef\tmpctr{\getcountername{#1}}
 		\stepcounter{\tmpctr}
 		% Tạo biến tạm thời để ẩn/hiện khung
@@ -2023,9 +2023,9 @@
 			% Khai báo số thứ tự
 			\def\sb@Currentlabel{\csname the#1\endcsname}
 			% Khai báo tiêu đề
-			\gdef\sb@labelthm{#3}
+			\def\sb@labelthm{#3}
 			% Khai báo tiêu đề PHỤ
-			\gdef\sb@sublabelthm{##1}
+			\def\sb@sublabelthm{##1}
 			% Khai báo tiêu đề ĐẦY ĐỦ
 			\ifthenelse{\equal{##1}{}}{\gdef\sb@labelthmfull{\sb@labelthm~\sb@Currentlabel.}}{\gdef\sb@labelthmfull{\sb@labelthm~\sb@Currentlabel~(\sb@sublabelthm).}}
 			% Áp dụng khung
