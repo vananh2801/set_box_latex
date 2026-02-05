@@ -408,7 +408,7 @@
 		\fi
 	\or %4
 		\def\sb@beginbox{
-			\settowidth\sb@titleWidth{\normalfont\normalcolor \ifthenelse{\equal{\sb@sublabelthm}{}}{\sb@labelthm~\sb@Currentlabel}{\sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}}
+			\settowidth\sb@titleWidth{\normalfont\normalcolor\sb@labelthmfullFly}
 			\setlength\sb@titleMaxWidth{0.7\linewidth}
 			\ifdim\sb@titleWidth>\sb@titleMaxWidth\relax\setlength{\sb@titleWidth}{\sb@titleMaxWidth}\fi
 			\begin{tcolorbox}[
