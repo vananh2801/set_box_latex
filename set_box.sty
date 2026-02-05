@@ -408,7 +408,7 @@
 		\fi
 	\or %4
 		\def\sb@beginbox{
-			\settowidth\sb@titleWidth{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}
+			\settowidth\sb@titleWidth{\normalfont\normalcolor \ifthenelse{\equal{\sb@sublabelthm}{}}{\sb@labelthm~\sb@Currentlabel}{\sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}}
 			\setlength\sb@titleMaxWidth{0.7\linewidth}
 			\ifdim\sb@titleWidth>\sb@titleMaxWidth\relax\setlength{\sb@titleWidth}{\sb@titleMaxWidth}\fi
 			\begin{tcolorbox}[
@@ -443,7 +443,8 @@
 						-- (interior.south west)-- cycle;
 					},
 				},
-				title={\parbox{\sb@titleWidth}{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}},
+				title={\parbox{\sb@titleWidth}{\normalfont\normalcolor 
+				\ifthenelse{\equal{\sb@sublabelthm}{}}{\sb@labelthm~\sb@Currentlabel}{\sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}}},
 				]
 			}
 		\def\endbox{\end{tcolorbox}}
@@ -483,7 +484,7 @@
 		\fi
 	\or %6
 		\def\sb@beginbox{
-			\settowidth\sb@titleWidth{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}
+			\settowidth\sb@titleWidth{\normalfont\normalcolor \ifthenelse{\equal{\sb@sublabelthm}{}}{\sb@labelthm~\sb@Currentlabel}{\sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}}
 			\setlength\sb@titleMaxWidth{\dimexpr\linewidth-9mm\relax}
 			\ifdim\sb@titleWidth>\sb@titleMaxWidth\relax\setlength{\sb@titleWidth}{\sb@titleMaxWidth}\fi
 			\begin{tcolorbox}[
@@ -494,7 +495,7 @@
 				opacityback=0,
 				top=\tcboxedtitleheight,left=3mm,bottom=3mm,right=3mm,
 				colframe=\setboxColframeValue{#1},
-				title={\parbox{\sb@titleWidth}{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}},
+				title={\parbox{\sb@titleWidth}{\normalfont\normalcolor \ifthenelse{\equal{\sb@sublabelthm}{}}{\sb@labelthm~\sb@Currentlabel}{\sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}}},
 				attach boxed title to top left={
 					xshift=3mm,
 					yshift=-\tcboxedtitleheight
@@ -543,7 +544,7 @@
 		\fi
 	\or %7
 		\def\sb@beginbox{
-			\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\par
+			\par\noindent{\normalfont\normalcolor \ifthenelse{\equal{\sb@sublabelthm}{}}{\sb@labelthm~\sb@Currentlabel}{\sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}}\par
 			\begin{tcolorbox}[
 				enhanced,
 				breakable,
@@ -592,7 +593,7 @@
 		\fi
 	\or %8
 		\def\sb@beginbox{
-			\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\par
+			\par\noindent{\normalfont\normalcolor \ifthenelse{\equal{\sb@sublabelthm}{}}{\sb@labelthm~\sb@Currentlabel}{\sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}}\par
 			\begin{tcolorbox}[
 				breakable,
 				enhanced,
@@ -615,7 +616,7 @@
 		\fi
 	\or %9
 		\def\sb@beginbox{
-			\settowidth\sb@titleWidth{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}
+			\settowidth\sb@titleWidth{\normalfont\normalcolor \ifthenelse{\equal{\sb@sublabelthm}{}}{\sb@labelthm~\sb@Currentlabel}{\sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}}
 			\setlength\sb@titleMaxWidth{\linewidth-6mm}
 			\ifdim\sb@titleWidth>\sb@titleMaxWidth\relax\setlength{\sb@titleWidth}{\sb@titleMaxWidth}\fi
 			\begin{tcolorbox}[
@@ -626,7 +627,7 @@
 				opacityback=0,
 				top=3mm,left=3mm,bottom=3mm,right=3mm,
 				left skip=3mm,
-				title={\parbox{\sb@titleWidth}{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}},
+				title={\parbox{\sb@titleWidth}{\normalfont\normalcolor \ifthenelse{\equal{\sb@sublabelthm}{}}{\sb@labelthm~\sb@Currentlabel}{\sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}}},
 				attach boxed title to top left={
 					xshift=-3mm, 
 					yshift*=-\tcboxedtitleheight/2
@@ -699,7 +700,7 @@
 				boxrule=0.4mm,
 				toptitle=1mm,bottomtitle=1mm,
 				colbacktitle=\setboxColbacktitleValue{#1},
-				title={\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm},
+				title={\normalfont\normalcolor \ifthenelse{\equal{\sb@sublabelthm}{}}{\sb@labelthm~\sb@Currentlabel}{\sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}},
 				]
 			}
 		\def\endbox{\end{tcolorbox}}
@@ -724,7 +725,7 @@
 				colframe=\setboxColframeValue{#1},
 				colbacktitle=\setboxColbacktitleValue{#1},
 				borderline west={3pt}{1pt}{\setboxColframeValue{#1}},
-				title={\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm},
+				title={\normalfont\normalcolor \ifthenelse{\equal{\sb@sublabelthm}{}}{\sb@labelthm~\sb@Currentlabel}{\sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}},
 				]
 			}
 		\def\endbox{\end{tcolorbox}}
@@ -962,7 +963,7 @@
 					},
 				}
 				]
-				\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\par
+				\par\noindent{\normalfont\normalcolor \sb@labelthmfull~}%
 			}
 		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
@@ -1047,7 +1048,7 @@
 					},
 				},
 				]
-				\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\par
+				\par\noindent{\normalfont\normalcolor \sb@labelthmfull~}%
 			}
 		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
@@ -1070,12 +1071,12 @@
 				before skip=8mm,
 				frame code ={
 					\fill[\setboxColbackValue{#1}, line width=0.4mm] (frame.north west) -- (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- cycle;
-					\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\bf\fontsize{25pt}{25pt}\selectfont\color{\setboxColframeValue{#1}}\faPowerOff};
+					\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\fontsize{25pt}{25pt}\selectfont\color{\setboxColframeValue{#1}}\faPowerOff};
 				},
 				skin first is subskin of={emptyfirst}{%
 					frame code ={
 						\fill[\setboxColbackValue{#1}] (frame.north west) rectangle (frame.south east);
-						\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\bf\fontsize{25pt}{25pt}\selectfont\color{\setboxColframeValue{#1}}\faPowerOff};
+						\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\fontsize{25pt}{25pt}\selectfont\color{\setboxColframeValue{#1}}\faPowerOff};
 					}
 				},
 				skin middle is subskin of={emptymiddle}{%
@@ -1113,12 +1114,12 @@
 				before skip=8mm,
 				frame code ={
 					\fill[\setboxColbackValue{#1}, line width=0.4mm] (frame.north west) -- (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- cycle;
-					\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\bf\fontsize{30pt}{30pt}\selectfont\color{\setboxColframeValue{#1}}\faLightbulbO\fontsize{11pt}{11pt}\fontfamily{lmss}\selectfont\ \csname the#1\endcsname};
+					\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\fontsize{30pt}{30pt}\selectfont\color{\setboxColframeValue{#1}}\faLightbulbO\fontsize{11pt}{11pt}\fontfamily{lmss}\selectfont\bf\sb@Currentlabel};
 				},
 				skin first is subskin of={emptyfirst}{%
 					frame code ={
 						\fill[\setboxColbackValue{#1}] (frame.north west) rectangle (frame.south east);
-						\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\bf\fontsize{30pt}{30pt}\selectfont\color{\setboxColframeValue{#1}}\faLightbulbO\fontsize{11pt}{11pt}\fontfamily{lmss}\selectfont\ \csname the#1\endcsname};
+						\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\fontsize{30pt}{30pt}\selectfont\color{\setboxColframeValue{#1}}\faLightbulbO\fontsize{11pt}{11pt}\fontfamily{lmss}\selectfont\bf\sb@Currentlabel};
 					}
 				},
 				skin middle is subskin of={emptymiddle}{%
@@ -1156,12 +1157,12 @@
 				before skip=8mm,
 				frame code ={
 					\fill[\setboxColbackValue{#1}, line width=0.4mm] (frame.north west) -- (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- cycle;
-					\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\bf\fontsize{30pt}{30pt}\selectfont\color{\setboxColframeValue{#1}}\faUnlockAlt\fontsize{11pt}{11pt}\fontfamily{lmss}\selectfont\ \csname the#1\endcsname};
+					\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\fontsize{30pt}{30pt}\selectfont\color{\setboxColframeValue{#1}}\faUnlockAlt\,\fontsize{11pt}{11pt}\fontfamily{lmss}\selectfont\bf\sb@Currentlabel};
 				},
 				skin first is subskin of={emptyfirst}{%
 					frame code ={
 						\fill[\setboxColbackValue{#1}] (frame.north west) rectangle (frame.south east);
-						\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\bf\fontsize{30pt}{30pt}\selectfont\color{\setboxColframeValue{#1}}\faUnlockAlt\fontsize{11pt}{11pt}\fontfamily{lmss}\selectfont\ \csname the#1\endcsname};
+						\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\fontsize{30pt}{30pt}\selectfont\color{\setboxColframeValue{#1}}\faUnlockAlt\,\fontsize{11pt}{11pt}\fontfamily{lmss}\selectfont\bf\sb@Currentlabel};
 					}
 				},
 				skin middle is subskin of={emptymiddle}{%
@@ -1303,7 +1304,7 @@
 				colback=\setboxColbackValue{#1},
 				colframe=\setboxColframeValue{#1}
 				]
-				\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\par
+				\par\noindent{\normalfont\normalcolor \sb@labelthmfull~}%
 			}
 		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
@@ -1353,7 +1354,7 @@
 				},
 			},
 			]
-			\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\par
+			\par\noindent{\normalfont\normalcolor \sb@labelthmfull~}%
 		}
 		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
@@ -1382,7 +1383,7 @@
 				\path[fill=\setboxColframeValue{#1},draw=none] (interior.south west) rectangle node[white]{\Huge\bfseries !} ([xshift=4mm]interior.north west);
 			}
 			]
-			\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\par
+			\par\noindent{\normalfont\normalcolor \sb@labelthmfull~}%
 		}
 		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
@@ -1397,13 +1398,13 @@
 		\begin{tcolorbox}[
 			enhanced,
 			breakable,
-			left=4mm, right=4mm, top=3mm, bottom=3mm,
+			left=3mm, right=3mm, top=3mm, bottom=3mm,
 			colback=\setboxColbackValue{#1},
 			frame hidden,
 			opacityback=0,
 			height from=1.4cm to 99cm,
 			frame code={
-				\draw[\setboxColframeValue{#1},line width=0.4mm,scale=0.7]
+				\draw[\setboxColframeValue{#1},line width=0.4mm,scale=0.5]
 				% góc trên trái
 				(frame.north west) --++(0.4,0) --++(0,-0.6) --++(-0.4,0) --++(0,-0.2) --++(0.2,0) arc[start angle=90,end angle=180,radius=0.2cm]
 				(frame.north west) --++(0,-0.4) --++(0.6,0) --++(0,0.4) --++(0.2,0) --++(0,-0.2) arc[start angle=180,end angle=90,radius=0.2cm]
@@ -1429,7 +1430,7 @@
 			skin first is subskin of={emptyfirst}{%
 				bottom=1mm,
 				frame code ={
-					\draw[\setboxColframeValue{#1},line width=0.4mm,scale=0.7]
+					\draw[\setboxColframeValue{#1},line width=0.4mm,scale=0.5]
 					% góc trên trái
 					(frame.north west) --++(0.4,0) --++(0,-0.6) --++(-0.4,0) --++(0,-0.2) --++(0.2,0) arc[start angle=90,end angle=180,radius=0.2cm]
 					(frame.north west) --++(0,-0.4) --++(0.6,0) --++(0,0.4) --++(0.2,0) --++(0,-0.2) arc[start angle=180,end angle=90,radius=0.2cm]
@@ -1449,7 +1450,7 @@
 				top=1mm,
 				bottom=1mm,
 				frame code ={
-					\draw[\setboxColframeValue{#1},line width=0.4mm,scale=0.7]
+					\draw[\setboxColframeValue{#1},line width=0.4mm,scale=0.5]
 					% cạnh trái
 					(frame.north west) -- (frame.south west)
 					% cạnh phải
@@ -1460,7 +1461,7 @@
 			skin last is subskin of={emptylast}{%
 				top=1mm,
 				frame code ={
-					\draw[\setboxColframeValue{#1},line width=0.4mm,scale=0.7]
+					\draw[\setboxColframeValue{#1},line width=0.4mm,scale=0.5]
 					% góc dưới trái
 					(frame.south west) --++(0.4,0) --++(0,0.6) --++(-0.4,0) --++(0,0.2) --++(0.2,0) arc[start angle=270,end angle=180,radius=0.2cm]
 					(frame.south west) --++(0,0.4) --++(0.6,0) --++(0,-0.4) --++(0.2,0) --++(0,0.2) arc[start angle=180,end angle=270,radius=0.2cm]
@@ -1477,7 +1478,7 @@
 				},
 			},
 			]
-			\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}
+			\par\noindent{\normalfont\normalcolor \sb@labelthmfull~}%
 		}
 		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
@@ -1568,7 +1569,7 @@
 				},
 			},
 		]
-		\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\par
+		\par\noindent{\normalfont\normalcolor \sb@labelthmfull~}%
 		}
 		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
@@ -1636,7 +1637,7 @@
 				},
 			},
 			]
-			\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\par
+			\par\noindent{\normalfont\normalcolor \sb@labelthmfull~}%
 		}
 		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
@@ -1730,7 +1731,7 @@
 				},
 			},
 			]
-			\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\par
+			\par\noindent{\normalfont\normalcolor \sb@labelthmfull~}%
 		}
 		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
@@ -1785,7 +1786,7 @@
 				},
 			},
 			]
-			\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}\par
+			\par\noindent{\normalfont\normalcolor \sb@labelthmfull~}%
 		}
 		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
