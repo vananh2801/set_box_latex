@@ -26,9 +26,6 @@
 %----------------- Dạng- -----------------
 \newtheorem{dang}{Dạng}
 \setTheoBox{dang}{11}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Dạng}
-%---------------- Ghi nhớ ----------------
-\newtheorem{ghinho}{Ghi nhớ}
-\setTheoBox{ghinho}{21}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Ghi nhớ}
 %------------------- ex ------------------
 \renewtheorem{ex}{Câu}
 \setTheoBox{ex}{14}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Câu}
@@ -36,12 +33,15 @@
 %----------------- Lời giải --------------
 \def\loigiaiEX{\needspace{1cm}\parbox[c]{\linewidth-1mm}{\centering\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Lời giải.}}
 \theorembodyfont{\itshape}
+%---------------- Ghi nhớ ----------------
+\newtheorem*{ghinho}{Ghi nhớ}
+\setTheoBox*{ghinho}{21}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Ghi nhớ}
 %----------------- Chú ý -----------------
-\newtheorem{chuy}{Chú ý}
-\setTheoBox{chuy}{24}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Chú ý}
+\newtheorem*{chuy}{Chú ý}
+\setTheoBox*{chuy}{24}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Chú ý}
 %--------------- Nhận xét ----------------
-\newtheorem{nx}{Nhận xét}
-\setTheoBox{nx}{5}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Nhận xét}
+\newtheorem*{nx}{Nhận xét}
+\setTheoBox*{nx}{5}{\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Nhận xét}
 \begin{document}
 	\begin{dn}[Tên định nghĩa]
 		\lipsum[1]
