@@ -27,8 +27,8 @@
 \newtheorem{dn}{Định nghĩa}
 \setTheoBox{dn}{2}{\bf Định nghĩa}
 %----------- Tạo môi trường Ví dụ -------------
-\newtheorem{vd}{Ví dụ}
-\setTheoBox{vd}{4}{\bf Ví dụ}
+\newtheorem*{vd}{Ví dụ}
+\setTheoBox*{vd}{4}{\bf Ví dụ}
 %---------- Tạo môi trường Định lý ------------
 \newtheorem{dl}{Định lý}
 \setTheoBox{dl}{11}{\bf Định lý}
@@ -147,8 +147,11 @@
 	\end{itemize}
 	\subsubsection{Lưu ý}
 	\begin{itemize}
-		\item Mọi \texttt{theorem} mà nội dung có chứa \verb|\loigiai| đều phải áp dụng lệnh này. Nếu không muốn tạo khung thì dùng kiểu số 0. 
-		\item Lời giải mặc định được đưa ra ngoài khung.
+		\item Mọi \texttt{theorem} mà nội dung có chứa \verb|\loigiai| đều phải áp dụng lệnh này. Nếu không muốn tạo khung thì dùng kiểu số 0. Lời giải mặc định được đưa ra ngoài khung.
+		\begin{lrbox}{\myverbcontent}
+			\verb|\setTheoBox*{<tên theorem>}{<kiểu>}{<Tiêu đề>}|
+		\end{lrbox}
+		\item Dùng lệnh \fbox{\usebox{\myverbcontent}} để cài đặt khung cho \texttt{theorem} nếu không muốn tạo đánh số trên khung.\par
 	\end{itemize}
 	\subsubsection{Minh hoạ}
 	\begin{verbatim}
@@ -162,8 +165,8 @@
 		\newtheorem{dn}{Định nghĩa}
 		\setTheoBox{dn}{2}{\bf Định nghĩa}
 		%------------- Ví dụ -------------
-		\newtheorem{vd}{Ví dụ}
-		\setTheoBox{vd}{4}{\bf Ví dụ}
+		\newtheorem{vd}*{Ví dụ}
+		\setTheoBox{vd}*{4}{\bf Ví dụ}
 		%-------- Nội dung chính ---------
 		\begin{document}
 			\begin{dn}[Tên định nghĩa]
