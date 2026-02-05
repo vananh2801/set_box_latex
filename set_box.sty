@@ -331,7 +331,7 @@
 		\fi
 	\or %2
 		\def\sb@beginbox{
-			\settowidth\sb@titleWidth{\sb@labelthm~\sb@Currentlabel}
+			\settowidth\sb@titleWidth{\sb@labelthmshortFly}
 			\begin{tcolorbox}[
 				breakable,
 				enhanced,
@@ -357,7 +357,7 @@
 						--([shift={(0.1cm,-15pt)}]A)
 						--([shift={(0,0)}]A)[rounded corners=1mm]--([shift={(-.115,.1)}]A);
 						\path ([shift={(0pt,-6pt)}]A)--([shift={(0,-6pt)}]B) 
-						node[midway]{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel};  
+						node[midway]{\normalfont\normalcolor\sb@labelthmshortFly};  
 						}
 					}	 	      
 				]
@@ -366,7 +366,7 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@beginbox{\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~}}
+				\def\sb@beginbox{\par\noindent{\normalfont\normalcolor \sb@labelthmshort~}}
 				\def\endbox{\par}
 			\fi
 		\fi
@@ -395,14 +395,14 @@
 					(frame.north west) rectangle (frame.south east);
 				}
 			},
-			title={\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel}
+			title={\normalfont\normalcolor \sb@labelthmshortFly}
 			]
 		}
 		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@beginbox{\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~}}
+				\def\sb@beginbox{\par\noindent{\normalfont\normalcolor \sb@labelthmshort~}}
 				\def\endbox{\par}
 			\fi
 		\fi
@@ -443,8 +443,7 @@
 						-- (interior.south west)-- cycle;
 					},
 				},
-				title={\parbox{\sb@titleWidth}{\normalfont\normalcolor 
-				\ifthenelse{\equal{\sb@sublabelthm}{}}{\sb@labelthm~\sb@Currentlabel}{\sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}}},
+				title={\parbox{\sb@titleWidth}{\normalfont\normalcolor\sb@labelthmfullFly}},
 				]
 			}
 		\def\endbox{\end{tcolorbox}}
@@ -471,20 +470,20 @@
 				height from={\sb@titleWidth} to 99cm,
 				overlay unbroken and first ={
 					\node[rotate=90, minimum width=1cm, anchor=south] 
-					at (frame.west) {\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel};
+					at (frame.west) {\normalfont\normalcolor\sb@labelthmshortFly};
 				}]
 			}
 		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@beginbox{\par\noindent{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel.~}}
+				\def\sb@beginbox{\par\noindent{\normalfont\normalcolor\sb@labelthmshort~}}
 				\def\endbox{\par}
 			\fi
 		\fi
 	\or %6
 		\def\sb@beginbox{
-			\settowidth\sb@titleWidth{\normalfont\normalcolor \ifthenelse{\equal{\sb@sublabelthm}{}}{\sb@labelthm~\sb@Currentlabel}{\sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}}
+			\settowidth\sb@titleWidth{\normalfont\normalcolor \sb@labelthmfullFly}
 			\setlength\sb@titleMaxWidth{\dimexpr\linewidth-9mm\relax}
 			\ifdim\sb@titleWidth>\sb@titleMaxWidth\relax\setlength{\sb@titleWidth}{\sb@titleMaxWidth}\fi
 			\begin{tcolorbox}[
@@ -495,7 +494,7 @@
 				opacityback=0,
 				top=\tcboxedtitleheight,left=3mm,bottom=3mm,right=3mm,
 				colframe=\setboxColframeValue{#1},
-				title={\parbox{\sb@titleWidth}{\normalfont\normalcolor \ifthenelse{\equal{\sb@sublabelthm}{}}{\sb@labelthm~\sb@Currentlabel}{\sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}}},
+				title={\parbox{\sb@titleWidth}{\normalfont\normalcolor \sb@labelthmfullFly}},
 				attach boxed title to top left={
 					xshift=3mm,
 					yshift=-\tcboxedtitleheight
@@ -544,7 +543,7 @@
 		\fi
 	\or %7
 		\def\sb@beginbox{
-			\par\noindent{\normalfont\normalcolor \ifthenelse{\equal{\sb@sublabelthm}{}}{\sb@labelthm~\sb@Currentlabel}{\sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}}\par
+			\par\noindent{\normalfont\normalcolor \sb@labelthmfullFly}\par
 			\begin{tcolorbox}[
 				enhanced,
 				breakable,
@@ -593,7 +592,7 @@
 		\fi
 	\or %8
 		\def\sb@beginbox{
-			\par\noindent{\normalfont\normalcolor \ifthenelse{\equal{\sb@sublabelthm}{}}{\sb@labelthm~\sb@Currentlabel}{\sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}}\par
+			\par\noindent{\normalfont\normalcolor\sb@labelthmfullFly}\par
 			\begin{tcolorbox}[
 				breakable,
 				enhanced,
@@ -616,7 +615,7 @@
 		\fi
 	\or %9
 		\def\sb@beginbox{
-			\settowidth\sb@titleWidth{\normalfont\normalcolor \ifthenelse{\equal{\sb@sublabelthm}{}}{\sb@labelthm~\sb@Currentlabel}{\sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}}
+			\settowidth\sb@titleWidth{\normalfont\normalcolor\sb@labelthmfullFly}
 			\setlength\sb@titleMaxWidth{\linewidth-6mm}
 			\ifdim\sb@titleWidth>\sb@titleMaxWidth\relax\setlength{\sb@titleWidth}{\sb@titleMaxWidth}\fi
 			\begin{tcolorbox}[
@@ -627,7 +626,7 @@
 				opacityback=0,
 				top=3mm,left=3mm,bottom=3mm,right=3mm,
 				left skip=3mm,
-				title={\parbox{\sb@titleWidth}{\normalfont\normalcolor \ifthenelse{\equal{\sb@sublabelthm}{}}{\sb@labelthm~\sb@Currentlabel}{\sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}}},
+				title={\parbox{\sb@titleWidth}{\normalfont\normalcolor\sb@labelthmfullFly}},
 				attach boxed title to top left={
 					xshift=-3mm, 
 					yshift*=-\tcboxedtitleheight/2
@@ -700,7 +699,7 @@
 				boxrule=0.4mm,
 				toptitle=1mm,bottomtitle=1mm,
 				colbacktitle=\setboxColbacktitleValue{#1},
-				title={\normalfont\normalcolor \ifthenelse{\equal{\sb@sublabelthm}{}}{\sb@labelthm~\sb@Currentlabel}{\sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}},
+				title={\normalfont\normalcolor\sb@labelthmfullFly},
 				]
 			}
 		\def\endbox{\end{tcolorbox}}
@@ -725,7 +724,7 @@
 				colframe=\setboxColframeValue{#1},
 				colbacktitle=\setboxColbacktitleValue{#1},
 				borderline west={3pt}{1pt}{\setboxColframeValue{#1}},
-				title={\normalfont\normalcolor \ifthenelse{\equal{\sb@sublabelthm}{}}{\sb@labelthm~\sb@Currentlabel}{\sb@labelthm~\sb@Currentlabel.~\sb@sublabelthm}},
+				title={\normalfont\normalcolor\sb@labelthmfullFly},
 				]
 			}
 		\def\endbox{\end{tcolorbox}}
@@ -738,7 +737,6 @@
 		\fi
 	\or %12
 		\def\sb@beginbox{
-			\settowidth\sb@titleWidth{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel}
 			\begin{tcolorbox}[
 				enhanced,
 				breakable,
@@ -746,7 +744,7 @@
 				top=\tcboxedtitleheight+3mm,left=3mm,bottom=3mm,right=3mm,
 				left skip=1.5mm,
 				opacityback=0,
-				title={\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel},
+				title={\normalfont\normalcolor\sb@labelthmshortFly},
 				attach boxed title to top left={
 					xshift=-1.5mm, 
 					yshift=-\tcboxedtitleheight-2.5mm
@@ -761,7 +759,6 @@
 						\draw[\setboxColframeValue{#1},fill=\setboxColbacktitleValue{#1}, rounded corners=1mm,line width=0.4mm]
 						(frame.south west) -- (frame.north west) -- (frame.north east) --
 						([xshift=3mm]$(frame.north east)!0.5!(frame.south east)$) -- (frame.south east) -- cycle;
-						\draw ([xshift=3mm]$(frame.north east)!0.5!(frame.south east)$) node[right] {\parbox{\linewidth-\sb@titleWidth-15mm}{\normalfont\normalcolor\getcolor{\sb@labelthm}\textbf{\sb@sublabelthm}}};
 					}
 				},
 				frame code={
@@ -800,7 +797,6 @@
 		\fi
 	\or %13
 		\def\sb@beginbox{
-			\settowidth\sb@titleWidth{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel}
 			\begin{tcolorbox}[
 				enhanced,
 				breakable,
@@ -808,7 +804,7 @@
 				top=\tcboxedtitleheight+3mm,left=3mm,bottom=3mm,right=3mm,
 				left skip=1.5mm,
 				opacityback=0,
-				title={\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel},
+				title={\normalfont\normalcolor\sb@labelthmshortFly},
 				attach boxed title to top left={
 					xshift=-1.5mm, 
 					yshift=-\tcboxedtitleheight-2.5mm
@@ -823,7 +819,6 @@
 						\fill[\setboxColbacktitleValue{#1}, rounded corners=1mm,line width=0.4mm]
 						(frame.south west) -- (frame.north west) -- (frame.north east) --
 						([xshift=3mm]$(frame.north east)!0.5!(frame.south east)$) -- (frame.south east) -- cycle;
-						\draw ([xshift=3mm]$(frame.north east)!0.5!(frame.south east)$) node[right] {\parbox{\linewidth-\sb@titleWidth-15mm}{\normalfont\normalcolor\getcolor{\sb@labelthm}\textbf{\sb@sublabelthm}}};
 					}
 				},
 				frame code={
@@ -862,7 +857,6 @@
 		\fi
 	\or %14
 		\def\sb@beginbox{
-			\settowidth\sb@titleWidth{\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel}
 			\begin{tcolorbox}[
 				enhanced,
 				breakable,
@@ -898,7 +892,7 @@
 						(frame.north west) --  (frame.south west) -- (frame.south east) -- (frame.north east);
 					},
 				},
-				title={\normalfont\normalcolor \sb@labelthm~\sb@Currentlabel},
+				title={\normalfont\normalcolor\sb@labelthmshortFly},
 				attach boxed title to top left={
 					xshift=-1.5mm, 
 					yshift=-\tcboxedtitleheight-2.5mm
@@ -913,7 +907,6 @@
 						\draw[\setboxColframeValue{#1},fill=\setboxColbacktitleValue{#1}, rounded corners=1mm,line width=0.4mm]
 						(frame.south west) -- (frame.north west) -- (frame.north east) --
 						([xshift=3mm]$(frame.north east)!0.5!(frame.south east)$) -- (frame.south east) -- cycle;
-						\draw ([xshift=3mm]$(frame.north east)!0.5!(frame.south east)$) node[right] {\parbox{\linewidth-\sb@titleWidth-15mm}{\getcolor{\sb@labelthm}\textbf{\sb@sublabelthm}}} ;
 					}
 				}
 				]
@@ -1071,12 +1064,12 @@
 				before skip=8mm,
 				frame code ={
 					\fill[\setboxColbackValue{#1}, line width=0.4mm] (frame.north west) -- (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- cycle;
-					\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\fontsize{25pt}{25pt}\selectfont\color{\setboxColframeValue{#1}}\faPowerOff};
+					\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\fontsize{25pt}{25pt}\selectfont\color{\setboxColframeValue{#1}}\faPowerOff\,\fontsize{11pt}{11pt}\fontfamily{lmss}\selectfont\bf\sb@Currentlabel};
 				},
 				skin first is subskin of={emptyfirst}{%
 					frame code ={
 						\fill[\setboxColbackValue{#1}] (frame.north west) rectangle (frame.south east);
-						\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\fontsize{25pt}{25pt}\selectfont\color{\setboxColframeValue{#1}}\faPowerOff};
+						\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\fontsize{25pt}{25pt}\selectfont\color{\setboxColframeValue{#1}}\faPowerOff\,\fontsize{11pt}{11pt}\fontfamily{lmss}\selectfont\bf\sb@Currentlabel};
 					}
 				},
 				skin middle is subskin of={emptymiddle}{%
@@ -1097,7 +1090,7 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@beginbox{\par\noindent{\normalfont\normalcolor\sb@labelthm~\sb@Currentlabel.}}
+				\def\sb@beginbox{\par\noindent{\normalfont\normalcolor\sb@labelthmshort}}
 				\def\endbox{\par}
 			\fi
 		\fi
@@ -1140,7 +1133,7 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@beginbox{\par\noindent{\normalfont\normalcolor\sb@labelthm~\sb@Currentlabel.}}
+				\def\sb@beginbox{\par\noindent{\normalfont\normalcolor\sb@labelthmshort}}
 				\def\endbox{\par}
 			\fi
 		\fi
@@ -1183,7 +1176,7 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@beginbox{\par\noindent{\normalfont\normalcolor\sb@labelthm~\sb@Currentlabel.}}
+				\def\sb@beginbox{\par\noindent{\normalfont\normalcolor\sb@labelthmshort}}
 				\def\endbox{\par}
 			\fi
 		\fi
@@ -1235,7 +1228,7 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@beginbox{\par\noindent{\normalfont\normalcolor\sb@labelthm~\sb@Currentlabel.}}
+				\def\sb@beginbox{\par\noindent{\normalfont\normalcolor\sb@labelthm.}}
 				\def\endbox{\par}
 			\fi
 		\fi
@@ -1287,7 +1280,7 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@beginbox{\par\noindent{\normalfont\normalcolor\sb@labelthm~\sb@Currentlabel.}}
+				\def\sb@beginbox{\par\noindent{\normalfont\normalcolor\sb@labelthm.}}
 				\def\endbox{\par}
 			\fi
 		\fi
@@ -1809,13 +1802,15 @@
 }
 {} % Hành động khi thành công
 {} % Hành động khi thất bại
-% Hàm hỗ trợ lấy counter chính xác khi dùng \newtheorem{dl}[dn]{Định lý}
+%%% Hàm hỗ trợ lấy counter chính xác khi dùng \newtheorem{dl}[dn]{Định lý}
 \def\getcountername#1{\expandafter\expandafter\expandafter\@extractcounter\csname mkheader@#1\endcsname}
 \def\@extractcounter\csname#1\endcsname#2#3#4#5{#4}
 %%% Tạo biến kiểm tra cấp độ của box
 \newcounter{sb@boxLevel}
 %%% Tạo lệnh đổi khung cho theorem
-\newcommand{\setTheoBox}[3]{
+\newcommand{\setTheoBox}{\@ifstar{\@setTheoBoxStar}{\@setTheoBoxNoStar}}
+%%% Tạo lệnh đổi khung cho theorem nếu có đánh số
+\newcommand{\@setTheoBoxNoStar}[3]{
 	% Cài đặt màu khung và nền của tcolorbox theo tên môi trường
 	\@ifundefined{sb@#1Colframe}{\setboxColframe{#1}{\sb@defaultColframe}}{}
 	\@ifundefined{sb@#1Colback}{\setboxColback{#1}{\sb@defaultColback}}{}
@@ -1844,8 +1839,95 @@
 			\def\sb@labelthm{#3}
 			% Khai báo tiêu đề PHỤ
 			\def\sb@sublabelthm{##1}
-			% Khai báo tiêu đề ĐẦY ĐỦ
-			\ifthenelse{\equal{##1}{}}{\gdef\sb@labelthmfull{\sb@labelthm~\sb@Currentlabel.}}{\gdef\sb@labelthmfull{\sb@labelthm~\sb@Currentlabel~(\sb@sublabelthm).}}
+			% Khai báo tiêu đề RÚT GỌN nếu ở đầu đoạn
+			% Ví dụ "Định nghĩa 1."
+			\def\sb@labelthmshort{\sb@labelthm~\sb@Currentlabel.}
+			% Khai báo tiêu đề RÚT GỌN nếu ở riêng, không ở đầu đoạn
+			% Ví dụ "Định nghĩa 1"
+			\def\sb@labelthmshortFly{\sb@labelthm~\sb@Currentlabel}
+			% Khai báo tiêu đề ĐẦY ĐỦ nếu ở đầu đoạn
+			% Ví dụ "Định nghĩa 1 (Tên định nghĩa)."
+			\ifthenelse{\equal{##1}{}}{\def\sb@labelthmfull{\sb@labelthm~\sb@Currentlabel.}}{\def\sb@labelthmfull{\sb@labelthm~\sb@Currentlabel~(\sb@sublabelthm).}}
+			% Khai báo tiêu đề ĐẦY ĐỦ nếu ở riêng, không ở đầu đoạn
+			% Ví dụ "Định nghĩa 1 (Tên định nghĩa)"
+			\ifthenelse{\equal{##1}{}}{\def\sb@labelthmfullFly{\sb@labelthm~\sb@Currentlabel}}{\def\sb@labelthmfullFly{\sb@labelthm~\sb@Currentlabel~(\sb@sublabelthm)}}
+			% Áp dụng khung
+			\sb@applyEnvBox{#1}{#2}
+			% Tăng cấp box
+			\addtocounter{sb@boxLevel}{1}
+			% Lưu \endbox theo cấp box
+			\expandafter\edef\csname sb@currBoxLevel\endcsname{\roman{sb@boxLevel}}
+			\expandafter\let\csname endbox\sb@currBoxLevel\endcsname\endbox
+			% Bắt đầu tcolorbox
+			\sb@beginbox
+			% Nội dung
+			\BODY
+			% Kết thúc tcolorbox nếu còn trong tcolorbox
+			% Nếu môi trường ex đã đóng lại tcolorbox trước khi đến chc thì sẽ bỏ qua
+			\ifsb@InTcolorbox\endbox\fi%
+			% Giảm cấp box
+			\addtocounter{sb@boxLevel}{-1}
+			% Hoàn trả \endbox theo cấp box khi vừa dùng \loigiai
+			\ifsb@JustSolution
+				\sb@JustSolutionfalse
+				\expandafter\edef\csname sb@currBoxLevel\endcsname{\roman{sb@boxLevel}}
+				\gdef\endbox{\csname endbox\sb@currBoxLevel\endcsname}
+			\fi
+		\fi
+	}
+	% Chạy lệnh fix nếu đã khai báo ex_test
+	\@ifpackageloaded{ex_test}
+	{
+		\ifthenelse{\equal{#1}{ex}}
+		{
+			\setTheoBox{chc}{#2}{#3}
+		}{}
+		\fixshowans{#1}
+	}
+	{}
+}
+%%% Tạo lệnh đổi khung cho theorem nếu không đánh số
+\newcommand{\@setTheoBoxStar}[3]{
+	% Cài đặt màu khung và nền của tcolorbox theo tên môi trường
+	\@ifundefined{sb@#1Colframe}{\setboxColframe{#1}{\sb@defaultColframe}}{}
+	\@ifundefined{sb@#1Colback}{\setboxColback{#1}{\sb@defaultColback}}{}
+	\@ifundefined{sb@#1Colbacktitle}{\setboxColbacktitle{#1}{\sb@defaultColbacktitle}}{}
+	% Bật hiển thị khung khi dùng trong tcolorbox khác theo mặc định
+	\showboxInTcb{#1}
+	% Khai báo lại môi trường
+	\RenewEnviron{#1}[1][]{
+		% Kiểm tra xem có bỏ qua không
+		\checkSkipFlag{#1}
+		% Tăng counter của môi trường #1 một đơn vị
+		\edef\tmpctr{\getcountername{#1}}
+		\stepcounter{\tmpctr}
+		% Tạo biến tạm thời để ẩn/hiện khung
+		\csname Ifsb@#1hideboxInTcb\endcsname
+			\sb@hideboxInTcbtrue
+		\else
+			\sb@hideboxInTcbfalse
+		\fi
+		% Tiến hành xử lý
+		\Ifsb@skipflag
+		\else
+			% Khai báo số thứ tự
+			\def\sb@Currentlabel{}
+			% Khai báo tiêu đề
+			\def\sb@labelthm{#3}
+			% Khai báo tiêu đề PHỤ
+			\def\sb@sublabelthm{##1}
+			% Khai báo tiêu đề RÚT GỌN nếu ở đầu đoạn
+			% Ví dụ "Định nghĩa 1."
+			\def\sb@labelthmshort{\sb@labelthm.}
+			% Khai báo tiêu đề RÚT GỌN nếu ở riêng, không ở đầu đoạn
+			% Ví dụ "Định nghĩa 1"
+			\def\sb@labelthmshortFly{\sb@labelthm}
+			% Khai báo tiêu đề ĐẦY ĐỦ nếu ở đầu đoạn
+			% Ví dụ "Định nghĩa 1 (Tên định nghĩa)."
+			\ifthenelse{\equal{##1}{}}{\def\sb@labelthmfull{\sb@labelthm.}}{\def\sb@labelthmfull{\sb@labelthm~(\sb@sublabelthm).}}
+			% Khai báo tiêu đề ĐẦY ĐỦ nếu ở riêng, không ở đầu đoạn
+			% Ví dụ "Định nghĩa 1 (Tên định nghĩa)"
+			\ifthenelse{\equal{##1}{}}{\def\sb@labelthmfullFly{\sb@labelthm}}{\def\sb@labelthmfullFly{\sb@labelthm~(\sb@sublabelthm)}}
 			% Áp dụng khung
 			\sb@applyEnvBox{#1}{#2}
 			% Tăng cấp box
