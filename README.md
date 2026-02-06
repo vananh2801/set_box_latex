@@ -13,5 +13,4 @@
 
 ### Đôi lời muốn nói
 
-- Hiện tại gói lệnh vẫn còn mới, có thể xảy ra lỗi, mong quý thầy cô báo lỗi và góp ý.
-- Gói lệnh vẫn còn hạn chế ở hai điểm. Thứ nhất, gói lệnh vẫn còn tách riêng ở bước áp dụng. Trong thời gian sắp tới, có thể tôi sẽ cải tiến để đưa về cùng một cách khai báo duy nhất. Thứ hai, hiện vẫn chưa phát triển câu lệnh để thầy cô tự tạo khung riêng như lệnh `\createbox` của gói lệnh `ex_test`.
+- Gói lệnh hiện vẫn chưa phát triển câu lệnh để thầy cô tự tạo khung riêng như lệnh `\createbox` của gói lệnh `ex_test`.
