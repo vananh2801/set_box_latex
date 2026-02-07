@@ -14,3 +14,9 @@
 ### Đôi lời muốn nói
 
 - Gói lệnh hiện vẫn chưa phát triển câu lệnh để thầy cô tự tạo khung riêng như lệnh `\createbox` của gói lệnh `ex_test`.
+
+### Ủng hộ tác giả
+
+<div align="center">
+  <img src="https://github.com/vananh2801/set_box_latex/blob/main/imgs/db2b1754-6f7c-426d-92a2-4b4ca2de781b.jpg?raw=true" width="300" alt="Agribank">
+</div>
