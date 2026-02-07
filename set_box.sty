@@ -7,7 +7,9 @@
 \usetikzlibrary{shadows,angles,calc,positioning,shapes,shapes,decorations.pathmorphing, decorations.pathreplacing,decorations.shapes}
 \RequirePackage{calc}
 \RequirePackage{fontawesome}
-\RequirePackage{tcolorbox}
+\@ifpackageloaded{tcolorbox}{}{
+	\RequirePackage{tcolorbox}
+}
 \tcbuselibrary{breakable,most,many,skins}
 \RequirePackage{etoolbox}
 \RequirePackage{environ}
