@@ -2028,6 +2028,8 @@
 			\def\sb@labelthm{#3}
 			% Khai báo tiêu đề PHỤ
 			\def\sb@sublabelthm{##1}
+			% Khai báo tiêu đề PHỤ với ngoặc
+			\ifthenelse{\equal{##1}{}}{\def\sb@sublabelthmBracket{}}{\def\sb@sublabelthmBracket{(##1)}}
 			% Khai báo tiêu đề RÚT GỌN, không có tiêu đề phụ
 			% Ví dụ "Định nghĩa 1"
 			\def\sb@labelthmshort{\sb@labelthm}
