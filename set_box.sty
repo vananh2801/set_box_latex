@@ -336,9 +336,9 @@
 \newlength{\sb@titleMaxWidth}
 %%% Lệnh áp dụng khung cho các environment.
 %%% Thêm các loại khung tại đây
-\newcommand{\sb@applyEnvBox}[2]{ % 1 tên môi trường, 2 style
+\newcommand{\sb@applyTheoBox}[1]{% style
 	% Khai báo beginbox, endbox
-	\ifcase#2 %0
+	\ifcase#1 %0
 		\def\sb@title{\par\noindent{\normalfont\normalcolor \sb@labelthmfullDot~}}
 		\def\sb@beginbox{}
 		\def\endbox{\par}
@@ -1941,7 +1941,7 @@
 		% Tiến hành xử lý
 		\Ifsb@skipflag
 		\else
-			%Khai báo màu
+			% Khai báo màu
 			\def\sb@colbacktitle{\csname sb@#1colbacktitle\endcsname}
 			\def\sb@colback{\csname sb@#1colback\endcsname}
 			\def\sb@colframe{\csname sb@#1colframe\endcsname}
@@ -1966,7 +1966,7 @@
 			% Ví dụ "Định nghĩa 1 (Tên định nghĩa)"
 			\ifthenelse{\equal{##1}{}}{\def\sb@labelthmfullDot{\sb@labelthm~\sb@Currentlabel.}}{\def\sb@labelthmfullDot{\sb@labelthm~\sb@Currentlabel~(\sb@sublabelthm).}}
 			% Áp dụng khung
-			\sb@applyEnvBox{#1}{#2}
+			\sb@applyTheoBox{#2}
 			% Tăng cấp box
 			\addtocounter{sb@boxLevel}{1}
 			% Lưu \endbox theo cấp box
@@ -2026,7 +2026,7 @@
 		% Tiến hành xử lý
 		\Ifsb@skipflag
 		\else
-			%Khai báo màu
+			% Khai báo màu
 			\def\sb@colbacktitle{\csname sb@#1colbacktitle\endcsname}
 			\def\sb@colback{\csname sb@#1colback\endcsname}
 			\def\sb@colframe{\csname sb@#1colframe\endcsname}
@@ -2051,7 +2051,7 @@
 			% Ví dụ "Định nghĩa 1 (Tên định nghĩa)"
 			\ifthenelse{\equal{##1}{}}{\def\sb@labelthmfullDot{\sb@labelthm.}}{\def\sb@labelthmfullDot{\sb@labelthm~(\sb@sublabelthm).}}
 			% Áp dụng khung
-			\sb@applyEnvBox{#1}{#2}
+			\sb@applyTheoBox{#2}
 			% Tăng cấp box
 			\addtocounter{sb@boxLevel}{1}
 			% Lưu \endbox theo cấp box
