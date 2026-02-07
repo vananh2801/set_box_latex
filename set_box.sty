@@ -238,7 +238,7 @@
 %%% Màu khung
 \def\sb@defaultColframe{blue}
 \newcommand{\setboxColframe}[2]{
-	\expandafter\edef\csname sb@#1Colframe\endcsname{#2}
+	\expandafter\edef\csname sb@#1colframe\endcsname{#2}
 	\@ifpackageloaded{ex_test}
 	{
 		\ifthenelse{\equal{#1}{ex}}{
@@ -246,12 +246,11 @@
 		}{}
 	}{}
 }
-\newcommand{\setboxColframeValue}[1]{\csname sb@#1Colframe\endcsname}
 \newcommand{\setboxColframeSetDefault}[1]{\def\sb@defaultColframe{#1}}
 %%% Màu nền
 \def\sb@defaultColback{black!5}
 \newcommand{\setboxColback}[2]{
-	\expandafter\edef\csname sb@#1Colback\endcsname{#2}
+	\expandafter\edef\csname sb@#1colback\endcsname{#2}
 	\@ifpackageloaded{ex_test}
 	{
 		\ifthenelse{\equal{#1}{ex}}{
@@ -259,12 +258,11 @@
 		}{}
 	}{}
 }
-\newcommand{\setboxColbackValue}[1]{\csname sb@#1Colback\endcsname}
 \newcommand{\setboxColbackSetDefault}[1]{\def\sb@defaultColback{#1}}
 %%% Màu nền tiêu đề
 \def\sb@defaultColbacktitle{blue!10}
 \newcommand{\setboxColbacktitle}[2]{
-	\expandafter\edef\csname sb@#1Colbacktitle\endcsname{#2}
+	\expandafter\edef\csname sb@#1colbacktitle\endcsname{#2}
 	\@ifpackageloaded{ex_test}
 	{
 		\ifthenelse{\equal{#1}{ex}}{
@@ -272,7 +270,6 @@
 		}{}
 	}{}
 }
-\newcommand{\setboxColbacktitleValue}[1]{\csname sb@#1Colbacktitle\endcsname}
 \newcommand{\setboxColbacktitleSetDefault}[1]{\def\sb@defaultColbacktitle{#1}}
 %%% Lệnh lấy màu
 \newcommand{\getcolor}[1]{%
@@ -356,8 +353,8 @@
 				boxrule=0.4mm,
 				left=3mm,
 				right=3mm,
-				colback=\setboxColbackValue{#1},
-				colframe=\setboxColframeValue{#1}
+				colback=\sb@colback,
+				colframe=\sb@colframe
 				]
 			}
 		\def\endbox{\end{tcolorbox}}
@@ -382,8 +379,8 @@
 					},
 				top=8mm,left=3mm,bottom=3mm,right=3mm,
 				boxrule=0.4mm,
-				colframe=\setboxColframeValue{#1},
-				colback=\setboxColbackValue{#1},
+				colframe=\sb@colframe,
+				colback=\sb@colback,
 				rounded corners=southeast,
 				arc=6pt,
 				arc is curved,
@@ -391,9 +388,9 @@
 				boxed title style={
 					interior empty,
 					frame code={
-						\draw[\setboxColframeValue{#1},fill=\setboxColframeValue{#1},line width=0.4mm] ([xshift=5mm]frame.north east) coordinate (B) arc (180:0:1mm)
+						\draw[\sb@colframe,fill=\sb@colframe,line width=0.4mm] ([xshift=5mm]frame.north east) coordinate (B) arc (180:0:1mm)
 						([xshift=3mm]frame.north west) coordinate (A)   arc(0:180:1mm);
-						\draw[draw=\setboxColframeValue{#1},fill=\setboxColbacktitleValue{#1},line width=0.4mm]
+						\draw[draw=\sb@colframe,fill=\sb@colbacktitle,line width=0.4mm]
 						([shift={(-.115,.1)}]A)--([shift={(.1cm,.1)}]B)[rounded corners=1mm]--([shift={(0,0)}]B)--([shift={(-0.1cm,-15pt)}]B)
 						--([shift={(0.1cm,-15pt)}]A)
 						--([shift={(0,0)}]A)[rounded corners=1mm]--([shift={(-.115,.1)}]A);
@@ -422,8 +419,8 @@
 			arc=6pt,
 			boxrule=0.4mm,
 			top=3mm,left=3mm,bottom=3mm,right=3mm,
-			colback=\setboxColbackValue{#1},
-			colframe=\setboxColframeValue{#1},
+			colback=\sb@colback,
+			colframe=\sb@colframe,
 			attach boxed title to top left={
 				xshift=5mm,
 				yshift=-0.25mm-\tcboxedtitleheight/2,
@@ -434,7 +431,7 @@
 				frame code={
 				},
 				interior code={
-					\draw[\setboxColframeValue{#1},fill=\setboxColbacktitleValue{#1}, rounded corners=6pt,line width=0.4mm]
+					\draw[\sb@colframe,fill=\sb@colbacktitle, rounded corners=6pt,line width=0.4mm]
 					(frame.north west) rectangle (frame.south east);
 				}
 			},
@@ -462,9 +459,9 @@
 				before skip=3mm,
 				after skip=3mm,
 				top=3mm,left=3mm,bottom=3mm,right=3mm,
-				colback=\setboxColbackValue{#1},
+				colback=\sb@colback,
 				arc=6pt,
-				colframe=\setboxColframeValue{#1},
+				colframe=\sb@colframe,
 				boxrule=0.4mm,
 				attach boxed title to top center={
 					yshift=-0.25mm-\tcboxedtitleheight/2,
@@ -473,13 +470,13 @@
 				boxed title style={
 					boxrule=0.4mm,
 					frame code={
-						\path[tcb fill frame, \setboxColframeValue{#1}]
+						\path[tcb fill frame, \sb@colframe]
 						([xshift=-4mm]frame.west)
 						-- (frame.north west) -- (frame.north east) -- ([xshift=4mm]frame.east)
 						-- (frame.south east) -- (frame.south west) -- cycle;
 					},
 					interior code={
-						\path[tcb fill interior,\setboxColbacktitleValue{#1}]
+						\path[tcb fill interior,\sb@colbacktitle]
 						([xshift=-2mm]interior.west)
 						-- (interior.north west)
 						-- (interior.north east)
@@ -511,8 +508,8 @@
 				left skip=6mm,
 				top=3mm,left=3mm,bottom=3mm,right=3mm,
 				toprule=0pt, rightrule=0pt, bottomrule=0pt, leftrule=1mm,
-				colback=\setboxColbackValue{#1}, 
-				colframe=\setboxColframeValue{#1}, 
+				colback=\sb@colback, 
+				colframe=\sb@colframe, 
 				detach title,
 				height from={\sb@titleWidth} to 99cm,
 				overlay unbroken and first ={
@@ -542,7 +539,7 @@
 				opacitybacktitle=0,
 				opacityback=0,
 				top=\tcboxedtitleheight,left=3mm,bottom=3mm,right=3mm,
-				colframe=\setboxColframeValue{#1},
+				colframe=\sb@colframe,
 				title={\parbox{\sb@titleWidth}{\normalfont\normalcolor \sb@labelthmfull}},
 				attach boxed title to top left={
 					xshift=3mm,
@@ -553,30 +550,30 @@
 					opacityback=0,
 					frame hidden,
 					overlay={
-					\draw[\setboxColframeValue{#1},line width=3pt] (frame.north west)--(frame.north east);
+					\draw[\sb@colframe,line width=3pt] (frame.north west)--(frame.north east);
 				}},
 				frame code={
-					\fill[\setboxColbackValue{#1},rounded corners=6pt] 
+					\fill[\sb@colback,rounded corners=6pt] 
 					(frame.north west) rectangle (frame.south east);
 				},
 				skin first is subskin of={emptyfirst}{%
 					top=\tcboxedtitleheight,
 					frame code={
-						\fill[\setboxColbackValue{#1},rounded corners=6pt] 
+						\fill[\sb@colback,rounded corners=6pt] 
 						(frame.north west) rectangle (frame.south east);
 					},
 				},
 				skin middle is subskin of={emptymiddle}{%
 					top=3mm,
 					frame code={
-						\fill[\setboxColbackValue{#1},rounded corners=6pt] 
+						\fill[\sb@colback,rounded corners=6pt] 
 						(frame.north west) rectangle (frame.south east);
 					},
 				},
 				skin last is subskin of={emptylast}{%
 					top=3mm,
 					frame code={
-						\fill[\setboxColbackValue{#1},rounded corners=6pt] 
+						\fill[\sb@colback,rounded corners=6pt] 
 						(frame.north west) rectangle (frame.south east);
 					},
 				},
@@ -602,32 +599,32 @@
 				opacityback=0,
 				top=3mm,left=3mm,bottom=3mm,right=3mm,
 				frame code={
-					\fill[\setboxColbackValue{#1}] 
+					\fill[\sb@colback] 
 					(frame.north west) rectangle (frame.south east);
-					\fill[\setboxColframeValue{#1}] 
+					\fill[\sb@colframe] 
 					(frame.north west) rectangle ([xshift=1mm]frame.south west);
 				},
 				skin first is subskin of={emptyfirst}{%
 					frame code={
-						\fill[\setboxColbackValue{#1}] 
+						\fill[\sb@colback] 
 						(frame.north west) rectangle (frame.south east);
-						\fill[\setboxColframeValue{#1}] 
+						\fill[\sb@colframe] 
 						(frame.north west) rectangle ([xshift=1mm]frame.south west);
 					},
 				},
 				skin middle is subskin of={emptymiddle}{%
 					frame code={
-						\fill[\setboxColbackValue{#1}] 
+						\fill[\sb@colback] 
 						(frame.north west) rectangle (frame.south east);
-						\fill[\setboxColframeValue{#1}] 
+						\fill[\sb@colframe] 
 						(frame.north west) rectangle ([xshift=1mm]frame.south west);
 					},
 				},
 				skin last is subskin of={emptylast}{%
 					frame code={
-						\fill[\setboxColbackValue{#1}] 
+						\fill[\sb@colback] 
 						(frame.north west) rectangle (frame.south east);
-						\fill[\setboxColframeValue{#1}] 
+						\fill[\sb@colframe] 
 						(frame.north west) rectangle ([xshift=1mm]frame.south west);
 					},
 				},
@@ -654,8 +651,8 @@
 				boxrule=0.4mm,
 				left=3mm,
 				right=3mm,
-				colback=\setboxColbackValue{#1},
-				colframe=\setboxColframeValue{#1}
+				colback=\sb@colback,
+				colframe=\sb@colframe
 				]
 			}
 		\def\endbox{\end{tcolorbox}}
@@ -691,42 +688,42 @@
 					right=3pt, 
 					bottom=3pt, 
 					overlay={
-						\fill[\setboxColbacktitleValue{#1}]
+						\fill[\sb@colbacktitle]
 						(frame.south west) -- (frame.north west) -- (frame.north east) --
 						(frame.south east) -- cycle;
-						\fill[left color=\setboxColframeValue{#1}, right color=\setboxColbacktitleValue{#1}]
+						\fill[left color=\sb@colframe, right color=\sb@colbacktitle]
 						(frame.south west) -- ([xshift=4mm]frame.south west) -- ([xshift=4mm,yshift=-4mm]frame.south west) -- cycle;
 					},
 					frame code={
 					},
 				},
 				frame code={
-					\fill[\setboxColbackValue{#1}] 
+					\fill[\sb@colback] 
 					([xshift=1mm]frame.north west) rectangle (frame.south east);
-					\fill[\setboxColframeValue{#1}] 
+					\fill[\sb@colframe] 
 					([xshift=1mm]frame.north west) rectangle ([xshift=2mm]frame.south west);
 				},
 				skin first is subskin of={emptyfirst}{%
 					frame code={
-						\fill[\setboxColbackValue{#1}] 
+						\fill[\sb@colback] 
 						([xshift=1mm]frame.north west) rectangle (frame.south east);
-						\fill[\setboxColframeValue{#1}] 
+						\fill[\sb@colframe] 
 						([xshift=1mm]frame.north west) rectangle ([xshift=2mm]frame.south west);
 					},
 				},
 				skin middle is subskin of={emptymiddle}{%
 					frame code={
-						\fill[\setboxColbackValue{#1}] 
+						\fill[\sb@colback] 
 						([xshift=1mm]frame.north west) rectangle (frame.south east);
-						\fill[\setboxColframeValue{#1}] 
+						\fill[\sb@colframe] 
 						([xshift=1mm]frame.north west) rectangle ([xshift=2mm]frame.south west);
 					},
 				},
 				skin last is subskin of={emptylast}{%
 					frame code={
-						\fill[\setboxColbackValue{#1}] 
+						\fill[\sb@colback] 
 						([xshift=1mm]frame.north west) rectangle (frame.south east);
-						\fill[\setboxColframeValue{#1}] 
+						\fill[\sb@colframe] 
 						([xshift=1mm]frame.north west) rectangle ([xshift=2mm]frame.south west);
 					},
 				},
@@ -748,14 +745,14 @@
 				enhanced,
 				breakable,
 				top=3mm,left=3mm,bottom=3mm,right=3mm,
-				colback=\setboxColbackValue{#1},
+				colback=\sb@colback,
 				arc=0mm, 
 				boxrule=0.4mm,
-				colframe=\setboxColframeValue{#1},
-				borderline west={3pt}{1pt}{\setboxColframeValue{#1}},
+				colframe=\sb@colframe,
+				borderline west={3pt}{1pt}{\sb@colframe},
 				boxrule=0.4mm,
 				toptitle=1mm,bottomtitle=1mm,
-				colbacktitle=\setboxColbacktitleValue{#1},
+				colbacktitle=\sb@colbacktitle,
 				title={\normalfont\normalcolor\sb@labelthmfull},
 				]
 			}
@@ -775,14 +772,14 @@
 				enhanced,
 				breakable,
 				top=3mm,left=3mm,bottom=3mm,right=3mm,
-				colback=\setboxColbackValue{#1},
+				colback=\sb@colback,
 				arc=0mm, 
 				toptitle=1mm,bottomtitle=1mm,
 				boxrule=0.0mm,
 				leftrule=3pt,
-				colframe=\setboxColframeValue{#1},
-				colbacktitle=\setboxColbacktitleValue{#1},
-				borderline west={3pt}{1pt}{\setboxColframeValue{#1}},
+				colframe=\sb@colframe,
+				colbacktitle=\sb@colbacktitle,
+				borderline west={3pt}{1pt}{\sb@colframe},
 				title={\normalfont\normalcolor\sb@labelthmfull},
 				]
 			}
@@ -817,32 +814,32 @@
 					right=3pt, 
 					bottom=3pt, 
 					overlay={
-						\draw[\setboxColframeValue{#1},fill=\setboxColbacktitleValue{#1}, rounded corners=1mm,line width=0.4mm]
+						\draw[\sb@colframe,fill=\sb@colbacktitle, rounded corners=1mm,line width=0.4mm]
 						(frame.south west) -- (frame.north west) -- (frame.north east) --
 						([xshift=3mm]$(frame.north east)!0.5!(frame.south east)$) -- (frame.south east) -- cycle;
 					}
 				},
 				frame code={
-					\draw[\setboxColframeValue{#1},fill=\setboxColbackValue{#1},rounded corners=3pt,line width=0.4mm] 
+					\draw[\sb@colframe,fill=\sb@colback,rounded corners=3pt,line width=0.4mm] 
 					(frame.north west) rectangle (frame.south east);
 				},
 				skin first is subskin of={emptyfirst}{%
 					frame code={
-						\draw[\setboxColframeValue{#1},fill=\setboxColbackValue{#1},rounded corners=3pt,line width=0.4mm] 
+						\draw[\sb@colframe,fill=\sb@colback,rounded corners=3pt,line width=0.4mm] 
 						(frame.north west) rectangle (frame.south east);
 					},
 				},
 				skin middle is subskin of={emptymiddle}{%
 					top=3mm,
 					frame code={
-						\draw[\setboxColframeValue{#1},fill=\setboxColbackValue{#1},rounded corners=3pt,line width=0.4mm] 
+						\draw[\sb@colframe,fill=\sb@colback,rounded corners=3pt,line width=0.4mm] 
 						(frame.north west) rectangle (frame.south east);
 					},
 				},
 				skin last is subskin of={emptylast}{%
 					top=3mm,
 					frame code={
-						\draw[\setboxColframeValue{#1},fill=\setboxColbackValue{#1},rounded corners=3pt,line width=0.4mm] 
+						\draw[\sb@colframe,fill=\sb@colback,rounded corners=3pt,line width=0.4mm] 
 						(frame.north west) rectangle (frame.south east);
 					},
 				},
@@ -879,32 +876,32 @@
 					right=3pt, 
 					bottom=3pt, 
 					overlay={
-						\fill[\setboxColbacktitleValue{#1}, rounded corners=1mm,line width=0.4mm]
+						\fill[\sb@colbacktitle, rounded corners=1mm,line width=0.4mm]
 						(frame.south west) -- (frame.north west) -- (frame.north east) --
 						([xshift=3mm]$(frame.north east)!0.5!(frame.south east)$) -- (frame.south east) -- cycle;
 					}
 				},
 				frame code={
-					\fill[\setboxColbackValue{#1},rounded corners=3pt,line width=0.4mm] 
+					\fill[\sb@colback,rounded corners=3pt,line width=0.4mm] 
 					(frame.north west) rectangle (frame.south east);
 				},
 				skin first is subskin of={emptyfirst}{%
 					frame code={
-						\fill[\setboxColbackValue{#1},rounded corners=3pt,line width=0.4mm] 
+						\fill[\sb@colback,rounded corners=3pt,line width=0.4mm] 
 						(frame.north west) rectangle (frame.south east);
 					},
 				},
 				skin middle is subskin of={emptymiddle}{%
 					top=3mm,
 					frame code={
-						\fill[\setboxColbackValue{#1},rounded corners=3pt,line width=0.4mm] 
+						\fill[\sb@colback,rounded corners=3pt,line width=0.4mm] 
 						(frame.north west) rectangle (frame.south east);
 					},
 				},
 				skin last is subskin of={emptylast}{%
 					top=3mm,
 					frame code={
-						\fill[\setboxColbackValue{#1},rounded corners=3pt,line width=0.4mm] 
+						\fill[\sb@colback,rounded corners=3pt,line width=0.4mm] 
 						(frame.north west) rectangle (frame.south east);
 					},
 				},
@@ -930,21 +927,21 @@
 				left skip=1.5mm,
 				opacityback=0,
 				frame code={
-					\fill[\setboxColbackValue{#1}] (frame.north west) rectangle (frame.south east);
-					\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=3pt,amplitude=1pt},line width=0.4mm] (frame.north west) rectangle (frame.south east);
+					\fill[\sb@colback] (frame.north west) rectangle (frame.south east);
+					\draw[\sb@colframe,decorate, decoration={random steps,segment length=3pt,amplitude=1pt},line width=0.4mm] (frame.north west) rectangle (frame.south east);
 				},
 				skin first is subskin of={emptyfirst}{%
 					frame code={
-						\fill[\setboxColbackValue{#1}] (frame.north west) rectangle (frame.south east);
-						\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=3pt,amplitude=1pt},line width=0.4mm] 
+						\fill[\sb@colback] (frame.north west) rectangle (frame.south east);
+						\draw[\sb@colframe,decorate, decoration={random steps,segment length=3pt,amplitude=1pt},line width=0.4mm] 
 						(frame.south west) -- (frame.north west) -- (frame.north east) -- (frame.south east);
 					},
 				},
 				skin middle is subskin of={emptymiddle}{%
 					top=3mm,
 					frame code={
-						\fill[\setboxColbackValue{#1}] (frame.north west) rectangle (frame.south east);
-						\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=3pt,amplitude=1pt},line width=0.4mm] 
+						\fill[\sb@colback] (frame.north west) rectangle (frame.south east);
+						\draw[\sb@colframe,decorate, decoration={random steps,segment length=3pt,amplitude=1pt},line width=0.4mm] 
 						(frame.north west) -- (frame.south west)
 						(frame.north east) -- (frame.south east);
 					},
@@ -952,8 +949,8 @@
 				skin last is subskin of={emptylast}{%
 					top=3mm,
 					frame code={
-						\fill[\setboxColbackValue{#1}] (frame.north west) rectangle (frame.south east);
-						\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=3pt,amplitude=1pt},line width=0.4mm] 
+						\fill[\sb@colback] (frame.north west) rectangle (frame.south east);
+						\draw[\sb@colframe,decorate, decoration={random steps,segment length=3pt,amplitude=1pt},line width=0.4mm] 
 						(frame.north west) --  (frame.south west) -- (frame.south east) -- (frame.north east);
 					},
 				},
@@ -969,7 +966,7 @@
 					right=3pt, 
 					bottom=3pt, 
 					overlay={
-						\draw[\setboxColframeValue{#1},fill=\setboxColbacktitleValue{#1}, rounded corners=1mm,line width=0.4mm]
+						\draw[\sb@colframe,fill=\sb@colbacktitle, rounded corners=1mm,line width=0.4mm]
 						(frame.south west) -- (frame.north west) -- (frame.north east) --
 						([xshift=3mm]$(frame.north east)!0.5!(frame.south east)$) -- (frame.south east) -- cycle;
 					}
@@ -995,21 +992,21 @@
 				top=3mm,left=3mm,bottom=3mm,right=3mm,
 				opacityback=0,
 				frame code={
-					\fill[\setboxColbackValue{#1}] (frame.north west) rectangle (frame.south east);
-					\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=3pt,amplitude=1pt},line width=0.4mm] (frame.north west) rectangle (frame.south east);
+					\fill[\sb@colback] (frame.north west) rectangle (frame.south east);
+					\draw[\sb@colframe,decorate, decoration={random steps,segment length=3pt,amplitude=1pt},line width=0.4mm] (frame.north west) rectangle (frame.south east);
 				},
 				skin first is subskin of={emptyfirst}{%
 					frame code={
-						\fill[\setboxColbackValue{#1}] (frame.north west) rectangle (frame.south east);
-						\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=3pt,amplitude=1pt},line width=0.4mm] 
+						\fill[\sb@colback] (frame.north west) rectangle (frame.south east);
+						\draw[\sb@colframe,decorate, decoration={random steps,segment length=3pt,amplitude=1pt},line width=0.4mm] 
 						(frame.south west) -- (frame.north west) -- (frame.north east) -- (frame.south east);
 					},
 				},
 				skin middle is subskin of={emptymiddle}{%
 					top=3mm,
 					frame code={
-						\fill[\setboxColbackValue{#1}] (frame.north west) rectangle (frame.south east);
-						\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=3pt,amplitude=1pt},line width=0.4mm] 
+						\fill[\sb@colback] (frame.north west) rectangle (frame.south east);
+						\draw[\sb@colframe,decorate, decoration={random steps,segment length=3pt,amplitude=1pt},line width=0.4mm] 
 						(frame.north west) -- (frame.south west)
 						(frame.north east) -- (frame.south east);
 					},
@@ -1017,8 +1014,8 @@
 				skin last is subskin of={emptylast}{%
 					top=3mm,
 					frame code={
-						\fill[\setboxColbackValue{#1}] (frame.north west) rectangle (frame.south east);
-						\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=3pt,amplitude=1pt},line width=0.4mm] 
+						\fill[\sb@colback] (frame.north west) rectangle (frame.south east);
+						\draw[\sb@colframe,decorate, decoration={random steps,segment length=3pt,amplitude=1pt},line width=0.4mm] 
 						(frame.north west) --  (frame.south west) -- (frame.south east) -- (frame.north east);
 					},
 				}
@@ -1047,16 +1044,16 @@
 					\pgfmathrandominteger{\ne}{2}{4}%
 					\pgfmathrandominteger{\sw}{2}{4}%
 					\pgfmathrandominteger{\se}{2}{4}%
-					\fill[\setboxColbackValue{#1}, rounded corners=3mm] (frame.north west) rectangle (frame.south east);
-					\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
+					\fill[\sb@colback, rounded corners=3mm] (frame.north west) rectangle (frame.south east);
+					\draw[\sb@colframe,decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
 					([xshift=\nw mm]frame.north west) -- ([xshift=-\ne mm]frame.north east);
-					\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
+					\draw[\sb@colframe,decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
 					([yshift=-\ne mm]frame.north east) -- ([yshift=\se mm]frame.south east);
-					\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
+					\draw[\sb@colframe,decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
 					([xshift=-\se mm]frame.south east) -- ([xshift=\sw mm]frame.south west);
-					\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
+					\draw[\sb@colframe,decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
 					([yshift=-\nw mm]frame.north west) -- ([yshift=\sw mm]frame.south west);
-					\draw[\setboxColframeValue{#1},line width=0.4mm] 
+					\draw[\sb@colframe,line width=0.4mm] 
 					([xshift=-\ne mm]frame.north east) arc[start angle=90, end angle=0,radius=\ne mm]
 					([yshift=\se mm]frame.south east) arc[start angle=360, end angle=270,radius=\se mm]
 					([xshift=\sw mm]frame.south west) arc[start angle=270, end angle=180,radius=\sw mm]
@@ -1067,14 +1064,14 @@
 					frame code ={
 						\pgfmathrandominteger{\nw}{2}{4}%
 						\pgfmathrandominteger{\ne}{2}{4}%
-						\fill[\setboxColbackValue{#1}] (frame.south west) -- ([yshift=-\nw mm]frame.north west) arc[start angle=180,end angle=90,radius=\nw mm] -- ([xshift=-\ne mm]frame.north east) arc[start angle=90,end angle=0,radius=\ne mm] -- (frame.south east) -- cycle;
-						\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
+						\fill[\sb@colback] (frame.south west) -- ([yshift=-\nw mm]frame.north west) arc[start angle=180,end angle=90,radius=\nw mm] -- ([xshift=-\ne mm]frame.north east) arc[start angle=90,end angle=0,radius=\ne mm] -- (frame.south east) -- cycle;
+						\draw[\sb@colframe,decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
 						([xshift=\nw mm]frame.north west) -- ([xshift=-\ne mm]frame.north east);
-						\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
+						\draw[\sb@colframe,decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
 						([yshift=-\ne mm]frame.north east) -- (frame.south east);
-						\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
+						\draw[\sb@colframe,decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
 						([yshift=-\nw mm]frame.north west) -- (frame.south west);
-						\draw[\setboxColframeValue{#1},line width=0.4mm] 
+						\draw[\sb@colframe,line width=0.4mm] 
 						([xshift=-\ne mm]frame.north east) arc[start angle=90, end angle=0,radius=\ne mm]
 						([yshift=-\nw mm]frame.north west) arc[start angle=180, end angle=90,radius=\nw mm]
 						;
@@ -1083,10 +1080,10 @@
 				skin middle is subskin of={emptymiddle}{%
 					top=3mm,
 					frame code ={
-						\fill[\setboxColbackValue{#1}] (frame.north west) rectangle (frame.south east);
-						\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
+						\fill[\sb@colback] (frame.north west) rectangle (frame.south east);
+						\draw[\sb@colframe,decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
 						(frame.north west) -- (frame.south west);
-						\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
+						\draw[\sb@colframe,decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
 						(frame.north east) -- (frame.south east);
 					},
 				},
@@ -1095,14 +1092,14 @@
 					frame code ={
 						\pgfmathrandominteger{\sw}{2}{4}%
 						\pgfmathrandominteger{\se}{2}{4}%
-						\fill[\setboxColbackValue{#1}] (frame.north west) -- ([yshift=\sw mm]frame.south west) arc[start angle=180,end angle=270,radius=\sw mm] -- ([xshift=-\se mm]frame.south east) arc[start angle=270,end angle=360,radius=\se mm] -- (frame.north east) -- cycle;
-						\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm]
+						\fill[\sb@colback] (frame.north west) -- ([yshift=\sw mm]frame.south west) arc[start angle=180,end angle=270,radius=\sw mm] -- ([xshift=-\se mm]frame.south east) arc[start angle=270,end angle=360,radius=\se mm] -- (frame.north east) -- cycle;
+						\draw[\sb@colframe,decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm]
 						(frame.north east) -- ([yshift=\se mm]frame.south east);
-						\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
+						\draw[\sb@colframe,decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
 						([xshift=-\se mm]frame.south east) -- ([xshift=\sw mm]frame.south west);
-						\draw[\setboxColframeValue{#1},decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
+						\draw[\sb@colframe,decorate, decoration={random steps,segment length=40pt,amplitude=1pt},line width=0.4mm] 
 						(frame.north west) -- ([yshift=\sw mm]frame.south west);
-						\draw[\setboxColframeValue{#1},line width=0.4mm] 
+						\draw[\sb@colframe,line width=0.4mm] 
 						([yshift=\se mm]frame.south east) arc[start angle=360, end angle=270,radius=\se mm]
 						([xshift=\sw mm]frame.south west) arc[start angle=270, end angle=180,radius=\sw mm]
 						;
@@ -1132,25 +1129,25 @@
 				notitle,
 				before skip=8mm,
 				frame code ={
-					\fill[\setboxColbackValue{#1}, line width=0.4mm] (frame.north west) -- (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- cycle;
-					\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\fontsize{25pt}{25pt}\selectfont\color{\setboxColframeValue{#1}}\faPowerOff\,\fontsize{11pt}{11pt}\fontfamily{lmss}\selectfont\bf\sb@Currentlabel};
+					\fill[\sb@colback, line width=0.4mm] (frame.north west) -- (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- cycle;
+					\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\fontsize{25pt}{25pt}\selectfont\color{\sb@colframe}\faPowerOff\,\fontsize{11pt}{11pt}\fontfamily{lmss}\selectfont\bf\sb@Currentlabel};
 				},
 				skin first is subskin of={emptyfirst}{%
 					frame code ={
-						\fill[\setboxColbackValue{#1}] (frame.north west) rectangle (frame.south east);
-						\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\fontsize{25pt}{25pt}\selectfont\color{\setboxColframeValue{#1}}\faPowerOff\,\fontsize{11pt}{11pt}\fontfamily{lmss}\selectfont\bf\sb@Currentlabel};
+						\fill[\sb@colback] (frame.north west) rectangle (frame.south east);
+						\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\fontsize{25pt}{25pt}\selectfont\color{\sb@colframe}\faPowerOff\,\fontsize{11pt}{11pt}\fontfamily{lmss}\selectfont\bf\sb@Currentlabel};
 					}
 				},
 				skin middle is subskin of={emptymiddle}{%
 					top=3mm,
 					frame code ={
-						\fill[\setboxColbackValue{#1}] (frame.north west) rectangle (frame.south east);
+						\fill[\sb@colback] (frame.north west) rectangle (frame.south east);
 					}
 				},
 				skin last is subskin of={emptylast}{%
 					top=3mm,
 					frame code ={
-						\fill[\setboxColbackValue{#1}] (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- (frame.north west) -- cycle;
+						\fill[\sb@colback] (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- (frame.north west) -- cycle;
 					}
 				}
 				]
@@ -1177,25 +1174,25 @@
 				notitle,
 				before skip=8mm,
 				frame code ={
-					\fill[\setboxColbackValue{#1}, line width=0.4mm] (frame.north west) -- (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- cycle;
-					\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\fontsize{30pt}{30pt}\selectfont\color{\setboxColframeValue{#1}}\faLightbulbO\fontsize{11pt}{11pt}\fontfamily{lmss}\selectfont\bf\sb@Currentlabel};
+					\fill[\sb@colback, line width=0.4mm] (frame.north west) -- (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- cycle;
+					\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\fontsize{30pt}{30pt}\selectfont\color{\sb@colframe}\faLightbulbO\fontsize{11pt}{11pt}\fontfamily{lmss}\selectfont\bf\sb@Currentlabel};
 				},
 				skin first is subskin of={emptyfirst}{%
 					frame code ={
-						\fill[\setboxColbackValue{#1}] (frame.north west) rectangle (frame.south east);
-						\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\fontsize{30pt}{30pt}\selectfont\color{\setboxColframeValue{#1}}\faLightbulbO\fontsize{11pt}{11pt}\fontfamily{lmss}\selectfont\bf\sb@Currentlabel};
+						\fill[\sb@colback] (frame.north west) rectangle (frame.south east);
+						\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\fontsize{30pt}{30pt}\selectfont\color{\sb@colframe}\faLightbulbO\fontsize{11pt}{11pt}\fontfamily{lmss}\selectfont\bf\sb@Currentlabel};
 					}
 				},
 				skin middle is subskin of={emptymiddle}{%
 					top=3mm,
 					frame code ={
-						\fill[\setboxColbackValue{#1}] (frame.north west) rectangle (frame.south east);
+						\fill[\sb@colback] (frame.north west) rectangle (frame.south east);
 					}
 				},
 				skin last is subskin of={emptylast}{%
 					top=3mm,
 					frame code ={
-						\fill[\setboxColbackValue{#1}] (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- (frame.north west) -- cycle;
+						\fill[\sb@colback] (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- (frame.north west) -- cycle;
 					}
 				}
 				]
@@ -1222,25 +1219,25 @@
 				notitle,
 				before skip=8mm,
 				frame code ={
-					\fill[\setboxColbackValue{#1}, line width=0.4mm] (frame.north west) -- (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- cycle;
-					\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\fontsize{30pt}{30pt}\selectfont\color{\setboxColframeValue{#1}}\faUnlockAlt\,\fontsize{11pt}{11pt}\fontfamily{lmss}\selectfont\bf\sb@Currentlabel};
+					\fill[\sb@colback, line width=0.4mm] (frame.north west) -- (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- cycle;
+					\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\fontsize{30pt}{30pt}\selectfont\color{\sb@colframe}\faUnlockAlt\,\fontsize{11pt}{11pt}\fontfamily{lmss}\selectfont\bf\sb@Currentlabel};
 				},
 				skin first is subskin of={emptyfirst}{%
 					frame code ={
-						\fill[\setboxColbackValue{#1}] (frame.north west) rectangle (frame.south east);
-						\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\fontsize{30pt}{30pt}\selectfont\color{\setboxColframeValue{#1}}\faUnlockAlt\,\fontsize{11pt}{11pt}\fontfamily{lmss}\selectfont\bf\sb@Currentlabel};
+						\fill[\sb@colback] (frame.north west) rectangle (frame.south east);
+						\draw ([xshift=-4mm,yshift=-1mm]frame.north west) node[right] {\fontsize{30pt}{30pt}\selectfont\color{\sb@colframe}\faUnlockAlt\,\fontsize{11pt}{11pt}\fontfamily{lmss}\selectfont\bf\sb@Currentlabel};
 					}
 				},
 				skin middle is subskin of={emptymiddle}{%
 					top=3mm,
 					frame code ={
-						\fill[\setboxColbackValue{#1}] (frame.north west) rectangle (frame.south east);
+						\fill[\sb@colback] (frame.north west) rectangle (frame.south east);
 					}
 				},
 				skin last is subskin of={emptylast}{%
 					top=3mm,
 					frame code ={
-						\fill[\setboxColbackValue{#1}] (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- (frame.north west) -- cycle;
+						\fill[\sb@colback] (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- (frame.north west) -- cycle;
 					}
 				}
 				]
@@ -1267,34 +1264,34 @@
 				notitle,
 				before skip=8mm,
 				frame code ={
-					\draw[\setboxColframeValue{#1},fill=\setboxColbackValue{#1}, line width=0.4mm] (frame.north west) -- (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- cycle;
-					\fill[\setboxColframeValue{#1}] (frame.north west) rectangle ([yshift=-7mm]frame.north east);
-					\fill[\setboxColframeValue{#1}] ($(frame.north west)+(0.35,-0.35)$) circle (6mm);
-					\fill[\setboxColbacktitleValue{#1}] ($(frame.north west)+(0.35,-0.35)$) circle (5mm);
-					\draw ($(frame.north west)+(0.35,-0.35)$) node{\LARGE\color{\setboxColframeValue{#1}}\faThumbsUp};
+					\draw[\sb@colframe,fill=\sb@colback, line width=0.4mm] (frame.north west) -- (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- cycle;
+					\fill[\sb@colframe] (frame.north west) rectangle ([yshift=-7mm]frame.north east);
+					\fill[\sb@colframe] ($(frame.north west)+(0.35,-0.35)$) circle (6mm);
+					\fill[\sb@colbacktitle] ($(frame.north west)+(0.35,-0.35)$) circle (5mm);
+					\draw ($(frame.north west)+(0.35,-0.35)$) node{\LARGE\color{\sb@colframe}\faThumbsUp};
 				},
 				skin first is subskin of={emptyfirst}{%
 					frame code ={
-						\fill[\setboxColbackValue{#1}] (frame.south west) rectangle (frame.north east);
-						\draw[\setboxColframeValue{#1}, line width=0.4mm] (frame.south west) -- (frame.north west) -- (frame.north east) -- (frame.south east);
-						\fill[\setboxColframeValue{#1}] (frame.north west) rectangle ([yshift=-7mm]frame.north east);
-						\fill[\setboxColframeValue{#1}] ($(frame.north west)+(0.35,-0.35)$) circle (6mm);
-						\fill[\setboxColbacktitleValue{#1}] ($(frame.north west)+(0.35,-0.35)$) circle (5mm);
-						\draw ($(frame.north west)+(0.35,-0.35)$) node{\LARGE\color{\setboxColframeValue{#1}}\faThumbsUp};
+						\fill[\sb@colback] (frame.south west) rectangle (frame.north east);
+						\draw[\sb@colframe, line width=0.4mm] (frame.south west) -- (frame.north west) -- (frame.north east) -- (frame.south east);
+						\fill[\sb@colframe] (frame.north west) rectangle ([yshift=-7mm]frame.north east);
+						\fill[\sb@colframe] ($(frame.north west)+(0.35,-0.35)$) circle (6mm);
+						\fill[\sb@colbacktitle] ($(frame.north west)+(0.35,-0.35)$) circle (5mm);
+						\draw ($(frame.north west)+(0.35,-0.35)$) node{\LARGE\color{\sb@colframe}\faThumbsUp};
 					}
 				},
 				skin middle is subskin of={emptymiddle}{%
 					top=3mm,
 					frame code ={
-						\fill[\setboxColbackValue{#1}] (frame.south west) rectangle (frame.north east);
-						\draw[\setboxColframeValue{#1}, line width=0.4mm] (frame.south west) -- (frame.north west) (frame.north east) -- (frame.south east);
+						\fill[\sb@colback] (frame.south west) rectangle (frame.north east);
+						\draw[\sb@colframe, line width=0.4mm] (frame.south west) -- (frame.north west) (frame.north east) -- (frame.south east);
 					}
 				},
 				skin last is subskin of={emptylast}{%
 					top=3mm,
 					frame code ={
-						\fill[\setboxColbackValue{#1}] (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- (frame.north west) --cycle;
-						\draw[\setboxColframeValue{#1}, line width=0.4mm] (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- (frame.north west);
+						\fill[\sb@colback] (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- (frame.north west) --cycle;
+						\draw[\sb@colframe, line width=0.4mm] (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- (frame.north west);
 					}
 				}
 				]
@@ -1321,34 +1318,34 @@
 				notitle,
 				before skip=8mm,
 				frame code ={
-					\draw[\setboxColbacktitleValue{#1},fill=\setboxColbackValue{#1}, line width=0.4mm] (frame.north west) -- (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- cycle;
-					\fill[\setboxColbacktitleValue{#1}] (frame.north west) rectangle ([yshift=-7mm]frame.north east);
-					\fill[\setboxColbacktitleValue{#1}] ($(frame.north west)+(0.35,-0.35)$) circle (6mm);
-					\fill[\setboxColframeValue{#1}] ($(frame.north west)+(0.35,-0.35)$) circle (5mm);
+					\draw[\sb@colbacktitle,fill=\sb@colback, line width=0.4mm] (frame.north west) -- (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- cycle;
+					\fill[\sb@colbacktitle] (frame.north west) rectangle ([yshift=-7mm]frame.north east);
+					\fill[\sb@colbacktitle] ($(frame.north west)+(0.35,-0.35)$) circle (6mm);
+					\fill[\sb@colframe] ($(frame.north west)+(0.35,-0.35)$) circle (5mm);
 					\draw ($(frame.north west)+(0.35,-0.35)$) node{\LARGE\color{white}\faThumbsUp};
 				},
 				skin first is subskin of={emptyfirst}{%
 					frame code ={
-						\fill[\setboxColbackValue{#1}] (frame.south west) rectangle (frame.north east);
-						\draw[\setboxColbacktitleValue{#1}, line width=0.4mm] (frame.south west) -- (frame.north west) -- (frame.north east) -- (frame.south east);
-						\fill[\setboxColbacktitleValue{#1}] (frame.north west) rectangle ([yshift=-7mm]frame.north east);
-						\fill[\setboxColbacktitleValue{#1}] ($(frame.north west)+(0.35,-0.35)$) circle (6mm);
-						\fill[\setboxColframeValue{#1}] ($(frame.north west)+(0.35,-0.35)$) circle (5mm);
+						\fill[\sb@colback] (frame.south west) rectangle (frame.north east);
+						\draw[\sb@colbacktitle, line width=0.4mm] (frame.south west) -- (frame.north west) -- (frame.north east) -- (frame.south east);
+						\fill[\sb@colbacktitle] (frame.north west) rectangle ([yshift=-7mm]frame.north east);
+						\fill[\sb@colbacktitle] ($(frame.north west)+(0.35,-0.35)$) circle (6mm);
+						\fill[\sb@colframe] ($(frame.north west)+(0.35,-0.35)$) circle (5mm);
 						\draw ($(frame.north west)+(0.35,-0.35)$) node{\LARGE\color{white}\faThumbsUp};
 					}
 				},
 				skin middle is subskin of={emptymiddle}{%
 					top=3mm,
 					frame code ={
-						\fill[\setboxColbackValue{#1}] (frame.south west) rectangle (frame.north east);
-						\draw[\setboxColbacktitleValue{#1}, line width=0.4mm] (frame.south west) -- (frame.north west) (frame.north east) -- (frame.south east);
+						\fill[\sb@colback] (frame.south west) rectangle (frame.north east);
+						\draw[\sb@colbacktitle, line width=0.4mm] (frame.south west) -- (frame.north west) (frame.north east) -- (frame.south east);
 					}
 				},
 				skin last is subskin of={emptylast}{%
 					top=3mm,
 					frame code ={
-						\fill[\setboxColbackValue{#1}] (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- (frame.north west) --cycle;
-						\draw[\setboxColbacktitleValue{#1}, line width=0.4mm] (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- (frame.north west);
+						\fill[\sb@colback] (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- (frame.north west) --cycle;
+						\draw[\sb@colbacktitle, line width=0.4mm] (frame.north east) -- ([yshift=3mm]frame.south east) arc[start angle=360, end angle=270,radius=3mm] -- (frame.south west)  -- (frame.north west);
 					}
 				}
 				]
@@ -1373,8 +1370,8 @@
 				boxrule=0.4mm,
 				left=3mm,
 				right=3mm,
-				colback=\setboxColbackValue{#1},
-				colframe=\setboxColframeValue{#1}
+				colback=\sb@colback,
+				colframe=\sb@colframe
 				]
 			}
 		\def\endbox{\end{tcolorbox}}
@@ -1397,32 +1394,32 @@
 			right=3mm,
 			opacityback=0,
 			frame code={
-				\fill[\setboxColbackValue{#1}] 
+				\fill[\sb@colback] 
 				([xshift=1mm]frame.north west) rectangle (frame.south east);
-				\fill[\setboxColframeValue{#1}] 
+				\fill[\sb@colframe] 
 				([xshift=1mm]frame.north west) rectangle ([xshift=2mm]frame.south west);
 			},
 			skin first is subskin of={emptyfirst}{%
 				frame code={
-					\fill[\setboxColbackValue{#1}] 
+					\fill[\sb@colback] 
 					([xshift=1mm]frame.north west) rectangle (frame.south east);
-					\fill[\setboxColframeValue{#1}] 
+					\fill[\sb@colframe] 
 					([xshift=1mm]frame.north west) rectangle ([xshift=2mm]frame.south west);
 				},
 			},
 			skin middle is subskin of={emptymiddle}{%
 				frame code={
-					\fill[\setboxColbackValue{#1}] 
+					\fill[\sb@colback] 
 					([xshift=1mm]frame.north west) rectangle (frame.south east);
-					\fill[\setboxColframeValue{#1}] 
+					\fill[\sb@colframe] 
 					([xshift=1mm]frame.north west) rectangle ([xshift=2mm]frame.south west);
 				},
 			},
 			skin last is subskin of={emptylast}{%
 				frame code={
-					\fill[\setboxColbackValue{#1}] 
+					\fill[\sb@colback] 
 					([xshift=1mm]frame.north west) rectangle (frame.south east);
-					\fill[\setboxColframeValue{#1}] 
+					\fill[\sb@colframe] 
 					([xshift=1mm]frame.north west) rectangle ([xshift=2mm]frame.south west);
 				},
 			},
@@ -1445,7 +1442,7 @@
 			before skip=2mm,
 			after skip=3mm,
 			left=5mm, right=2mm, top=1mm, bottom=1mm,
-			colback=\setboxColbackValue{#1},
+			colback=\sb@colback,
 			frame hidden,
 			sharp corners,
 			rounded corners=southeast,
@@ -1454,7 +1451,7 @@
 			height from=1cm to 99cm,
 			underlay={
 				\path[fill=tcbcolback!80!black] ([yshift=3mm]interior.south east)--++(-0.4,-0.1)--++(0.1,-0.2);
-				\path[fill=\setboxColframeValue{#1},draw=none] (interior.south west) rectangle node[white]{\Huge\bfseries !} ([xshift=4mm]interior.north west);
+				\path[fill=\sb@colframe,draw=none] (interior.south west) rectangle node[white]{\Huge\bfseries !} ([xshift=4mm]interior.north west);
 			}
 			]
 		}
@@ -1474,12 +1471,12 @@
 			enhanced,
 			breakable,
 			left=3mm, right=3mm, top=3mm, bottom=3mm,
-			colback=\setboxColbackValue{#1},
+			colback=\sb@colback,
 			frame hidden,
 			opacityback=0,
 			height from=1.4cm to 99cm,
 			frame code={
-				\draw[\setboxColframeValue{#1},line width=0.4mm,scale=0.5]
+				\draw[\sb@colframe,line width=0.4mm,scale=0.5]
 				% góc trên trái
 				(frame.north west) --++(0.4,0) --++(0,-0.6) --++(-0.4,0) --++(0,-0.2) --++(0.2,0) arc[start angle=90,end angle=180,radius=0.2cm]
 				(frame.north west) --++(0,-0.4) --++(0.6,0) --++(0,0.4) --++(0.2,0) --++(0,-0.2) arc[start angle=180,end angle=90,radius=0.2cm]
@@ -1505,7 +1502,7 @@
 			skin first is subskin of={emptyfirst}{%
 				bottom=1mm,
 				frame code ={
-					\draw[\setboxColframeValue{#1},line width=0.4mm,scale=0.5]
+					\draw[\sb@colframe,line width=0.4mm,scale=0.5]
 					% góc trên trái
 					(frame.north west) --++(0.4,0) --++(0,-0.6) --++(-0.4,0) --++(0,-0.2) --++(0.2,0) arc[start angle=90,end angle=180,radius=0.2cm]
 					(frame.north west) --++(0,-0.4) --++(0.6,0) --++(0,0.4) --++(0.2,0) --++(0,-0.2) arc[start angle=180,end angle=90,radius=0.2cm]
@@ -1525,7 +1522,7 @@
 				top=1mm,
 				bottom=1mm,
 				frame code ={
-					\draw[\setboxColframeValue{#1},line width=0.4mm,scale=0.5]
+					\draw[\sb@colframe,line width=0.4mm,scale=0.5]
 					% cạnh trái
 					(frame.north west) -- (frame.south west)
 					% cạnh phải
@@ -1536,7 +1533,7 @@
 			skin last is subskin of={emptylast}{%
 				top=1mm,
 				frame code ={
-					\draw[\setboxColframeValue{#1},line width=0.4mm,scale=0.5]
+					\draw[\sb@colframe,line width=0.4mm,scale=0.5]
 					% góc dưới trái
 					(frame.south west) --++(0.4,0) --++(0,0.6) --++(-0.4,0) --++(0,0.2) --++(0.2,0) arc[start angle=270,end angle=180,radius=0.2cm]
 					(frame.south west) --++(0,0.4) --++(0.6,0) --++(0,-0.4) --++(0.2,0) --++(0,0.2) arc[start angle=180,end angle=270,radius=0.2cm]
@@ -1577,7 +1574,7 @@
 			opacityback=0,
 			frame code={
 				\def\rad{3mm}
-				\draw[\setboxColframeValue{#1},line width=0.4mm]
+				\draw[\sb@colframe,line width=0.4mm]
 				% góc trên trái
 				([xshift=\rad]frame.north west) arc[start angle=360, end angle=270, radius=\rad] 
 				% góc trên phải
@@ -1600,7 +1597,7 @@
 				bottom=1mm,
 				frame code ={
 					\def\rad{3mm}
-					\draw[\setboxColframeValue{#1},line width=0.4mm]
+					\draw[\sb@colframe,line width=0.4mm]
 					% góc trên trái
 					([xshift=\rad]frame.north west) arc[start angle=360, end angle=270, radius=\rad] 
 					% góc trên phải
@@ -1618,7 +1615,7 @@
 				top=1mm,
 				bottom=1mm,
 				frame code ={
-					\draw[\setboxColframeValue{#1},line width=0.4mm]
+					\draw[\sb@colframe,line width=0.4mm]
 					% cạnh trái
 					(frame.north west) -- (frame.south west)
 					% cạnh phải
@@ -1630,7 +1627,7 @@
 				top=1mm,
 				frame code ={
 					\def\rad{3mm}
-					\draw[\setboxColframeValue{#1},line width=0.4mm]
+					\draw[\sb@colframe,line width=0.4mm]
 					% cạnh trái
 					(frame.north west) -- ([yshift=\rad]frame.south west)
 					% cạnh phải
@@ -1668,15 +1665,15 @@
 			frame hidden,
 			opacityback=0,
 			frame code={
-				\fill[\setboxColbackValue{#1}] (frame.north west) rectangle (frame.south east);
-				\draw[\setboxColframeValue{#1},line width=0.4mm]
+				\fill[\sb@colback] (frame.north west) rectangle (frame.south east);
+				\draw[\sb@colframe,line width=0.4mm]
 				(frame.north west) rectangle (frame.south east);
 			},
 			skin first is subskin of={emptyfirst}{%
 				bottom=1mm,
 				frame code ={
-					\fill[\setboxColbackValue{#1}] (frame.north west) rectangle (frame.south east);
-					\draw[\setboxColframeValue{#1},line width=0.4mm]
+					\fill[\sb@colback] (frame.north west) rectangle (frame.south east);
+					\draw[\sb@colframe,line width=0.4mm]
 					% cạnh trên
 					(frame.north west) -- (frame.north east)
 					% cạnh trái
@@ -1690,8 +1687,8 @@
 				top=1mm,
 				bottom=1mm,
 				frame code ={
-					\fill[\setboxColbackValue{#1}] (frame.north west) rectangle (frame.south east);
-					\draw[\setboxColframeValue{#1},line width=0.4mm]
+					\fill[\sb@colback] (frame.north west) rectangle (frame.south east);
+					\draw[\sb@colframe,line width=0.4mm]
 					% cạnh trái
 					(frame.north west) -- (frame.south west)
 					% cạnh phải
@@ -1702,8 +1699,8 @@
 			skin last is subskin of={emptylast}{%
 				top=1mm,
 				frame code={
-					\fill[\setboxColbackValue{#1}] (frame.north west) rectangle (frame.south east);
-					\draw[\setboxColframeValue{#1},line width=0.4mm]
+					\fill[\sb@colback] (frame.north west) rectangle (frame.south east);
+					\draw[\sb@colframe,line width=0.4mm]
 					% cạnh dưới
 					(frame.south west) -- (frame.south east)
 					% cạnh trái
@@ -1737,17 +1734,17 @@
 			frame hidden,
 			opacityback=0,
 			frame code={
-				\draw[\setboxColframeValue{#1},line width=2pt]
+				\draw[\sb@colframe,line width=2pt]
 				(frame.north west) rectangle (frame.south east);
-				\draw[\setboxColframeValue{#1},fill=\setboxColbackValue{#1},line width=0.5pt]
+				\draw[\sb@colframe,fill=\sb@colback,line width=0.5pt]
 				($(frame.north west)+(0.2,-0.2)$) rectangle ($(frame.south east)+(-0.2,0.2)$);
 			},
 			skin first is subskin of={emptyfirst}{%
 				bottom=1mm,
 				frame code ={
-					\fill[\setboxColbackValue{#1}]
+					\fill[\sb@colback]
 					($(frame.north west)+(0.2,-0.2)$) rectangle ($(frame.south east)+(-0.2,0)$);
-					\draw[\setboxColframeValue{#1},line width=2pt]
+					\draw[\sb@colframe,line width=2pt]
 					% cạnh trên
 					(frame.north west) -- (frame.north east)
 					% cạnh trái
@@ -1755,7 +1752,7 @@
 					% cạnh phải
 					(frame.north east) -- (frame.south east)
 					;
-					\draw[\setboxColframeValue{#1},line width=0.5pt]
+					\draw[\sb@colframe,line width=0.5pt]
 					% cạnh trên
 					($(frame.north west)+(0.2,-0.2)$) -- ($(frame.north east)+(-0.2,-0.2)$)
 					% cạnh trái
@@ -1769,15 +1766,15 @@
 				top=1mm,
 				bottom=1mm,
 				frame code ={
-					\fill[\setboxColbackValue{#1}]
+					\fill[\sb@colback]
 					($(frame.north west)+(0.2,0)$) rectangle ($(frame.south east)+(-0.2,0)$);
-					\draw[\setboxColframeValue{#1},line width=2pt]
+					\draw[\sb@colframe,line width=2pt]
 					% cạnh trái
 					(frame.north west) -- (frame.south west)
 					% cạnh phải
 					(frame.north east) -- (frame.south east)
 					;
-					\draw[\setboxColframeValue{#1},line width=0.5pt]
+					\draw[\sb@colframe,line width=0.5pt]
 					% cạnh trái
 					($(frame.north west)+(0.2,0)$) -- ($(frame.south west)+(0.2,0)$)
 					% cạnh phải
@@ -1788,9 +1785,9 @@
 			skin last is subskin of={emptylast}{%
 				top=1mm,
 				frame code={
-					\fill[\setboxColbackValue{#1}]
+					\fill[\sb@colback]
 					($(frame.north west)+(0.2,0)$) rectangle ($(frame.south east)+(-0.2,0.2)$);
-					\draw[\setboxColframeValue{#1},line width=2pt]
+					\draw[\sb@colframe,line width=2pt]
 					% cạnh dưới
 					(frame.south west) -- (frame.south east)
 					% cạnh trái
@@ -1798,7 +1795,7 @@
 					% cạnh phải
 					(frame.north east) -- (frame.south east)
 					;
-					\draw[\setboxColframeValue{#1},line width=0.5pt]
+					\draw[\sb@colframe,line width=0.5pt]
 					% cạnh dưới
 					($(frame.south west)+(0.2,0.2)$) -- ($(frame.south east)+(-0.2,0.2)$)
 					% cạnh trái
@@ -1831,37 +1828,37 @@
 			bottom=3mm,
 			opacityback=0,
 			frame code={
-				\fill[\setboxColbackValue{#1}]
+				\fill[\sb@colback]
 				(frame.north west) rectangle (frame.south east);
 				% cạnh trái
-				\fill[\setboxColframeValue{#1}] (frame.north west) rectangle ([xshift=2pt]frame.south west);
-				\fill[\setboxColframeValue{#1}] ([xshift=4pt]frame.north west) rectangle ([xshift=5pt]frame.south west);
+				\fill[\sb@colframe] (frame.north west) rectangle ([xshift=2pt]frame.south west);
+				\fill[\sb@colframe] ([xshift=4pt]frame.north west) rectangle ([xshift=5pt]frame.south west);
 			},
 			skin first is subskin of={emptyfirst}{%
 				frame code ={
-					\fill[\setboxColbackValue{#1}]
+					\fill[\sb@colback]
 					(frame.north west) rectangle (frame.south east);
 					% cạnh trái
-					\fill[\setboxColframeValue{#1}] (frame.north west) rectangle ([xshift=2pt]frame.south west);
-					\fill[\setboxColframeValue{#1}] ([xshift=4pt]frame.north west) rectangle ([xshift=5pt]frame.south west);
+					\fill[\sb@colframe] (frame.north west) rectangle ([xshift=2pt]frame.south west);
+					\fill[\sb@colframe] ([xshift=4pt]frame.north west) rectangle ([xshift=5pt]frame.south west);
 				},
 			},
 			skin middle is subskin of={emptymiddle}{%
 				frame code ={
-					\fill[\setboxColbackValue{#1}]
+					\fill[\sb@colback]
 					(frame.north west) rectangle (frame.south east);
 					% cạnh trái
-					\fill[\setboxColframeValue{#1}] (frame.north west) rectangle ([xshift=2pt]frame.south west);
-					\fill[\setboxColframeValue{#1}] ([xshift=4pt]frame.north west) rectangle ([xshift=5pt]frame.south west);
+					\fill[\sb@colframe] (frame.north west) rectangle ([xshift=2pt]frame.south west);
+					\fill[\sb@colframe] ([xshift=4pt]frame.north west) rectangle ([xshift=5pt]frame.south west);
 				},
 			},
 			skin last is subskin of={emptylast}{%
 				frame code={
-					\fill[\setboxColbackValue{#1}]
+					\fill[\sb@colback]
 					(frame.north west) rectangle (frame.south east);
 					% cạnh trái
-					\fill[\setboxColframeValue{#1}] (frame.north west) rectangle ([xshift=2pt]frame.south west);
-					\fill[\setboxColframeValue{#1}] ([xshift=4pt]frame.north west) rectangle ([xshift=5pt]frame.south west);
+					\fill[\sb@colframe] (frame.north west) rectangle ([xshift=2pt]frame.south west);
+					\fill[\sb@colframe] ([xshift=4pt]frame.north west) rectangle ([xshift=5pt]frame.south west);
 				},
 			},
 			]
@@ -1904,6 +1901,9 @@
 \def\sb@labelthmshortDot{}
 \def\sb@labelthmfullDot{}
 \def\sb@title{}
+\def\sb@colbacktitle{}
+\def\sb@colback{}
+\def\sb@colframe{}
 %%% Hàm hỗ trợ hiện label nếu không \immini và \sochc ở đầu nội dung
 %%% Nếu không thấy \sochc và \immini mới hiện tiêu đề, cần phải khai báo lại tiêu đề tương ứng trong các khai báo kiểu khung
 \def\sb@addTitle{%
@@ -1920,9 +1920,9 @@
 %%% Tạo lệnh đổi khung cho theorem nếu có đánh số
 \newcommand{\@setTheoBoxNoStar}[3]{
 	% Cài đặt màu khung và nền của tcolorbox theo tên môi trường
-	\@ifundefined{sb@#1Colframe}{\setboxColframe{#1}{\sb@defaultColframe}}{}
-	\@ifundefined{sb@#1Colback}{\setboxColback{#1}{\sb@defaultColback}}{}
-	\@ifundefined{sb@#1Colbacktitle}{\setboxColbacktitle{#1}{\sb@defaultColbacktitle}}{}
+	\@ifundefined{sb@#1colframe}{\setboxColframe{#1}{\sb@defaultColframe}}{}
+	\@ifundefined{sb@#1colback}{\setboxColback{#1}{\sb@defaultColback}}{}
+	\@ifundefined{sb@#1colbacktitle}{\setboxColbacktitle{#1}{\sb@defaultColbacktitle}}{}
 	% Bật hiển thị khung khi dùng trong tcolorbox khác theo mặc định
 	\showboxInTcb{#1}
 	% Khai báo lại môi trường
@@ -1941,6 +1941,10 @@
 		% Tiến hành xử lý
 		\Ifsb@skipflag
 		\else
+			%Khai báo màu
+			\def\sb@colbacktitle{\csname sb@#1colbacktitle\endcsname}
+			\def\sb@colback{\csname sb@#1colback\endcsname}
+			\def\sb@colframe{\csname sb@#1colframe\endcsname}
 			% Khai báo số thứ tự
 			\def\sb@Currentlabel{\csname the#1\endcsname}
 			% Khai báo tiêu đề
@@ -2001,9 +2005,9 @@
 %%% Tạo lệnh đổi khung cho theorem nếu không đánh số
 \newcommand{\@setTheoBoxStar}[3]{
 	% Cài đặt màu khung và nền của tcolorbox theo tên môi trường
-	\@ifundefined{sb@#1Colframe}{\setboxColframe{#1}{\sb@defaultColframe}}{}
-	\@ifundefined{sb@#1Colback}{\setboxColback{#1}{\sb@defaultColback}}{}
-	\@ifundefined{sb@#1Colbacktitle}{\setboxColbacktitle{#1}{\sb@defaultColbacktitle}}{}
+	\@ifundefined{sb@#1colframe}{\setboxColframe{#1}{\sb@defaultColframe}}{}
+	\@ifundefined{sb@#1colback}{\setboxColback{#1}{\sb@defaultColback}}{}
+	\@ifundefined{sb@#1colbacktitle}{\setboxColbacktitle{#1}{\sb@defaultColbacktitle}}{}
 	% Bật hiển thị khung khi dùng trong tcolorbox khác theo mặc định
 	\showboxInTcb{#1}
 	% Khai báo lại môi trường
@@ -2022,6 +2026,10 @@
 		% Tiến hành xử lý
 		\Ifsb@skipflag
 		\else
+			%Khai báo màu
+			\def\sb@colbacktitle{\csname sb@#1colbacktitle\endcsname}
+			\def\sb@colback{\csname sb@#1colback\endcsname}
+			\def\sb@colframe{\csname sb@#1colframe\endcsname}
 			% Khai báo số thứ tự
 			\def\sb@Currentlabel{}
 			% Khai báo tiêu đề
