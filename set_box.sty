@@ -14,8 +14,10 @@
 %%% Xử lý bổ sung cho gói ex_test
 \@ifpackageloaded{ex_test}
 {
-	% Bổ sung khai báo còn thiếu cho ex_test
-	\RequirePackage{amssymb} 
+	% Bổ sung khai báo còn thiếu cho ex_test, hiện hình vuông cuối lời giải
+	\@ifpackageloaded{mathdesign}{}{
+		\RequirePackage{amssymb}
+	}
 	% Vá lại lệnh immini
 	\renewcommand{\immini}[3][]{%
 		\savebox{\imbox}{#3}
