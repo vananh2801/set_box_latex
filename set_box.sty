@@ -2154,5 +2154,53 @@
 		\expandafter\let\csname sb@#2HiddenList\endcsname\tempresult
 	}
 }
+%%% Tạo kiểu khung mới dựa trên \bgBOX của ex_test.sty
+\newcommand{\bgBOXnew}{%
+	\def\sb@title{}
+	\def\sb@beginbox{
+		\begin{tcolorbox}[%
+			enhanced,
+			breakable,
+			drop fuzzy shadow southeast,
+			before skip=4mm,
+			after skip=4mm,
+			colback=yellow!7,
+			colframe=red!50!black,
+			boxrule=1pt,
+			attach boxed title to top left={
+				xshift=1cm,yshift*=1mm-\tcboxedtitleheight},
+				boxed title style={frame code={
+					\path[fill=red!30!black]
+					([yshift=-1mm,xshift=-1mm]frame.north west)
+					arc[start angle=0,end angle=180,radius=1mm]
+					([yshift=-1mm,xshift=1mm]frame.north east)
+					arc[start angle=180,end angle=0,radius=1mm];
+					\path[left color=red!60!black, 
+					right color=red!60!black,
+					middle color=red!85!black]
+					([xshift=-2mm]frame.north west) -- 
+					([xshift=2mm]frame.north east)
+					[rounded corners=1mm]-- 
+					([xshift=1mm,yshift=-1mm]frame.north east)
+					-- (frame.south east) -- (frame.south west)
+					-- ([xshift=-1mm,yshift=-1mm]frame.north west)
+					[sharp corners]-- cycle;
+					},
+				interior engine=empty},
+			fonttitle=\color{white}\bf\fontfamily{qag}\selectfont,
+			title={\sb@labelthmfull}
+			]
+		}
+	\def\endbox{\par\noindent\hfill\sb@sublabelthmBracket\end{tcolorbox}}
+	%%% Nếu trong tcolorbox khác thì sẽ mất khung.
+	\ifsb@InTcolorbox
+		\Ifsb@hideboxInTcb
+			\def\sb@title{\par\noindent{\bf\color{red!30!black}
+			\fontfamily{qag}\selectfont\sb@labelthmfullDot~}}
+			\def\sb@beginbox{}
+			\def\endbox{\par}
+		\fi
+	\fi
+}
 %%% Kết thúc set_box.sty 
 \endinput
