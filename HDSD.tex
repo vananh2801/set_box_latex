@@ -177,8 +177,47 @@
 			\end{vd}
 		\end{verbatim}
 	\end{itemize}\par
-	Hiện tại gói lệnh \verb|set_box| có sẵn $29$, được liệt kê ở mục số $3$. Trong đó, kiểu số 0 là kiểu hiển thị không có khung. Đối với các \verb|theorem| mà thầy cô không muốn tạo khung thì hãy dùng kiểu số $0$ \textit{(đây là bước bắt buộc)}.
+	Hiện tại gói lệnh \verb|set_box| có sẵn $30$, được liệt kê ở mục $3$. Trong đó, kiểu số 0 là kiểu hiển thị không có khung. Đối với các \verb|theorem| mà thầy cô không muốn tạo khung thì hãy dùng kiểu số $0$ \textit{(đây là bước bắt buộc)}.
 	\newpage
+	\subsubsection{Minh hoạ}
+	\begin{verbatim}
+		\documentclass[12pt,a4paper,twoside]{article}
+		\usepackage[utf8]{vietnam}
+		\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
+		\usepackage{ntheorem}
+		\usepackage[loigiai]{ex_test}
+		\usepackage{set_box}
+		%---------- Định nghĩa -----------
+		\newtheorem{dn}{Định nghĩa}
+		\setTheoBox{dn}{2}{\bf Định nghĩa}
+		%------------- Ví dụ -------------
+		\newtheorem{vd}*{Ví dụ}
+		\setTheoBox{vd}*{4}{\bf Ví dụ}
+		%-------- Nội dung chính ---------
+		\begin{document}
+			\begin{dn}[Tên định nghĩa]
+				Nội dung Định nghĩa...
+			\end{dn}
+			\begin{vd}
+				Đề bài...
+				\loigiai{
+					Lời giải...
+				}
+			\end{vd}
+		\end{document}
+	\end{verbatim}
+	\subsubsection{Kết quả thu được}
+	\begin{dn}[Tên định nghĩa]
+		Nội dung Định nghĩa...
+	\end{dn}
+	\begin{vd}
+		Đề bài...
+		\loigiai{
+			Lời giải...
+		}
+	\end{vd}
+	\newpage
+	\subsubsection{Khai báo kiểu khung cá nhân}
 	Gói lệnh \verb|set_box| có hỗ trợ khung riêng do thầy cô tự khai báo. Ta cần chú ý các lệnh sau:
 	\begin{center}
 		\begin{tabular}{|m{5cm}|m{4.5cm}|m{5.8cm}|}
@@ -201,37 +240,58 @@
 			\\\hline
 			{\color{blue}\verb|\sb@labelthmfullDot|}&tiêu đề + số thứ tự + tiêu đề phụ + dấu chấm&\textbf{Định nghĩa 1 (Tên tiêu đề).}
 			\\\hline
-			{\color{blue}\verb|\sb@title|}&tiêu đề sẽ hiển thị ở đầu đoạn nội dung (nếu có)&
-			\\\hline
 		\end{tabular}
 	\end{center}\par
-	Đối với khung mà tiêu đề \textbf{không nằm} ở đầu đoạn của nội dung, thầy cô nên sử dụng {\color{blue}\verb|\sb@labelthmshort|} hoặc {\color{blue}\verb|\sb@labelthmfull|} để không hiện dấu chấm. Đồng thời, ta khai báo {\color{blue}\verb|\def\sb@title{}|}.\par
-	Đối với khung mà tiêu đề \textbf{nằm} ở đầu đoạn của nội dung, thầy cô nên sử dụng\\
-	{\color{blue}\verb|\sb@labelthmshortDot|} hoặc {\color{blue}\verb|\sb@labelthmfullDot|} để hiện dấu chấm. Đồng thời, ta khai báo đầy đủ {\color{blue}\verb|\def\sb@title{<Định dạng hiển thị>}|}\par
-	Khai báo {\color{blue}\verb|\sb@title|} đầy đủ để giúp lệnh \verb|\immini| và \verb|\sochc| có thể hoạt động đúng.\par
-	Thầy cô khai báo theo cấu trúc như sau, tên command thầy cô đặt tuỳ ý.
+	Thầy cô khai báo kiểu khung riêng nằm ngoài \verb|set_box|. Vì trong khai báo có chứa dấu a còng \verb|@| nên ta phải khai báo trong cặp lệnh \verb|\makeatletter| và \verb|\makeatother|. Sau đây là cấu trúc chuẩn dùng cho gói \verb|set_box|:
 	\begin{verbatim}
 		\makeatletter
-		\newcommand{\bgBOXnew}{%
-				\def\sb@title{<Định dạng>}
-				\def\sb@beginbox{
-						\begin{tcolorbox}[%
-								<Định dạng>
+		\newcommand{<tên kiểu>}{%
+				%%% Khai báo khung.
+				\def\sb@title{<Định dạng 1>}
+				\def\sb@beginbox{%
+						\begin{tcolorbox}[
+								<Định dạng 2>
 								]
 						}
-				\def\endbox{<Định dạng>\end{tcolorbox}}
+				\def\endbox{%<Định dạng 3>\end{tcolorbox}}
 				%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 				\ifsb@InTcolorbox
 						\Ifsb@hideboxInTcb
-								\def\sb@title{<Định dạng>}
-								\def\sb@beginbox{<Định dạng>}
-								\def\endbox{<Định dạng>}
+								\def\sb@title{<Định dạng 4>}
+								\def\sb@beginbox{<Định dạng 5>}
+								\def\endbox{<Định dạng 6>}
 						\fi
 				\fi
 		}
 	\makeatother
 	\end{verbatim}
-	Chẳng hạn, \verb|set_box| đã khai báo sẵn lệnh như sau dựa trên \verb|\bgBOX| của gói \verb|ex_test|:
+	Cấu trúc chuẩn gồm 2 phần chính: khai báo ``định dạng khung'' và khai báo ``định dạng thay thế'' nếu dùng chức năng ẩn khung khi trong tcolorbox khác (xem thêm ở mục 2.3).\par 
+	\newpage
+	Ở mỗi phần này, chúng ta để phải khai báo đầy đủ 3 \verb|macro| như sau:
+	\begin{itemize}
+		\item {\color{blue}\verb|\sb@title|}: Tiêu đề xuất hiện ở đầu đoạn nội dung.
+		\begin{itemize}
+			\item Khi ta cần hiện tiêu đề nằm trên khung, thì ta phải ẩn tiêu đề ở đầu đoạn nội dung. Ta khai báo {\color{blue}\verb|\def\sb@title{}|}.
+			\item Ngược lại, ta cần hiện tiêu đề ở đầu đoạn nội dung. Ta khai báo\\
+			{\color{blue}\verb|\def\sb@title{\sb@labelthmfullDot}|}\\
+			hoặc {\color{blue}\verb|\def\sb@title{\sb@labelthmshortDot}|}
+			\item Khai báo {\color{blue}\verb|\sb@title|} đầy đủ để giúp lệnh \verb|\immini| và \verb|\sochc| có thể hoạt động đúng.
+		\end{itemize}
+		\item {\color{blue}\verb|\sb@beginbox|}: 
+		\begin{itemize}
+			\item Ta khai báo định dạng \verb|tcolorbox| trong cặp $[...]$ của lệnh \verb|\begin{tcolorbox}|.
+			\item Nếu muốn mất khung như kiểu số $0$ thì ta khai báo {\color{blue}\verb|\def\sb@beginbox{}|}
+		\end{itemize}
+		\item {\color{blue}\verb|\endbox|}:
+		\begin{itemize}
+			\item Nếu ta đã có dùng \verb|\begin{tcolorbox}| thì \textbf{bắt buộc} phải có \verb|\end{tcolorbox}| ở cuối nội dung khai báo {\color{blue}\verb|\def\endbox{...}|}. Nếu ta không cần có tiêu đề phụ ở cuối khung thì ta chỉ cần khai báo {\color{blue}\verb|\def\endbox{\end{tcolorbox}}|} là được. Ngược lại ta cần hiện tiêu đề phụ ở cuối (thường dùng để ghi nguồn ví dụ, bài tập,...) thì ta có thể khai báo\\
+			{\color{blue}\verb|\def\endbox{\par\noindent\hfill|\\
+			\verb|\textit{\sb@sublabelthmBracket}\end{tcolorbox}}|}
+			\item Nếu không khai báo \verb|\begin{tcolorbox}| thì ta không cần \verb|\end{tcolorbox}|. Làm tương tự như trên nhưng không chèn \verb|\end{tcolorbox}|. Chẳng hạn, {\color{blue}\verb|\def\endbox{}|} hoặc \\
+			{\color{blue}\verb|\def\endbox{\par\noindent\hfill|\verb|\textit{\sb@sublabelthmBracket}}|}
+		\end{itemize}
+	\end{itemize}\par
+	Gói \verb|set_box| đã khai báo sẵn lệnh {\color{blue}\verb|\bgBOXnew|} dựa trên {\color{blue}\verb|\bgBOX|} của gói \verb|ex_test|. Ngoài ra thầy cô có thể tham khảo cách khai báo bên trong \verb|set_box.sty|.
 	\begin{verbatim}
 		\makeatletter
 		\newcommand{\bgBOXnew}{%
@@ -270,77 +330,43 @@
 								title={\sb@labelthmshort}
 								]
 						}
-				\def\endbox{\par\noindent\hfill\sb@sublabelthmBracket\end{tcolorbox}}
+				\def\endbox{\par\noindent\hfill\bf\color{red!30!black}
+								\fontfamily{qag}\selectfont\sb@sublabelthmBracket\end{tcolorbox}}
 				%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 				\ifsb@InTcolorbox
 						\Ifsb@hideboxInTcb
-								\def\sb@title{\par\noindent{\bf\color{red!30!black}
-								\fontfamily{qag}\selectfont\sb@labelthmfullDot~}}
+								\def\sb@title{\bf\color{red!30!black}
+								\fontfamily{qag}\selectfont\sb@labelthmshortDot}
 								\def\sb@beginbox{}
-								\def\endbox{\par\noindent\hfill\sb@sublabelthmBracket\par}
+								\def\endbox{\par\noindent\hfill\bf\color{red!30!black}
+								\fontfamily{qag}\selectfont\sb@sublabelthmBracket}
 						\fi
 				\fi
 		}
 	\end{verbatim}
-	Thầy cô tạo khung tương tự với cách dùng số:
+	Ở tham số thứ 2 của lệnh \verb|\setTheoBox|, thầy cô không dùng số mà dùng câu lệnh vừa khai báo:
 	\begin{verbatim}
-		% Đã định dạng in đậm và màu \bgBOXnew
+		% Đã định dạng chữ trong lệnh \bgBOXnew
 		\setTheoBox*{nx}{\bgBOXnew}{Nhận xét}
 	\end{verbatim}
-	Ta thu được kết quả như sau khi Nhận xét không nằm độc lập với Định nghĩa:
+	\newpage
+	Ta thu được kết quả như sau khi Nhận xét nằm \textbf{bên ngoài} với Định nghĩa:
 	\begin{dn}
 		Nội dung định nghĩa...
 	\end{dn}
-	\begin{nx}[Tên nhận xét]
+	\begin{nx}[Nguồn]
 		Nội dung nhận xét...
 	\end{nx}
-	Ta thu được kết quả như sau khi Nhận xét nằm trong Định nghĩa, chi tiết xem mục 2.3 ở phía sau:
+	Ta thu được kết quả như sau khi Nhận xét \textbf{bên trong} Định nghĩa (xem thêm ở mục 2.3):
 	\begin{dn}
 		Nội dung định nghĩa...
-		\begin{nx}[Tên nhận xét]
+		\begin{nx}[Nguồn]
 			Nội dung nhận xét...
 		\end{nx}
 	\end{dn}
-	\subsubsection{Minh hoạ}
-	\begin{verbatim}
-		\documentclass[12pt,a4paper,twoside]{article}
-		\usepackage[utf8]{vietnam}
-		\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
-		\usepackage{ntheorem}
-		\usepackage[loigiai]{ex_test}
-		\usepackage{set_box}
-		%---------- Định nghĩa -----------
-		\newtheorem{dn}{Định nghĩa}
-		\setTheoBox{dn}{2}{\bf Định nghĩa}
-		%------------- Ví dụ -------------
-		\newtheorem{vd}*{Ví dụ}
-		\setTheoBox{vd}*{4}{\bf Ví dụ}
-		%-------- Nội dung chính ---------
-		\begin{document}
-			\begin{dn}[Tên định nghĩa]
-				Nội dung Định nghĩa...
-			\end{dn}
-			\begin{vd}
-				Đề bài...
-				\loigiai{
-					Lời giải...
-				}
-			\end{vd}
-		\end{document}
-	\end{verbatim}
-	\subsubsection{Kết quả thu được}
-	\begin{dn}[Tên định nghĩa]
-		Nội dung Định nghĩa...
-	\end{dn}
-	\begin{vd}
-		Đề bài...
-		\loigiai{
-			Lời giải...
-		}
-	\end{vd}
 	\subsection{Thay đổi màu khung và màu nền}
 	\subsubsection{Giới thiệu lệnh}
-	Để đổi màu mặc định, trước \verb|\setTheoBox| và \verb|\setEnvBox|, ta dùng các lệnh sau:
+	Để đổi màu mặc định, trước \verb|\setTheoBox|, ta dùng các lệnh sau:
 	\begin{itemize}
 		\begin{lrbox}{\myverbcontent}
 			\verb|\setboxColframeSetDefault{<màu>}|
@@ -355,7 +381,7 @@
 		\end{lrbox}
 		\item Lệnh \fbox{\usebox{\myverbcontent}}: đổi màu nền tiêu đề mặc định.
 	\end{itemize}\par
-	Để đổi màu riêng, sau \verb|\setTheoBox| và \verb|\setEnvBox|, ta dùng các lệnh sau:
+	Để đổi màu riêng, sau \verb|\setTheoBox|, ta dùng các lệnh sau:
 	\begin{itemize}
 		\begin{lrbox}{\myverbcontent}
 			\verb|\setboxColframe{<tên môi trường>}{<màu>}|
@@ -370,6 +396,7 @@
 		\end{lrbox}
 		\item Lệnh \fbox{\usebox{\myverbcontent}}: đổi màu nền tiêu đề của môi trường.
 	\end{itemize}\par
+	\newpage
 	\subsubsection{Minh hoạ}
 	\begin{verbatim}
 		\documentclass[12pt,a4paper,twoside]{article}
