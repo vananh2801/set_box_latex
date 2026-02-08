@@ -1916,15 +1916,16 @@
 		}%
 }
 %%% Hàm kiểm tra tham số là số hay là command
-\newcommand{\checkArg}[1]{%
-	\checkArg@aux#1\@nil%
+\newcommand{\IfIsCommand}[3]{%
+    \checkArg@aux#1\@nil{#2}{#3}%
 }
+% Hàm phụ trợ tách token đầu tiên
 \def\checkArg@aux#1#2\@nil{%
-	\ifcat\noexpand#1\relax%
-		TRUE%
-	\else%
-		FALSE%
-	\fi%
+    \ifcat\noexpand#1\relax%
+        \expandafter\@firstoftwo%
+    \else%
+        \expandafter\@secondoftwo%
+    \fi%
 }
 %%% Tạo lệnh đổi khung cho theorem
 \newcommand{\setTheoBox}{\@ifstar{\@setTheoBoxStar}{\@setTheoBoxNoStar}}
@@ -1977,9 +1978,7 @@
 			% Ví dụ "Định nghĩa 1 (Tên định nghĩa)"
 			\ifthenelse{\equal{##1}{}}{\def\sb@labelthmfullDot{\sb@labelthm~\sb@Currentlabel.}}{\def\sb@labelthmfullDot{\sb@labelthm~\sb@Currentlabel~(\sb@sublabelthm).}}
 			% Áp dụng khung
-			\ifthenelse{\equal{\checkArg{#2}}{TRUE}}{#2}{
-				\sb@applyTheoBox{#2}
-			}
+			\IfIsCommand{#2}{#2}{\sb@applyTheoBox{#2}}
 			% Tăng cấp box
 			\addtocounter{sb@boxLevel}{1}
 			% Lưu \endbox theo cấp box
@@ -2064,9 +2063,7 @@
 			% Ví dụ "Định nghĩa 1 (Tên định nghĩa)"
 			\ifthenelse{\equal{##1}{}}{\def\sb@labelthmfullDot{\sb@labelthm.}}{\def\sb@labelthmfullDot{\sb@labelthm~(\sb@sublabelthm).}}
 			% Áp dụng khung
-			\ifthenelse{\equal{\checkArg{#2}}{TRUE}}{#2}{
-				\sb@applyTheoBox{#2}
-			}
+			\IfIsCommand{#2}{#2}{\sb@applyTheoBox{#2}}
 			% Tăng cấp box
 			\addtocounter{sb@boxLevel}{1}
 			% Lưu \endbox theo cấp box
