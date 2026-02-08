@@ -13,6 +13,8 @@
 \usepackage{pdfpages}
 \usepackage{tikz}
 \usetikzlibrary{shapes.misc,shadows}
+\newcommand{\addzero}[1]{\ifnum#1<10 0\fi#1}
+\newcommand{\currentdate}{\the\year.\addzero{\the\month}.\addzero{\the\day}}
 %------------ Gán khung cho verbatim ----------
 \newtcolorbox{codeBox}{
 	breakable,
@@ -29,6 +31,10 @@
 %----------- Tạo môi trường Ví dụ -------------
 \newtheorem*{vd}{Ví dụ}
 \setTheoBox*{vd}{4}{\bf Ví dụ}
+%----------- Tạo môi trường Ví dụ -------------
+\newtheorem*{nx}{Nhận xét}
+\setTheoBox*{nx}{\bgBOXnew}{Nhận xét}
+\hideboxInTcb{nx}
 %---------- Tạo môi trường Định lý ------------
 \newtheorem{dl}{Định lý}
 \setTheoBox{dl}{11}{\bf Định lý}
@@ -114,7 +120,7 @@
 	\pagestyle{plain}
 	\fontsize{12pt}{16pt}\selectfont
 	\begin{center}
-		\Large\bf\color{red!70!black}\fontfamily{lmss}\selectfont Hướng dẫn sử dụng gói lệnh set\_box.sty 1.2026.02.06\par
+		\Large\bf\color{red!70!black}\fontfamily{lmss}\selectfont Hướng dẫn sử dụng gói lệnh set\_box.sty 1.\currentdate\par
 	\end{center}
 	\tableofcontents
 	\newpage
@@ -130,33 +136,171 @@
 		\item Gói lệnh nên đi kèm và khai báo phía sau hai gói \texttt{ex\_test.sty} và \texttt{ntheorem.sty}. 
 		\item Chỉ nên cài đặt khung cho theorem mới hoặc đã áp dụng khung trước đó. Hạn chế áp dụng thêm các tác động khác ngoài gói này, có thể gây lỗi.
 	\end{itemize}
-	\subsection{Đôi lời muốn nói}
-	\begin{itemize}
-		\item Hiện tại gói lệnh vẫn chưa phát triển câu lệnh để thầy cô tự tạo khung riêng như lệnh \verb|\createbox| của gói lệnh \texttt{ex\_test}.
-	\end{itemize}
 	\subsection{Đường dẫn cập nhật}
 	\begin{itemize}
 		\item Github: \url{https://github.com/vananh2801/set_box_latex/releases}
 	\end{itemize}
 	\newpage
 	\section{Hướng dẫn sử dụng}
-	\subsection{Cài đặt khung cho \texttt{theorem} (định nghĩa bởi gói \texttt{ntheorem})}
+	\subsection{Tạo khung cho \texttt{theorem} (định nghĩa bởi gói \texttt{ntheorem})}
 	\subsubsection{Giới thiệu lệnh}
+	Các bước thực hiện để tạo khung như sau:
 	\begin{itemize}
-		\item \textbf{Bước 1.} Tạo \texttt{theorem} mới bằng gói lệnh \texttt{ntheorem}.\par
-		\begin{lrbox}{\myverbcontent}
-			\verb|\setTheoBox{<tên theorem>}{<kiểu>}{<Tiêu đề>}|
-		\end{lrbox}
-		\item \textbf{Bước 2.} Dùng lệnh \fbox{\usebox{\myverbcontent}} để cài đặt khung cho \texttt{theorem} vừa tạo theo kiểu mong muốn.\par
-	\end{itemize}
-	\subsubsection{Lưu ý}
-	\begin{itemize}
-		\item Mọi \texttt{theorem} mà nội dung có chứa \verb|\loigiai| đều phải áp dụng lệnh này. Nếu không muốn tạo khung thì dùng kiểu số 0. Lời giải mặc định được đưa ra ngoài khung.
-		\begin{lrbox}{\myverbcontent}
-			\verb|\setTheoBox*{<tên theorem>}{<kiểu>}{<Tiêu đề>}|
-		\end{lrbox}
-		\item Dùng lệnh \fbox{\usebox{\myverbcontent}} để cài đặt khung cho \texttt{theorem} nếu không muốn tạo đánh số trên khung.\par
-	\end{itemize}
+		\item \textbf{Bước 1.} Khai báo \texttt{theorem} bằng gói \texttt{ntheorem}.\\
+		Chẳng hạn:
+		\begin{verbatim}
+			\newtheorem{dn}{\bf Định nghĩa}
+			\newtheorem*{vd}{\bf Ví dụ}
+		\end{verbatim}
+		\item \textbf{Bước 2.} Dùng lệnh:
+		\begin{itemize}
+			\item
+			{\color{blue}\verb|\setTheoBox{<tên theorem>}{<kiểu>}{<Tiêu đề>}|}: tạo khung đánh số.
+			\item
+			{\color{blue}\verb|\setTheoBox*{<tên theorem>}{<kiểu>}{<Tiêu đề>}|}: tạo khung không đánh số.
+		\end{itemize}
+		Chẳng hạn:
+		\begin{verbatim}
+			\setTheoBox{dn}{2}{\bf Định nghĩa} % có đánh số thứ tự
+			\setTheoBox*{vd}{4}{\bf Ví dụ} % không đánh số thứ tự 
+		\end{verbatim}
+		\item \textbf{Bước 3.} Sử dụng theo cấu trúc như sau:
+		\begin{verbatim}
+			\begin{dn}[Tên định nghĩa]
+				Nội dung Định nghĩa...
+			\end{dn}
+			\begin{vd}
+				Đề bài...
+				\loigiai{
+					Lời giải...
+				}
+			\end{vd}
+		\end{verbatim}
+	\end{itemize}\par
+	Hiện tại gói lệnh \verb|set_box| có sẵn $29$, được liệt kê ở mục số $3$. Trong đó, kiểu số 0 là kiểu hiển thị không có khung. Đối với các \verb|theorem| mà thầy cô không muốn tạo khung thì hãy dùng kiểu số $0$ \textit{(đây là bước bắt buộc)}.
+	\newpage
+	Gói lệnh \verb|set_box| có hỗ trợ khung riêng do thầy cô tự khai báo. Ta cần chú ý các lệnh sau:
+	\begin{center}
+		\begin{tabular}{|m{5cm}|m{4.5cm}|m{5.8cm}|}
+			\hline
+			\hfil\textbf{Lệnh}&\hfil\textbf{Giải thích}&\hfil\textbf{Minh hoạ}
+			\\\hline
+			{\color{blue}\verb|\sb@labelthm|}&tiêu đề&\textbf{Định nghĩa}
+			\\\hline
+			{\color{blue}\verb|\sb@Currentlabel|}&số thứ tự&\textbf{1}
+			\\\hline
+			{\color{blue}\verb|\sb@sublabelthm|}&tiêu đề phụ&\textbf{Tên định nghĩa}
+			\\\hline
+			{\color{blue}\verb|\sb@sublabelthmBracket|}&tiêu đề phụ trong ngoặc&\textbf{(Tên định nghĩa)}
+			\\\hline
+			{\color{blue}\verb|\sb@labelthmshort|}&tiêu đề + số thứ tự&\textbf{Định nghĩa 1}
+			\\\hline
+			{\color{blue}\verb|\sb@labelthmfull|}&tiêu đề + số thứ tự + tiêu đề phụ&\textbf{Định nghĩa 1 (Tên tiêu đề)}
+			\\\hline
+			{\color{blue}\verb|\sb@labelthmshortDot|}&tiêu đề + số thứ tự + dấu chấm&\textbf{Định nghĩa 1.}
+			\\\hline
+			{\color{blue}\verb|\sb@labelthmfullDot|}&tiêu đề + số thứ tự + tiêu đề phụ + dấu chấm&\textbf{Định nghĩa 1 (Tên tiêu đề).}
+			\\\hline
+			{\color{blue}\verb|\sb@title|}&tiêu đề sẽ hiển thị ở đầu đoạn nội dung (nếu có)&
+			\\\hline
+		\end{tabular}
+	\end{center}\par
+	Đối với khung mà tiêu đề \textbf{không nằm} ở đầu đoạn của nội dung, thầy cô nên sử dụng {\color{blue}\verb|\sb@labelthmshort|} hoặc {\color{blue}\verb|\sb@labelthmfull|} để không hiện dấu chấm. Đồng thời, ta khai báo {\color{blue}\verb|\def\sb@title{}|}.\par
+	Đối với khung mà tiêu đề \textbf{nằm} ở đầu đoạn của nội dung, thầy cô nên sử dụng\\
+	{\color{blue}\verb|\sb@labelthmshortDot|} hoặc {\color{blue}\verb|\sb@labelthmfullDot|} để hiện dấu chấm. Đồng thời, ta khai báo đầy đủ {\color{blue}\verb|\def\sb@title{<Định dạng hiển thị>}|}\par
+	Khai báo {\color{blue}\verb|\sb@title|} đầy đủ để giúp lệnh \verb|\immini| và \verb|\sochc| có thể hoạt động đúng.\par
+	Thầy cô khai báo theo cấu trúc như sau, tên command thầy cô đặt tuỳ ý.
+	\begin{verbatim}
+		\makeatletter
+		\newcommand{\bgBOXnew}{%
+				\def\sb@title{<Định dạng>}
+				\def\sb@beginbox{
+						\begin{tcolorbox}[%
+								<Định dạng>
+								]
+						}
+				\def\endbox{<Định dạng>\end{tcolorbox}}
+				%%% Nếu trong tcolorbox khác thì sẽ mất khung.
+				\ifsb@InTcolorbox
+						\Ifsb@hideboxInTcb
+								\def\sb@title{<Định dạng>}
+								\def\sb@beginbox{<Định dạng>}
+								\def\endbox{<Định dạng>}
+						\fi
+				\fi
+		}
+	\makeatother
+	\end{verbatim}
+	Chẳng hạn, \verb|set_box| đã khai báo sẵn lệnh như sau dựa trên \verb|\bgBOX| của gói \verb|ex_test|:
+	\begin{verbatim}
+		\makeatletter
+		\newcommand{\bgBOXnew}{%
+				\def\sb@title{}
+				\def\sb@beginbox{
+						\begin{tcolorbox}[%
+								enhanced,
+								breakable,
+								drop fuzzy shadow southeast,
+								before skip=4mm,
+								after skip=4mm,
+								colback=yellow!7,
+								colframe=red!50!black,
+								boxrule=1pt,
+								attach boxed title to top left={
+										xshift=1cm,yshift*=1mm-\tcboxedtitleheight},
+										boxed title style={frame code={
+												\path[fill=red!30!black]
+												([yshift=-1mm,xshift=-1mm]frame.north west)
+												arc[start angle=0,end angle=180,radius=1mm]
+												([yshift=-1mm,xshift=1mm]frame.north east)
+												arc[start angle=180,end angle=0,radius=1mm];
+												\path[left color=red!60!black, 
+												right color=red!60!black,
+												middle color=red!85!black]
+												([xshift=-2mm]frame.north west) -- 
+												([xshift=2mm]frame.north east)
+												[rounded corners=1mm]-- 
+												([xshift=1mm,yshift=-1mm]frame.north east)
+												-- (frame.south east) -- (frame.south west)
+												-- ([xshift=-1mm,yshift=-1mm]frame.north west)
+												[sharp corners]-- cycle;
+												},
+										interior engine=empty},
+								fonttitle=\color{white}\bf\fontfamily{qag}\selectfont,
+								title={\sb@labelthmshort}
+								]
+						}
+				\def\endbox{\par\noindent\hfill\sb@sublabelthmBracket\end{tcolorbox}}
+				%%% Nếu trong tcolorbox khác thì sẽ mất khung.
+				\ifsb@InTcolorbox
+						\Ifsb@hideboxInTcb
+								\def\sb@title{\par\noindent{\bf\color{red!30!black}
+								\fontfamily{qag}\selectfont\sb@labelthmfullDot~}}
+								\def\sb@beginbox{}
+								\def\endbox{\par\noindent\hfill\sb@sublabelthmBracket\par}
+						\fi
+				\fi
+		}
+	\end{verbatim}
+	Thầy cô tạo khung tương tự với cách dùng số:
+	\begin{verbatim}
+		% Đã định dạng in đậm và màu \bgBOXnew
+		\setTheoBox*{nx}{\bgBOXnew}{Nhận xét}
+	\end{verbatim}
+	Ta thu được kết quả như sau khi Nhận xét không nằm độc lập với Định nghĩa:
+	\begin{dn}
+		Nội dung định nghĩa...
+	\end{dn}
+	\begin{nx}[Tên nhận xét]
+		Nội dung nhận xét...
+	\end{nx}
+	Ta thu được kết quả như sau khi Nhận xét nằm trong Định nghĩa, chi tiết xem mục 2.3 ở phía sau:
+	\begin{dn}
+		Nội dung định nghĩa...
+		\begin{nx}[Tên nhận xét]
+			Nội dung nhận xét...
+		\end{nx}
+	\end{dn}
 	\subsubsection{Minh hoạ}
 	\begin{verbatim}
 		\documentclass[12pt,a4paper,twoside]{article}
@@ -540,176 +684,4 @@
 	\begin{theorem29}
 		Nội dung của kiểu 29...
 	\end{theorem29}
-	\newpage
-	\section{Ví dụ hoàn chỉnh}
-	\subsection{Minh hoạ}
-	\begin{verbatim}
-		\documentclass[12pt,a4paper,twoside]{article}
-		\usepackage[utf8]{vietnam}
-		\usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
-		\usepackage{xcolor}
-		\usepackage{ntheorem}
-		\usepackage[loigiai]{ex_test}
-		\usepackage{set_box}
-		\usepackage{indentfirst}
-		\usepackage{lipsum}
-		\usepackage{needspace}
-		%---- Cài đặt màu mặc định gói set_box ----
-		\setboxColframeSetDefault{brown}
-		\setboxColbackSetDefault{black!5}
-		\setboxColbacktitleSetDefault{brown!30}
-		%----------- Định dạng theorem ------------
-		\theoremstyle{immini}
-		%--------------- Định nghĩa ---------------
-		\newtheorem{dn}{Định nghĩa}
-		\setTheoBox{dn}{23}{\color{brown!70!black}\bf\fontfamily{lmss}
-		\selectfont Định nghĩa}
-		%--------------- Tính chất ---------------
-		\newtheorem{tc}{Tính chất}
-		\setTheoBox{tc}{26}{\color{brown!70!black}\bf\fontfamily{lmss}
-		\selectfont Tính chất}
-		%----------------- Ví dụ -----------------
-		\newtheorem{vd}{Ví dụ}
-		\setTheoBox{vd}{22}{\color{brown!70!black}\bf\fontfamily{lmss}
-		\selectfont Ví dụ}
-		%----------------- Dạng- -----------------
-		\newtheorem{dang}{Dạng}
-		\setTheoBox{dang}{11}{\color{brown!70!black}\bf\fontfamily{lmss}
-		\selectfont Dạng}
-		%---------------- Ghi nhớ ----------------
-		\newtheorem{ghinho}{Ghi nhớ}
-		\setTheoBox{ghinho}{21}{\color{brown!70!black}\bf\fontfamily{lmss}
-		\selectfont Ghi nhớ}
-		%------------------- ex ------------------
-		\renewtheorem{ex}{Câu}
-		\setTheoBox{ex}{14}{\color{brown!70!black}\bf\fontfamily{lmss}
-		\selectfont Câu}
-		% Gói lệnh sẽ áp dụng tương tự đối với chc
-		%----------------- Lời giải --------------
-		\def\loigiaiEX{\needspace{1cm}\parbox[c]{\linewidth-1mm}{\centering
-		\color{brown!70!black}\bf\fontfamily{lmss}\selectfont Lời giải.}}
-		\theorembodyfont{\itshape}
-		%----------------- Chú ý -----------------
-		\newtheorem{chuy}{Chú ý}
-		\setTheoBox{chuy}{24}{\color{brown!70!black}\bf\fontfamily{lmss}
-		\selectfont Chú ý}
-		%--------------- Nhận xét ----------------
-		\newtheorem{nx}{Nhận xét}
-		\setTheoBox{nx}{5}{\color{brown!70!black}\bf\fontfamily{lmss}
-		\selectfont Nhận xét}
-		\begin{document}
-			\begin{dn}[Tên định nghĩa]
-				\lipsum[1]
-			\end{dn}
-			\begin{dn}[Tên định nghĩa]
-				\lipsum[1]
-			\end{dn}
-			\begin{tc}[Tên tính chất]
-				\lipsum[1]
-			\end{tc}
-			\begin{vd}
-				\lipsum[1]
-				\loigiai{
-					\dotlineEX{3}
-				}
-			\end{vd}
-			\begin{vd}
-				\lipsum[1]
-				\loigiai{
-					\dotlineEX{3}
-				}
-			\end{vd}
-			\begin{chuy}
-				\begin{itemize}
-					\item Điều thứ nhất;
-					\item Điều thứ hai.
-				\end{itemize}
-			\end{chuy}
-			\begin{chuy}
-				\begin{itemize}
-					\item Điều thứ nhất;
-					\item Điều thứ hai.
-				\end{itemize}
-			\end{chuy}
-			\begin{nx}
-				\lipsum[1]
-			\end{nx}
-			\begin{dang}[Tên dạng]
-				\lipsum[1]
-			\end{dang}
-			
-			\begin{ex}
-				\immini[thm]{
-					Nội dung câu hỏi con thứ nhất.
-				}{
-					\begin{tikzpicture}
-						\draw (0,0) -- (3,3);
-					\end{tikzpicture}
-				}
-				\begin{chc}
-					Nội dung câu hỏi con thứ nhất.
-					\loigiai{
-						<Lời giải câu hỏi con thứ nhất>
-					}
-				\end{chc}
-				\begin{chc}
-					Nội dung câu hỏi con thứ hai.
-					\loigiai{
-						<Lời giải câu hỏi con thứ hai>
-					}
-				\end{chc}
-			\end{ex}
-			\begin{ex}
-				\sochc{2}
-				\immini[thm]{
-					Nội dung câu hỏi con thứ nhất.
-				}{
-					\begin{tikzpicture}
-						\draw (0,0) -- (3,3);
-					\end{tikzpicture}
-				}
-				\begin{chc}
-					Nội dung câu hỏi con thứ nhất.
-					\loigiai{
-						<Lời giải câu hỏi con thứ nhất>
-					}
-				\end{chc}
-				\begin{chc}
-					Nội dung câu hỏi con thứ hai.
-					\loigiai{
-						<Lời giải câu hỏi con thứ hai>
-					}
-				\end{chc}
-			\end{ex}
-			\begin{ghinho}
-				\lipsum[1]
-			\end{ghinho}
-			\begin{ex}
-				<Câu dẫn cho câu hỏi nhiều lựa chọn>.
-				\choice
-				{\True Phương án A}
-				{Phương án B}
-				{Phương án C}
-				{Phương án D}
-				\loigiai{
-					...
-				}
-			\end{ex}
-			\begin{ex}
-				<Câu dẫn cho câu hỏi nhiều lựa chọn>.
-				\choiceTF[1t]
-				{\True Phương án A}
-				{Phương án B}
-				{Phương án C}
-				{\True Phương án D}
-				\loigiai{
-					...
-				}
-			\end{ex}
-		\end{document}
-	\end{verbatim}
-	\subsection{Kết quả thu được}
-	Xem ở trang tiếp theo.
-	\newpage
-	\includepdf[pages=-]{example.pdf}
 \end{document}
