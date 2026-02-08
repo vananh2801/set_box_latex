@@ -2077,7 +2077,7 @@
 			\BODY
 			% Kết thúc tcolorbox nếu còn trong tcolorbox
 			% Nếu môi trường ex đã đóng lại tcolorbox trước khi đến chc thì sẽ bỏ qua
-			\ifsb@InTcolorbox\endbox\fi%
+			\ifsb@InTcolorbox\endbox\fi\par%
 			% Giảm cấp box
 			\addtocounter{sb@boxLevel}{-1}
 			% Hoàn trả \endbox theo cấp box khi vừa dùng \loigiai
