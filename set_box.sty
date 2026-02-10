@@ -1963,7 +1963,6 @@
 				after skip=0.4cm,
 				bottom=3mm,
 				colframe=\sb@colframe,
-				coltitle=white,
 				colback=\sb@colback,
 				boxrule=0.4mm,
 				arc=0mm,
@@ -1974,13 +1973,13 @@
 					frame code={
 						\coordinate (A) at (frame.north east);
 						\coordinate (B) at (frame.south east);
-						\fill[\sb@colframe](frame.north east)--([xshift=-2mm]frame.north west)--([xshift=-2mm]frame.south west)--(frame.south east) --([xshift=3mm]$(A)!0.5!(B)$)--cycle;
+						\fill[\sb@colbacktitle](frame.north east)--([xshift=-2mm]frame.north west)--([xshift=-2mm]frame.south west)--(frame.south east) --([xshift=3mm]$(A)!0.5!(B)$)--cycle;
 						\draw[white,line width=2pt]([xshift=-2mm]frame.north east)--([xshift=1mm]$(A)!0.5!(B)$)--([xshift=-2mm]frame.south east);
 						\fill[left color=\sb@colframe, right color=\sb@colbacktitle]([xshift=-2mm]frame.south west)--+(2mm,-2mm)|-cycle;
 						},
 					interior engine=empty,
 					},
-				title={\sb@labelthmshort}
+				title={\normalfont\normalcolor\sb@labelthmshort}
 				]%
 			}
 		\def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}\end{tcolorbox}}
