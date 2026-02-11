@@ -20,143 +20,19 @@
 	\@ifpackageloaded{mathdesign}{}{
 		\RequirePackage{amssymb}
 	}
-	% Vá lại lệnh immini
-	\renewcommand{\immini}[3][]{%
-		\savebox{\imbox}{#3}
-		\ifthenelse{\equal{#1}{thm}}
-			{\ifthenelse{\equal{\sb@title}{}}{}{\def\labelthmfull{\sb@title~}}%
-			\savebox{\imboxtext}{\vbox{#2}}\def\title{\protect\leavevmode\mbox{\labelthmfull}}%
-				\xdef\saveFileAns{}\xdef\keyEX{}\setcounter{dapan}{0}}
-			{\par\noindent\def\title{}%
-				\ifthenelse{\equal{#1}{}}{}
-					{\def\IMheight{#1\linewidth}}}
-		\tcbset{before={\parindent=0pt},before skip=\baselineskip-6pt}%
-		\tcbsidebyside[blanker, sidebyside adapt=right,
-		sidebyside align=top seam, sidebyside gap=\IMheight,
-		top=-5pt,left=0pt,right=0pt,bottom=-4pt,
-		]{{\ignorespaces\title}\ignorespaces#2}{\usebox{\imbox}}%
-	}%
-	% Vá lại lệnh imminiL
-	\renewcommand{\imminiL}[3][0]{%
-		\savebox{\imbox}{#3}%
-		\ifthenelse{\equal{#1}{thm}}
-			{\ifthenelse{\equal{\sb@title}{}}{}{\def\labelthmfull{\sb@title}}%
-			\savebox{\imboxtext}{\vbox{#2}}\def\title{\protect\leavevmode\mbox{\labelthmfull}}%
-				\xdef\saveFileAns{}\xdef\keyEX{}\setcounter{dapan}{0}}
-			{\par\noindent\def\title{}%
-				\ifthenelse{\equal{#1}{}}{}
-					{\def\IMheight{#1\linewidth}}}%
-		\tcbset{before={\parindent=0pt},before skip=\baselineskip-6pt}%
-		\tcbsidebyside[blanker, sidebyside adapt=left,
-		sidebyside align=top seam, sidebyside gap=\IMheight,
-		top=-5pt,left=0pt,right=0pt,bottom=-4pt,
-		]{\usebox{\imbox}}{{\ignorespaces\title}\ignorespaces#2}%
-	}%
-	% Vá lại ex
-	\AtBeginEnvironment{ex}{%
-		\renewcommand{\sochc}[2][\fromchc]{%
-			\savebox{\imboxtext}{\vbox{#2}}\noindent%
-			\xdef\DGNL{1}%
-			\pgfmathsetmacro{\endchcs}{int(#2+\theex-1)}%
-			\xdef\numendchc{\endchcs}%
-			\gdef\numchc{#2}%
-			\par\noindent%
-			% Thêm \theorem@headerfont  để chỉnh font chữ
-			\textbf{\theorem@headerfont #1 \theex\tochc\numendchc.}\ %
-			\parchc\noindent\ignorespaces%
-			\addtocounter{ex}{-1}\ignorespaces%
-			% Xoá labelthmfull
-			\def\labelthmfull{}%
-			\def\sb@title{}%
-		}%
-	}
 	% Vá lại chc
 	\BeforeBeginEnvironment{chc}{%
+		\vspace{6pt}
 		\ifsb@InTcolorbox\endbox\def\endbox{}\fi%
 		\ifnum\DGNL=1\relax
-		\let\chc\ex%
+			\let\chc\ex%
+			\renewcommand{\thechc}{\theex}%
 		\else
-		\renewcommand{\thechc}{\theex\alph{chc}}%
+			\renewcommand{\thechc}{\theex\alph{chc}}%
 		\fi%
 	}
 	% Tạo theorem style mới tên nonumberimmini và nonumberinboxtitle
 	% Đây là các theorem style dùng cho các lệnh \newtheorem*, tức là không có đánh số
-	\@ifundefined{th@immini}{
-		\newtheoremstyle{immini}%
-		{\item[\hskip\labelsep \theorem@headerfont ##1\ ##2\theorem@separator]%
-			\def\thindent{%
-				\setbox0\vbox{\hbox{\leavevmode\unskip\theorem@headerfont ##1\ ##2\theorem@separator\ignorespaces}}%
-				\hspace*{\wd0}%
-			}%
-			\gdef\labelthm{##1}%
-			\gdef\labelthmfull{\mbox{\theorem@headerfont ##1\ ##2\theorem@separator\,\ }}%
-		}%
-		{%
-			\ifnum\exbreak=0\relax
-			\ifnum\explain=0\relax%
-			\setbox1\vbox{\hbox{\theorem@headerfont ##1\ ##2\ (##3)\theorem@separator\ignorespaces}}%	
-			\ifdim\wd1>0.6\linewidth\relax%
-			\item\hbox to \linewidth{\theorem@headerfont ##1\ ##2\ (##3)\theorem@separator\hfill}%
-			\def\hfillenum{}%
-			\def\thindent{}%
-			\gdef\labelthmfull{}%
-			\else
-			\item[\hskip\labelsep \theorem@headerfont ##1\ ##2\ (##3)\theorem@separator]
-			\def\hfillenum{\hfill}%
-			\def\thindent{%
-				\setbox0\vbox{\hbox{\leavevmode\unskip\theorem@headerfont ##1\ ##2\ (##3)\theorem@separator\ignorespaces}}%
-				\hspace*{\wd0}%
-			}%
-			\gdef\labelthmfull{\mbox{\theorem@headerfont ##1\ ##2\ (##3)\theorem@separator\,\ }}%
-			\fi%
-			\gdef\labelex{}%
-			\else
-			\item[\hskip\labelsep \theorem@headerfont ##1\ ##2\theorem@separator]
-			\def\hfillenum{\hfill}%
-			\def\thindent{%
-				\setbox0\vbox{\hbox{\leavevmode\unskip\theorem@headerfont ##1\ ##2\theorem@separator\ignorespaces}}%
-				\hspace*{\wd0}%
-			}%
-			\gdef\labelthmfull{\mbox{\theorem@headerfont ##1\ ##2\theorem@separator\,\ }}%
-			\gdef\labelex{%
-				\begin{flushright}
-					\vspace*{-5pt}
-					\textit{\color{red}\textbf{(##3)}}
-					\vspace*{-5pt}
-			\end{flushright}}%
-			\fi%
-			\else
-			\ifnum\explain=0\relax%
-			\item\hbox to \linewidth{\theorem@headerfont ##1\ ##2\ (##3)\theorem@separator\hfill}%
-			\gdef\labelex{}%
-			\else
-			\item[\hskip\labelsep \theorem@headerfont ##1\ ##2\theorem@separator]%
-			\gdef\labelex{%
-				\begin{flushright}
-					\vspace*{-5pt}
-					\textit{\color{red}\textbf{(##3)}}
-					\vspace*{-5pt}
-			\end{flushright}}%
-			\fi
-			\def\hfillenum{}%
-			\def\thindent{}%
-			\gdef\labelthmfull{}%
-			\fi%
-			\gdef\labelthm{##1}%
-		}
-	}{}
-	\@ifundefined{th@inboxtitle}{
-		\newtheoremstyle{inboxtitle}%
-		{\item[]\gdef\labelthm{##1}\gdef\sublabelthm{}\gdef\labelthmfull{}}%
-		{\item[]\gdef\labelthm{##1}\gdef\sublabelthm{##3}\gdef\labelthmfull{}%
-			\ifnum\explain=0\relax\gdef\labelex{}%
-			\else\gdef\sublabelthm{}\gdef\labelex{%
-				\begin{flushright}
-					\vspace*{-5pt}
-					\textit{\color{red}\textbf{(##3)}}
-					\vspace*{-5pt}
-			\end{flushright}}\fi}
-	}{}
 	\@ifundefined{th@nonumberimmini}{%
 		\newtheoremstyle{nonumberimmini}%
 		{\item[\hskip\labelsep \theorem@headerfont ##1\theorem@separator]%
@@ -271,36 +147,6 @@
 	}{}
 }
 \newcommand{\setboxColbacktitleSetDefault}[1]{\def\sb@defaultColbacktitle{#1}}
-%%% Lệnh lấy màu
-\newcommand{\getcolor}[1]{%
-	% Reset biến màu ở phạm vi toàn cục khi bắt đầu
-	\global\let\getcolor@name\relax 
-	\begingroup
-	% Lưu lại các lệnh gốc
-	\let\getcolor@oldcolor\color
-	\let\getcolor@oldtextcolor\textcolor
-	% Macro này sẽ lưu tên màu tìm được (chỉ cần định nghĩa lại cục bộ)
-	\let\getcolor@name\relax 
-	% Định nghĩa lại \color để lấy đối số của nó
-	\renewcommand{\color}[1]{%
-		\gdef\getcolor@name{##1}%
-		\getcolor@oldcolor{##1}%
-	}%
-	% Định nghĩa lại \textcolor để lấy đối số ĐẦU TIÊN (tên màu) của nó
-	\renewcommand{\textcolor}[2]{%
-		\gdef\getcolor@name{##1}%
-		\getcolor@oldtextcolor{##1}{##2}%
-	}%
-	% Xử lý đối số đầu vào trong một hộp để triệt tiêu output
-	\setbox0=\hbox{#1}%
-	\endgroup
-	% Áp dụng màu đã lấy được
-	\ifx\getcolor@name\relax
-	\color{black}%
-	\else
-	\color{\getcolor@name}%
-	\fi
-}
 %%% Tạo biến kiểm tra có trong tcolorbox hay không, nguồn "ex_test"
 \newif\ifsb@InTcolorbox
 \sb@InTcolorboxfalse
@@ -2125,13 +1971,34 @@
 %%% Hàm hỗ trợ hiện label nếu không \immini và \sochc ở đầu nội dung
 %%% Nếu không thấy \sochc và \immini mới hiện tiêu đề, cần phải khai báo lại tiêu đề tương ứng trong các khai báo kiểu khung
 \def\sb@addTitle{%
-    \@ifnextchar\immini%
+	\def\labelthmfull{\ifthenelse{\equal{\sb@title}{}}{}{\sb@title~}}%
+    \@ifnextchar\immini{%
+		\vspace{-6pt}%
+        \sb@check@immini%
+    }{%
+        \@ifnextchar\sochc%
         {}%
-        {%
-			\@ifnextchar\sochc%
-			{}%
-			{\ignorespaces\mbox{\normalfont\normalcolor\sb@title}~}%
-		}%
+        {\ignorespaces{\normalfont\normalcolor\sb@title}~}%
+    }%
+}
+\def\sb@check@immini#1{% #1 là \immini
+    \@ifnextchar[%
+        {\sb@check@bracket{#1}}%
+        {\ignorespaces{\normalfont\normalcolor\sb@title}~#1}%
+}
+\def\sb@check@bracket#1[#2]{% #1 là \immini, #2 là nội dung trong []
+    \def\tmp@arg{#2}%
+    \def\tmp@thm{thm}%
+    \ifx\tmp@arg\tmp@thm
+        \expandafter\@firstoftwo%
+    \else
+        \expandafter\@secondoftwo%
+    \fi
+    {% TH1: nội dung là [thm]
+        #1[#2]%
+    }{% TH2: nội dung khác
+        \ignorespaces{\normalfont\normalcolor\sb@title}~#1[#2]%
+    }%
 }
 %%% Hàm kiểm tra tham số là số hay là command
 \newcommand{\IfIsCommand}[3]{%
