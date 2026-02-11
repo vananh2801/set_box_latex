@@ -20,6 +20,35 @@
 	\@ifpackageloaded{mathdesign}{}{
 		\RequirePackage{amssymb}
 	}
+	% Vá \immini
+	\renewcommand{\immini}[3][]{%
+		\savebox{\imbox}{#3}
+		\ifthenelse{\equal{#1}{thm}}
+			{\savebox{\imboxtext}{\vbox{#2}}\def\title{\protect\leavevmode\mbox{\labelthmfull}}
+				\xdef\saveFileAns{}\xdef\keyEX{}\setcounter{dapan}{0}}
+			{\par\noindent\def\title{}%
+				\ifthenelse{\equal{#1}{}}{}
+					{\def\IMheight{#1\linewidth}}}
+		\tcbset{before={\parindent=0pt},before skip=-6pt}%
+		\tcbsidebyside[blanker, sidebyside adapt=right,
+		sidebyside align=top seam, sidebyside gap=\IMheight,
+		top=-5pt,left=0pt,right=0pt,bottom=-4pt,
+		]{{\ignorespaces\title}\ignorespaces#2}{\usebox{\imbox}}%
+	}%
+	\renewcommand{\imminiL}[3][0]{%
+		\savebox{\imbox}{#3}%
+		\ifthenelse{\equal{#1}{thm}}
+			{\savebox{\imboxtext}{\vbox{#2}}\def\title{\protect\leavevmode\mbox{\labelthmfull}}%
+				\xdef\saveFileAns{}\xdef\keyEX{}\setcounter{dapan}{0}}
+			{\par\noindent\def\title{}%
+				\ifthenelse{\equal{#1}{}}{}
+					{\def\IMheight{#1\linewidth}}}%
+		\tcbset{before={\parindent=0pt},before skip=-6pt}%
+		\tcbsidebyside[blanker, sidebyside adapt=left,
+		sidebyside align=top seam, sidebyside gap=\IMheight,
+		top=-5pt,left=0pt,right=0pt,bottom=-4pt,
+		]{\usebox{\imbox}}{{\ignorespaces\title}\ignorespaces#2}%
+	}%
 	% Vá lại ex
 	\AtBeginEnvironment{ex}{%
 		\renewcommand{\sochc}[2][\fromchc]{%
