@@ -29,7 +29,8 @@
 			{\par\noindent\def\title{}%
 				\ifthenelse{\equal{#1}{}}{}
 					{\def\IMheight{#1\linewidth}}}
-		\tcbset{before={\parindent=0pt},before skip=-6pt}%
+		\vspace{-\baselineskip+6pt}
+		\tcbset{before={\parindent=0pt},before skip=\baselineskip-6pt}%
 		\tcbsidebyside[blanker, sidebyside adapt=right,
 		sidebyside align=top seam, sidebyside gap=\IMheight,
 		top=-5pt,left=0pt,right=0pt,bottom=-4pt,
@@ -43,7 +44,8 @@
 			{\par\noindent\def\title{}%
 				\ifthenelse{\equal{#1}{}}{}
 					{\def\IMheight{#1\linewidth}}}%
-		\tcbset{before={\parindent=0pt},before skip=-6pt}%
+		\vspace{-\baselineskip+6pt}
+		\tcbset{before={\parindent=0pt},before skip=\baselineskip-6pt}%
 		\tcbsidebyside[blanker, sidebyside adapt=left,
 		sidebyside align=top seam, sidebyside gap=\IMheight,
 		top=-5pt,left=0pt,right=0pt,bottom=-4pt,
@@ -69,7 +71,6 @@
 	}
 	% Vá lại chc
 	\BeforeBeginEnvironment{chc}{%
-		\vspace{6pt}
 		\ifsb@InTcolorbox\endbox\def\endbox{}\fi%
 		\ifnum\DGNL=1\relax
 			\let\chc\ex%
