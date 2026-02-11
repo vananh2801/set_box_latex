@@ -20,6 +20,24 @@
 	\@ifpackageloaded{mathdesign}{}{
 		\RequirePackage{amssymb}
 	}
+	% Vá lại ex
+	\AtBeginEnvironment{ex}{%
+		\renewcommand{\sochc}[2][\fromchc]{%
+			\savebox{\imboxtext}{\vbox{#2}}\noindent%
+			\xdef\DGNL{1}%
+			\pgfmathsetmacro{\endchcs}{int(#2+\theex-1)}%
+			\xdef\numendchc{\endchcs}%
+			\gdef\numchc{#2}%
+			\par\noindent%
+			% Thêm \theorem@headerfont  để chỉnh font chữ
+			\textbf{\theorem@headerfont #1 \theex\tochc\numendchc.}\ %
+			\parchc\noindent\ignorespaces%
+			\addtocounter{ex}{-1}\ignorespaces%
+			% Xoá labelthmfull
+			\def\labelthmfull{}%
+			\def\sb@title{}%
+		}%
+	}
 	% Vá lại chc
 	\BeforeBeginEnvironment{chc}{%
 		\vspace{6pt}
