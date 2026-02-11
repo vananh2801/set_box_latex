@@ -9,11 +9,7 @@
 ### Một số lưu ý
 
 - Gói lệnh nên đi kèm và khai báo phía sau hai gói `ex_test.sty` và `ntheorem.sty`.
-- Chỉ nên cài đặt khung cho theorem hoặc environment mới hoặc đã áp dụng khung trước đó. Hạn chế áp dụng thêm các tác động khác ngoài gói này, có thể gây lỗi.
-
-### Đôi lời muốn nói
-
-- Gói lệnh hiện vẫn chưa phát triển câu lệnh để thầy cô tự tạo khung riêng như lệnh `\createbox` của gói lệnh `ex_test`.
+- Chỉ nên cài đặt khung cho theorem hoặc environment mới. Hạn chế áp dụng thêm các tác động khác ngoài gói này, có thể gây lỗi.
 
 ### Ủng hộ tác giả
 
