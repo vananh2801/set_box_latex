@@ -1302,14 +1302,14 @@
 				\fill[\sb@colback] 
 				([xshift=1mm]frame.north west) rectangle (frame.south east);
 				\fill[\sb@colframe] 
-				([xshift=1mm]frame.north west) rectangle ([xshift=2mm]frame.south west);
+				(frame.north west) rectangle ([xshift=1mm]frame.south west);
 			},
 			skin first is subskin of={emptyfirst}{%
 				frame code={
 					\fill[\sb@colback] 
 					([xshift=1mm]frame.north west) rectangle (frame.south east);
 					\fill[\sb@colframe] 
-					([xshift=1mm]frame.north west) rectangle ([xshift=2mm]frame.south west);
+					(frame.north west) rectangle ([xshift=1mm]frame.south west);
 				},
 			},
 			skin middle is subskin of={emptymiddle}{%
@@ -1317,7 +1317,7 @@
 					\fill[\sb@colback] 
 					([xshift=1mm]frame.north west) rectangle (frame.south east);
 					\fill[\sb@colframe] 
-					([xshift=1mm]frame.north west) rectangle ([xshift=2mm]frame.south west);
+					(frame.north west) rectangle ([xshift=1mm]frame.south west);
 				},
 			},
 			skin last is subskin of={emptylast}{%
@@ -1325,7 +1325,7 @@
 					\fill[\sb@colback] 
 					([xshift=1mm]frame.north west) rectangle (frame.south east);
 					\fill[\sb@colframe] 
-					([xshift=1mm]frame.north west) rectangle ([xshift=2mm]frame.south west);
+					(frame.north west) rectangle ([xshift=1mm]frame.south west);
 				},
 			},
 			]
@@ -2201,6 +2201,8 @@
 			% Lưu \endbox theo cấp box
 			\ignorespaces\expandafter\edef\csname sb@currBoxLevel\endcsname{\roman{sb@boxLevel}}
 			\expandafter\let\csname endbox\sb@currBoxLevel\endcsname\endbox
+			% Khoảng cách trước theorem
+			\vspace{\theorempreskipamount}
 			% Bắt đầu tcolorbox
 			\sb@beginbox
 			% Thêm title
@@ -2210,6 +2212,8 @@
 			% Kết thúc tcolorbox nếu còn trong tcolorbox
 			% Nếu môi trường ex đã đóng lại tcolorbox trước khi đến chc thì sẽ bỏ qua
 			\ifsb@InTcolorbox\endbox\fi\par%
+			% Khoảng cách sau theorem
+			\vspace{\theorempostskipamount}
 			% Giảm cấp box
 			\addtocounter{sb@boxLevel}{-1}
 			% Hoàn trả \endbox theo cấp box khi vừa dùng \loigiai
