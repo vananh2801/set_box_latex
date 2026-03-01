@@ -263,6 +263,7 @@
 	\or %2
 		\def\sb@title{}
 		\def\sb@beginbox{
+			\sbox0{\normalfont\normalcolor\theorem@headerfont\sb@labelthmshort}%
 			\settowidth\sb@titleWidth{\sb@labelthmshort}
 			\begin{tcolorbox}[
 				breakable,
@@ -290,7 +291,7 @@
 						--([shift={(0.1cm,-15pt)}]A)
 						--([shift={(0,0)}]A)[rounded corners=1mm]--([shift={(-.115,.1)}]A);
 						\path ([shift={(0pt,-6pt)}]A)--([shift={(0,-6pt)}]B) 
-						node[midway]{\sb@labelthmshort};  
+						node[midway]{\usebox0};  
 						}
 					}	 	      
 				]
@@ -397,7 +398,8 @@
 	\or %5
 		\def\sb@title{}
 		\def\sb@beginbox{
-			\settowidth\sb@titleWidth{\normalfont\normalcolor\sb@labelthm~\sb@Currentlabel}
+			\sbox0{\normalfont\normalcolor\theorem@headerfont\sb@labelthmshort}%
+			\settowidth\sb@titleWidth{\normalfont\normalcolor\theorem@headerfont\sb@labelthmshort}
 			\begin{tcolorbox}[
 				enhanced,
 				breakable,
@@ -412,7 +414,7 @@
 				height from={\sb@titleWidth} to 99cm,
 				overlay unbroken and first ={
 					\node[rotate=90, minimum width=1cm, anchor=south] 
-					at (frame.west) {\normalfont\normalcolor\sb@labelthmshort};
+					at (frame.west) {\usebox0};
 				}]
 			}
 		\def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}\end{tcolorbox}}
@@ -1781,6 +1783,7 @@
 	\or %30
 		\def\sb@title{}
 		\def\sb@beginbox{
+			\sbox0{\normalfont\normalcolor\theorem@headerfont\sb@labelthmshort}%
 			\settowidth\sb@titleWidth{\sb@labelthmshort}
 			\begin{tcolorbox}[
 				breakable,
@@ -1808,7 +1811,7 @@
 						--([shift={(0.1cm,-15pt)}]A)
 						--([shift={(0,0)}]A)[rounded corners=1mm]--([shift={(-.115,.1)}]A);
 						\path ([shift={(0pt,-6pt)}]A)--([shift={(0,-6pt)}]B) 
-						node[midway]{\sb@labelthmshort};  
+						node[midway]{\usebox0};
 						}
 					}	 	      
 				]
