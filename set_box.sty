@@ -2062,7 +2062,7 @@
 %%% Tạo lệnh đổi khung cho theorem
 \newcommand{\setTheoBox}{\@ifstar{\@setTheoBoxStar}{\@setTheoBoxNoStar}}
 %%% Tạo lệnh đổi khung cho theorem nếu có đánh số
-\newcommand{\@setTheoBoxNoStar}[3]{
+\newcommand{\@setTheoBoxNoStar}[2]{
 	% Cài đặt màu khung và nền của tcolorbox theo tên môi trường
 	\@ifundefined{sb@#1colframe}{\setboxColframe{#1}{\sb@defaultColframe}}{}
 	\@ifundefined{sb@#1colback}{\setboxColback{#1}{\sb@defaultColback}}{}
@@ -2094,23 +2094,23 @@
 			% Khai báo số thứ tự
 			\def\sb@Currentlabel{\csname the#1\endcsname}
 			% Khai báo tiêu đề
-			\def\sb@labelthm{#3}
+			\def\sb@labelthm{\csname #1Keyword\endcsname}
 			% Khai báo tiêu đề PHỤ
 			\def\sb@sublabelthm{##1}
 			% Khai báo tiêu đề PHỤ với ngoặc
 			\ifthenelse{\equal{##1}{}}{\def\sb@sublabelthmBracket{}}{\def\sb@sublabelthmBracket{(##1)}}
 			% Khai báo tiêu đề RÚT GỌN, không có tiêu đề phụ
 			% Ví dụ "Định nghĩa 1"
-			\def\sb@labelthmshort{\sb@labelthm~\sb@Currentlabel}
+			\def\sb@labelthmshort{\theorem@headerfont\sb@labelthm~\sb@Currentlabel}
 			% Khai báo tiêu đề RÚT GỌN, có dấu "." ở cuối
 			% Ví dụ "Định nghĩa 1."
-			\def\sb@labelthmshortDot{\sb@labelthm~\sb@Currentlabel.}
+			\def\sb@labelthmshortDot{\theorem@headerfont\sb@labelthm~\sb@Currentlabel\theorem@separator}
 			% Khai báo tiêu đề ĐẦY ĐỦ, có tiêu đề phụ
 			% Ví dụ "Định nghĩa 1 (Tên định nghĩa)"
-			\ifthenelse{\equal{##1}{}}{\def\sb@labelthmfull{\sb@labelthm~\sb@Currentlabel}}{\def\sb@labelthmfull{\sb@labelthm~\sb@Currentlabel~(\sb@sublabelthm)}}
+			\ifthenelse{\equal{##1}{}}{\def\sb@labelthmfull{\theorem@headerfont\sb@labelthm~\sb@Currentlabel}}{\def\sb@labelthmfull{\theorem@headerfont\sb@labelthm~\sb@Currentlabel~(\sb@sublabelthm)}}
 			% Khai báo tiêu đề ĐẦY ĐỦ, có tiêu đề phụ, có dấu "." ở cuối
-			% Ví dụ "Định nghĩa 1 (Tên định nghĩa)"
-			\ifthenelse{\equal{##1}{}}{\def\sb@labelthmfullDot{\sb@labelthm~\sb@Currentlabel.}}{\def\sb@labelthmfullDot{\sb@labelthm~\sb@Currentlabel~(\sb@sublabelthm).}}
+			% Ví dụ "Định nghĩa 1 (Tên định nghĩa)."
+			\ifthenelse{\equal{##1}{}}{\def\sb@labelthmfullDot{\theorem@headerfont\sb@labelthm~\sb@Currentlabel\theorem@separator}}{\def\sb@labelthmfullDot{\theorem@headerfont\sb@labelthm~\sb@Currentlabel~(\sb@sublabelthm)\theorem@separator}}
 			% Áp dụng khung
 			\IfIsCommand{#2}{#2}{\sb@applyTheoBox{#2}}
 			% Tăng cấp box
@@ -2146,14 +2146,14 @@
 	{
 		\ifthenelse{\equal{#1}{ex}}
 		{
-			\setTheoBox{chc}{#2}{#3}
+			\setTheoBox{chc}{#2}
 		}{}
 		\fixshowans{#1}
 	}
 	{}
 }
 %%% Tạo lệnh đổi khung cho theorem nếu không đánh số
-\newcommand{\@setTheoBoxStar}[3]{
+\newcommand{\@setTheoBoxStar}[2]{
 	% Cài đặt màu khung và nền của tcolorbox theo tên môi trường
 	\@ifundefined{sb@#1colframe}{\setboxColframe{#1}{\sb@defaultColframe}}{}
 	\@ifundefined{sb@#1colback}{\setboxColback{#1}{\sb@defaultColback}}{}
@@ -2185,23 +2185,23 @@
 			% Khai báo số thứ tự
 			\def\sb@Currentlabel{}
 			% Khai báo tiêu đề
-			\def\sb@labelthm{#3}
+			\def\sb@labelthm{\csname #1Keyword\endcsname}
 			% Khai báo tiêu đề PHỤ
 			\def\sb@sublabelthm{##1}
 			% Khai báo tiêu đề PHỤ với ngoặc
 			\ifthenelse{\equal{##1}{}}{\def\sb@sublabelthmBracket{}}{\def\sb@sublabelthmBracket{(##1)}}
 			% Khai báo tiêu đề RÚT GỌN, không có tiêu đề phụ
 			% Ví dụ "Định nghĩa 1"
-			\def\sb@labelthmshort{\sb@labelthm}
+			\def\sb@labelthmshort{\theorem@headerfont\sb@labelthm}
 			% Khai báo tiêu đề RÚT GỌN, có dấu "." ở cuối
 			% Ví dụ "Định nghĩa 1."
-			\def\sb@labelthmshortDot{\sb@labelthm.}
+			\def\sb@labelthmshortDot{\theorem@headerfont\sb@labelthm\theorem@separator}
 			% Khai báo tiêu đề ĐẦY ĐỦ, có tiêu đề phụ
 			% Ví dụ "Định nghĩa 1 (Tên định nghĩa)"
-			\ifthenelse{\equal{##1}{}}{\def\sb@labelthmfull{\sb@labelthm}}{\def\sb@labelthmfull{\sb@labelthm~(\sb@sublabelthm)}}
+			\ifthenelse{\equal{##1}{}}{\def\sb@labelthmfull{\theorem@headerfont\sb@labelthm}}{\def\sb@labelthmfull{\theorem@headerfont\sb@labelthm~(\sb@sublabelthm)}}
 			% Khai báo tiêu đề ĐẦY ĐỦ, có tiêu đề phụ, có dấu "." ở cuối
-			% Ví dụ "Định nghĩa 1 (Tên định nghĩa)"
-			\ifthenelse{\equal{##1}{}}{\def\sb@labelthmfullDot{\sb@labelthm.}}{\def\sb@labelthmfullDot{\sb@labelthm~(\sb@sublabelthm).}}
+			% Ví dụ "Định nghĩa 1 (Tên định nghĩa)."
+			\ifthenelse{\equal{##1}{}}{\def\sb@labelthmfullDot{\theorem@headerfont\sb@labelthm\theorem@separator}}{\def\sb@labelthmfullDot{\theorem@headerfont\sb@labelthm~(\sb@sublabelthm)\theorem@separator}}
 			% Áp dụng khung
 			\IfIsCommand{#2}{#2}{\sb@applyTheoBox{#2}}
 			% Tăng cấp box
@@ -2237,7 +2237,7 @@
 	{
 		\ifthenelse{\equal{#1}{ex}}
 		{
-			\setTheoBox{chc}{#2}{#3}
+			\setTheoBox{chc}{#2}
 		}{}
 		\fixshowans{#1}
 	}
