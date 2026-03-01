@@ -1356,7 +1356,7 @@
 			height from=1cm to 99cm,
 			underlay={
 				\path[fill=tcbcolback!80!black] ([yshift=3mm]interior.south east)--++(-0.4,-0.1)--++(0.1,-0.2);
-				\path[fill=\sb@colframe,draw=none] (interior.south west) rectangle node[white]{\Huge\bfseries !} ([xshift=4mm]interior.north west);
+				\path[fill=\sb@colframe,draw=none] (interior.south west) rectangle node[white]{\normalfont\Huge\bfseries !} ([xshift=4mm]interior.north west);
 			}
 			]
 		}
@@ -2025,7 +2025,7 @@
     }{%
         \@ifnextchar\sochc%
         {}%
-        {\ignorespaces{\normalfont\normalcolor\sb@title}~}%
+        {\ignorespaces{\ifthenelse{\equal{\sb@title}{}}{}{\sb@title~}}}%
     }%
 }
 \def\sb@check@immini#1{% #1 là \immini
@@ -2121,7 +2121,7 @@
 			% Thêm khoảng cách
 			\addvspace{\theorempreskipamount}%
 			% Bắt đầu tcolorbox
-			\sb@beginbox
+			\sb@beginbox%
 			% Xoá labelthm nếu có \immini ngay đầu \BODY
 			\par\noindent\expandafter\sb@addTitle%
 			% Nội dung
@@ -2212,7 +2212,7 @@
 			% Thêm khoảng cách
 			\addvspace{\theorempreskipamount}%
 			% Bắt đầu tcolorbox
-			\sb@beginbox
+			\sb@beginbox%
 			% Thêm title
 			\par\noindent\sb@addTitle%
 			% Nội dung
