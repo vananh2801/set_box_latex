@@ -2071,6 +2071,8 @@
 	\showboxInTcb{#1}
 	% Khai báo lại môi trường
 	\RenewEnviron{#1}[1][]{
+		% Nạp lại giá trị
+		\csname setparms@#1\endcsname
 		% Kiểm tra xem có bỏ qua không
 		\checkSkipFlag{#1}
 		% Tăng counter của môi trường #1 một đơn vị
@@ -2116,6 +2118,8 @@
 			% Lưu \endbox theo cấp box
 			\expandafter\edef\csname sb@currBoxLevel\endcsname{\roman{sb@boxLevel}}
 			\expandafter\let\csname endbox\sb@currBoxLevel\endcsname\endbox
+			% Thêm khoảng cách
+			\addvspace{\theorempreskipamount}%
 			% Bắt đầu tcolorbox
 			\sb@beginbox
 			% Xoá labelthm nếu có \immini ngay đầu \BODY
@@ -2125,6 +2129,8 @@
 			% Kết thúc tcolorbox nếu còn trong tcolorbox
 			% Nếu môi trường ex đã đóng lại tcolorbox trước khi đến chc thì sẽ bỏ qua
 			\ifsb@InTcolorbox\endbox\fi\par%
+			% Thêm khoảng cách
+			\addvspace{\theorempostskipamount}%
 			% Giảm cấp box
 			\addtocounter{sb@boxLevel}{-1}
 			% Hoàn trả \endbox theo cấp box khi vừa dùng \loigiai
@@ -2156,6 +2162,8 @@
 	\showboxInTcb{#1}
 	% Khai báo lại môi trường
 	\RenewEnviron{#1}[1][]{
+		% Nạp lại giá trị
+		\csname setparms@#1\endcsname
 		% Kiểm tra xem có bỏ qua không
 		\checkSkipFlag{#1}
 		% Tăng counter của môi trường #1 một đơn vị
@@ -2201,8 +2209,8 @@
 			% Lưu \endbox theo cấp box
 			\ignorespaces\expandafter\edef\csname sb@currBoxLevel\endcsname{\roman{sb@boxLevel}}
 			\expandafter\let\csname endbox\sb@currBoxLevel\endcsname\endbox
-			% Khoảng cách trước theorem
-			\vspace{\theorempreskipamount}
+			% Thêm khoảng cách
+			\addvspace{\theorempreskipamount}%
 			% Bắt đầu tcolorbox
 			\sb@beginbox
 			% Thêm title
@@ -2212,8 +2220,8 @@
 			% Kết thúc tcolorbox nếu còn trong tcolorbox
 			% Nếu môi trường ex đã đóng lại tcolorbox trước khi đến chc thì sẽ bỏ qua
 			\ifsb@InTcolorbox\endbox\fi\par%
-			% Khoảng cách sau theorem
-			\vspace{\theorempostskipamount}
+			% Thêm khoảng cách
+			\addvspace{\theorempostskipamount}%
 			% Giảm cấp box
 			\addtocounter{sb@boxLevel}{-1}
 			% Hoàn trả \endbox theo cấp box khi vừa dùng \loigiai
