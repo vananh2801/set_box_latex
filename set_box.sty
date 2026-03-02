@@ -263,7 +263,6 @@
 	\or %2
 		\def\sb@title{}
 		\def\sb@beginbox{
-			\sbox0{\normalfont\normalcolor\theorem@headerfont\sb@labelthmshort}%
 			\settowidth\sb@titleWidth{\sb@labelthmshort}
 			\begin{tcolorbox}[
 				breakable,
@@ -291,7 +290,7 @@
 						--([shift={(0.1cm,-15pt)}]A)
 						--([shift={(0,0)}]A)[rounded corners=1mm]--([shift={(-.115,.1)}]A);
 						\path ([shift={(0pt,-6pt)}]A)--([shift={(0,-6pt)}]B) 
-						node[midway]{\usebox0};  
+						node[midway]{\sb@labelthmshort};  
 						}
 					}	 	      
 				]
@@ -398,8 +397,7 @@
 	\or %5
 		\def\sb@title{}
 		\def\sb@beginbox{
-			\sbox0{\normalfont\normalcolor\theorem@headerfont\sb@labelthmshort}%
-			\settowidth\sb@titleWidth{\normalfont\normalcolor\theorem@headerfont\sb@labelthmshort}
+			\settowidth\sb@titleWidth{\sb@labelthmshort}
 			\begin{tcolorbox}[
 				enhanced,
 				breakable,
@@ -414,7 +412,7 @@
 				height from={\sb@titleWidth} to 99cm,
 				overlay unbroken and first ={
 					\node[rotate=90, minimum width=1cm, anchor=south] 
-					at (frame.west) {\usebox0};
+					at (frame.west) {\sb@labelthmshort};
 				}]
 			}
 		\def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}\end{tcolorbox}}
@@ -1783,7 +1781,6 @@
 	\or %30
 		\def\sb@title{}
 		\def\sb@beginbox{
-			\sbox0{\normalfont\normalcolor\theorem@headerfont\sb@labelthmshort}%
 			\settowidth\sb@titleWidth{\sb@labelthmshort}
 			\begin{tcolorbox}[
 				breakable,
@@ -1811,7 +1808,7 @@
 						--([shift={(0.1cm,-15pt)}]A)
 						--([shift={(0,0)}]A)[rounded corners=1mm]--([shift={(-.115,.1)}]A);
 						\path ([shift={(0pt,-6pt)}]A)--([shift={(0,-6pt)}]B) 
-						node[midway]{\usebox0};
+						node[midway]{\sb@labelthmshort};
 						}
 					}	 	      
 				]
@@ -1975,7 +1972,7 @@
 						},
 					%
 					},
-				title={\sb@labelthm}
+				title={\sb@labelthmshort}
 				]%
 			}
 		\def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}\end{tcolorbox}}
@@ -2019,6 +2016,11 @@
 \def\sb@colbacktitle{}
 \def\sb@colback{}
 \def\sb@colframe{}
+%%% Tạo box lưu tiêu đề để chèn \theorem@headerfont, tránh bị lỗi khi dùng trong tikz
+\newsavebox{\sb@labelthmshortBox}
+\newsavebox{\sb@labelthmshortDotBox}
+\newsavebox{\sb@labelthmfullBox}
+\newsavebox{\sb@labelthmfullDotBox}
 %%% Hàm hỗ trợ hiện label nếu không \immini và \sochc ở đầu nội dung
 %%% Nếu không thấy \sochc và \immini mới hiện tiêu đề, cần phải khai báo lại tiêu đề tương ứng trong các khai báo kiểu khung
 \def\sb@addTitle{%
@@ -2104,16 +2106,28 @@
 			\ifthenelse{\equal{##1}{}}{\def\sb@sublabelthmBracket{}}{\def\sb@sublabelthmBracket{(##1)}}
 			% Khai báo tiêu đề RÚT GỌN, không có tiêu đề phụ
 			% Ví dụ "Định nghĩa 1"
-			\def\sb@labelthmshort{\theorem@headerfont\sb@labelthm~\sb@Currentlabel}
+			\sbox{\sb@labelthmshortBox}{\theorem@headerfont\sb@labelthm~\sb@Currentlabel}
+			\def\sb@labelthmshort{\usebox{\sb@labelthmshortBox}}
 			% Khai báo tiêu đề RÚT GỌN, có dấu "." ở cuối
 			% Ví dụ "Định nghĩa 1."
-			\def\sb@labelthmshortDot{\theorem@headerfont\sb@labelthm~\sb@Currentlabel\theorem@separator}
+			\sbox{\sb@labelthmshortDotBox}{\theorem@headerfont\sb@labelthm~\sb@Currentlabel\theorem@separator}
+			\def\sb@labelthmshortDot{\usebox{\sb@labelthmshortDotBox}}
 			% Khai báo tiêu đề ĐẦY ĐỦ, có tiêu đề phụ
 			% Ví dụ "Định nghĩa 1 (Tên định nghĩa)"
-			\ifthenelse{\equal{##1}{}}{\def\sb@labelthmfull{\theorem@headerfont\sb@labelthm~\sb@Currentlabel}}{\def\sb@labelthmfull{\theorem@headerfont\sb@labelthm~\sb@Currentlabel~(\sb@sublabelthm)}}
+			\ifthenelse{\equal{##1}{}}{%
+				\sbox{\sb@labelthmfullBox}{\theorem@headerfont\sb@labelthm~\sb@Currentlabel}%
+			}{%
+				\sbox{\sb@labelthmfullBox}{\theorem@headerfont\sb@labelthm~\sb@Currentlabel~(\sb@sublabelthm)}%
+			}
+			\def\sb@labelthmfull{\usebox{\sb@labelthmfullBox}}%
 			% Khai báo tiêu đề ĐẦY ĐỦ, có tiêu đề phụ, có dấu "." ở cuối
 			% Ví dụ "Định nghĩa 1 (Tên định nghĩa)."
-			\ifthenelse{\equal{##1}{}}{\def\sb@labelthmfullDot{\theorem@headerfont\sb@labelthm~\sb@Currentlabel\theorem@separator}}{\def\sb@labelthmfullDot{\theorem@headerfont\sb@labelthm~\sb@Currentlabel~(\sb@sublabelthm)\theorem@separator}}
+			\ifthenelse{\equal{##1}{}}{%
+				\sbox{\sb@labelthmfullDotBox}{\theorem@headerfont\sb@labelthm~\sb@Currentlabel\theorem@separator}%
+			}{%
+				\sbox{\sb@labelthmfullDotBox}{\theorem@headerfont\sb@labelthm~\sb@Currentlabel~(\sb@sublabelthm)\theorem@separator}%
+			}
+			\def\sb@labelthmfullDot{\usebox{\sb@labelthmfullDotBox}}
 			% Áp dụng khung
 			\IfIsCommand{#2}{#2}{\sb@applyTheoBox{#2}}
 			% Tăng cấp box
@@ -2195,16 +2209,28 @@
 			\ifthenelse{\equal{##1}{}}{\def\sb@sublabelthmBracket{}}{\def\sb@sublabelthmBracket{(##1)}}
 			% Khai báo tiêu đề RÚT GỌN, không có tiêu đề phụ
 			% Ví dụ "Định nghĩa 1"
-			\def\sb@labelthmshort{\theorem@headerfont\sb@labelthm}
+			\sbox{\sb@labelthmshortBox}{\theorem@headerfont\sb@labelthm}
+			\def\sb@labelthmshort{\usebox{\sb@labelthmshortBox}}
 			% Khai báo tiêu đề RÚT GỌN, có dấu "." ở cuối
 			% Ví dụ "Định nghĩa 1."
-			\def\sb@labelthmshortDot{\theorem@headerfont\sb@labelthm\theorem@separator}
+			\sbox{\sb@labelthmshortDotBox}{\theorem@headerfont\sb@labelthm\theorem@separator}
+			\def\sb@labelthmshortDot{\usebox{\sb@labelthmshortDotBox}}
 			% Khai báo tiêu đề ĐẦY ĐỦ, có tiêu đề phụ
 			% Ví dụ "Định nghĩa 1 (Tên định nghĩa)"
-			\ifthenelse{\equal{##1}{}}{\def\sb@labelthmfull{\theorem@headerfont\sb@labelthm}}{\def\sb@labelthmfull{\theorem@headerfont\sb@labelthm~(\sb@sublabelthm)}}
+			\ifthenelse{\equal{##1}{}}{%
+				\sbox{\sb@labelthmfullBox}{\theorem@headerfont\sb@labelthm}%
+			}{%
+				\sbox{\sb@labelthmfullBox}{\theorem@headerfont\sb@labelthm~(\sb@sublabelthm)}%
+			}
+			\def\sb@labelthmfull{\usebox{\sb@labelthmfullBox}}%
 			% Khai báo tiêu đề ĐẦY ĐỦ, có tiêu đề phụ, có dấu "." ở cuối
 			% Ví dụ "Định nghĩa 1 (Tên định nghĩa)."
-			\ifthenelse{\equal{##1}{}}{\def\sb@labelthmfullDot{\theorem@headerfont\sb@labelthm\theorem@separator}}{\def\sb@labelthmfullDot{\theorem@headerfont\sb@labelthm~(\sb@sublabelthm)\theorem@separator}}
+			\ifthenelse{\equal{##1}{}}{%
+				\sbox{\sb@labelthmfullDotBox}{\theorem@headerfont\sb@labelthm\theorem@separator}%
+			}{%
+				\sbox{\sb@labelthmfullDotBox}{\theorem@headerfont\sb@labelthm~(\sb@sublabelthm)\theorem@separator}%
+			}
+			\def\sb@labelthmfullDot{\usebox{\sb@labelthmfullDotBox}}
 			% Áp dụng khung
 			\IfIsCommand{#2}{#2}{\sb@applyTheoBox{#2}}
 			% Tăng cấp box
