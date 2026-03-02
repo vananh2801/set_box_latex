@@ -29,7 +29,7 @@
 			{\par\noindent\def\title{}%
 				\ifthenelse{\equal{#1}{}}{}
 					{\def\IMheight{#1\linewidth}}}
-		\vspace{-\baselineskip+6pt}
+		\vspace{-\baselineskip+6pt} % Vá thêm
 		\tcbset{before={\parindent=0pt},before skip=\baselineskip-6pt}%
 		\tcbsidebyside[blanker, sidebyside adapt=right,
 		sidebyside align=top seam, sidebyside gap=\IMheight,
@@ -44,7 +44,7 @@
 			{\par\noindent\def\title{}%
 				\ifthenelse{\equal{#1}{}}{}
 					{\def\IMheight{#1\linewidth}}}%
-		\vspace{-\baselineskip+6pt}
+		\vspace{-\baselineskip+6pt} % Vá thêm
 		\tcbset{before={\parindent=0pt},before skip=\baselineskip-6pt}%
 		\tcbsidebyside[blanker, sidebyside adapt=left,
 		sidebyside align=top seam, sidebyside gap=\IMheight,
@@ -66,17 +66,18 @@
 			\addtocounter{ex}{-1}\ignorespaces%
 			% Xoá labelthmfull
 			\def\labelthmfull{}%
-			\def\sb@title{}%
+			\def\sb@title{}% Vá thêm
 		}%
 	}
 	% Vá lại chc
 	\BeforeBeginEnvironment{chc}{%
-		\ifsb@InTcolorbox\endbox\def\endbox{}\fi%
-		\ifnum\DGNL=1\relax
+		\ifsb@InTcolorbox\endbox\def\endbox{}\fi% Vá thêm
+		\let\labelthmex\labelthm%
+		\ifnum\DGNL=0\relax
+			\renewcommand{\thechc}{\theex\alph{chc}}%
+		\else
 			\let\chc\ex%
 			\renewcommand{\thechc}{\theex}%
-		\else
-			\renewcommand{\thechc}{\theex\alph{chc}}%
 		\fi%
 	}
 	% Tạo theorem style mới tên nonumberimmini và nonumberinboxtitle
