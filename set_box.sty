@@ -2037,7 +2037,7 @@
 \def\sb@check@immini#1{% #1 là \immini
     \@ifnextchar[%
         {\sb@check@bracket{#1}}%
-        {\ignorespaces{\normalfont\normalcolor\sb@title}~#1}%
+        {\ignorespaces{\ifthenelse{\equal{\sb@title}{}}{}{\sb@title~}}#1}%
 }
 \def\sb@check@bracket#1[#2]{% #1 là \immini, #2 là nội dung trong []
     \def\tmp@arg{#2}%
@@ -2050,7 +2050,7 @@
     {% TH1: nội dung là [thm]
         #1[#2]%
     }{% TH2: nội dung khác
-        \ignorespaces{\normalfont\normalcolor\sb@title}~#1[#2]%
+        \ignorespaces{\ifthenelse{\equal{\sb@title}{}}{}{\sb@title~}}#1[#2]%
     }%
 }
 %%% Hàm kiểm tra tham số là số hay là command
