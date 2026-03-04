@@ -66,7 +66,7 @@
 			\addtocounter{ex}{-1}\ignorespaces%
 			% Xoá labelthmfull
 			\def\labelthmfull{}%
-			\def\sb@title{}% Vá thêm
+			\def\sb@begin{}% Vá thêm
 		}%
 	}
 	% Vá lại chc
@@ -234,11 +234,13 @@
 \newcommand{\sb@applyTheoBox}[1]{% style
 	% Khai báo beginbox, endbox
 	\ifcase#1 %0
-		\def\sb@title{\sb@labelthmfullDot}
+		\def\sb@begin{\sb@labelthmfullDot}
+		\def\sb@end{}
 		\def\sb@beginbox{}
 		\def\endbox{}
 	\or %1
-		\def\sb@title{}
+		\def\sb@begin{}
+		\def\endbox{}
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				breakable,
@@ -256,13 +258,15 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@title{}
+				\def\sb@begin{}
+				\def\sb@end{}
 				\def\sb@beginbox{}
 				\def\endbox{}
 			\fi
 		\fi
 	\or %2
-		\def\sb@title{}
+		\def\sb@begin{}
+		\def\sb@end{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
 		\def\sb@beginbox{
 			\settowidth\sb@titleWidth{\sb@labelthmshort}
 			\begin{tcolorbox}[
@@ -296,17 +300,18 @@
 					}	 	      
 				]
 			}
-		\def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}\end{tcolorbox}}
+		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@title{\sb@labelthmshortDot}
+				\def\sb@begin{\sb@labelthmshortDot}
 				\def\sb@beginbox{}
 				\def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
 			\fi
 		\fi
 	\or %3
-		\def\sb@title{}
+		\def\sb@begin{}
+		\def\sb@end{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
 		\def\sb@beginbox{
 		\begin{tcolorbox}[
 			breakable,
@@ -335,17 +340,19 @@
 			title={\normalfont\normalcolor\sb@labelthmshort}
 			]
 		}
-		\def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}\end{tcolorbox}}
+		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@title{\sb@labelthmshortDot}
+				\def\sb@begin{\sb@labelthmshortDot}
+				\def\sb@end{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
 				\def\sb@beginbox{}
-				\def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
+				\def\endbox{}
 			\fi
 		\fi
 	\or %4
-		\def\sb@title{}
+		\def\sb@begin{}
+		\def\sb@end{}
 		\def\sb@beginbox{
 			\settowidth\sb@titleWidth{\normalfont\normalcolor\sb@labelthmfull}
 			\setlength\sb@titleMaxWidth{0.7\linewidth}
@@ -390,13 +397,15 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@title{\sb@labelthmfullDot}
+				\def\sb@begin{\sb@labelthmfullDot}
+				\def\sb@end{}
 				\def\sb@beginbox{}
 				\def\endbox{}
 			\fi
 		\fi
 	\or %5
-		\def\sb@title{}
+		\def\sb@begin{}
+		\def\sb@end{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
 		\def\sb@beginbox{
 			\settowidth\sb@titleWidth{\sb@labelthmshort}
 			\begin{tcolorbox}[
@@ -416,17 +425,19 @@
 					at (frame.west) {\sb@labelthmshort};
 				}]
 			}
-		\def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}\end{tcolorbox}}
+		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@title{\sb@labelthmshortDot}
+				\def\sb@begin{\sb@labelthmshortDot}
+				\def\sb@end{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
 				\def\sb@beginbox{}
-				\def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
+				\def\endbox{}
 			\fi
 		\fi
 	\or %6
-		\def\sb@title{}
+		\def\sb@begin{}
+		\def\sb@end{}
 		\def\sb@beginbox{
 			\settowidth\sb@titleWidth{\normalfont\normalcolor\sb@labelthmfull}
 			\setlength\sb@titleMaxWidth{\dimexpr\linewidth-9mm\relax}
@@ -483,13 +494,15 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@title{\sb@labelthmfullDot}
+				\def\sb@begin{\sb@labelthmfullDot}
+				\def\sb@end{}
 				\def\sb@beginbox{}
 				\def\endbox{}
 			\fi
 		\fi
 	\or %7
-		\def\sb@title{}
+		\def\sb@begin{}
+		\def\sb@end{}
 		\def\sb@beginbox{
 			\par\noindent{\normalfont\normalcolor\sb@labelthmfull}\par
 			\begin{tcolorbox}[
@@ -534,13 +547,15 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@title{\sb@labelthmfullDot}
+				\def\sb@begin{\sb@labelthmfullDot}
+				\def\sb@end{}
 				\def\sb@beginbox{}
 				\def\endbox{}
 			\fi
 		\fi
 	\or %8
-		\def\sb@title{}
+		\def\sb@begin{}
+		\def\sb@end{}
 		\def\sb@beginbox{
 			\par\noindent{\normalfont\normalcolor\sb@labelthmfull}\par
 			\begin{tcolorbox}[
@@ -559,13 +574,15 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@title{\sb@labelthmfullDot}
+				\def\sb@begin{\sb@labelthmfullDot}
+				\def\sb@end{}
 				\def\sb@beginbox{}
 				\def\endbox{}
 			\fi
 		\fi
 	\or %9
-		\def\sb@title{}
+		\def\sb@begin{}
+		\def\sb@end{}
 		\def\sb@beginbox{
 			\settowidth\sb@titleWidth{\normalfont\normalcolor\sb@labelthmfull}
 			\setlength\sb@titleMaxWidth{\linewidth-6mm}
@@ -630,17 +647,19 @@
 				},
 				]
 			}
-		\def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}\end{tcolorbox}}
+		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@title{\sb@labelthmfullDot}
+				\def\sb@begin{\sb@labelthmfullDot}
+				\def\sb@end{}
 				\def\sb@beginbox{}
 				\def\endbox{}
 			\fi
 		\fi
 	\or %10
-		\def\sb@title{}
+		\def\sb@begin{}
+		\def\sb@end{}
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				enhanced,
@@ -662,13 +681,15 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@title{\sb@labelthmfullDot}
+				\def\sb@begin{\sb@labelthmfullDot}
+				\def\sb@end{}
 				\def\sb@beginbox{}
 				\def\endbox{}
 			\fi
 		\fi
 	\or %11
-		\def\sb@title{}
+		\def\sb@begin{}
+		\def\sb@end{}
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				enhanced,
@@ -690,13 +711,15 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@title{\sb@labelthmfullDot}
+				\def\sb@begin{\sb@labelthmfullDot}
+				\def\sb@end{}
 				\def\sb@beginbox{}
 				\def\endbox{}
 			\fi
 		\fi
 	\or %12
-		\def\sb@title{}
+		\def\sb@begin{}
+		\def\sb@end{}
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				enhanced,
@@ -753,13 +776,15 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@title{\sb@labelthmfullDot}
+				\def\sb@begin{\sb@labelthmfullDot}
+				\def\sb@end{}
 				\def\sb@beginbox{}
 				\def\endbox{}
 			\fi
 		\fi
 	\or %13
-		\def\sb@title{}
+		\def\sb@begin{}
+		\def\sb@end{}
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				enhanced,
@@ -816,13 +841,15 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@title{\sb@labelthmfullDot}
+				\def\sb@begin{\sb@labelthmfullDot}
+				\def\sb@end{}
 				\def\sb@beginbox{}
 				\def\endbox{}
 			\fi
 		\fi
 	\or %14
-		\def\sb@title{}
+		\def\sb@begin{}
+		\def\sb@end{}
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				enhanced,
@@ -883,13 +910,15 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@title{\sb@labelthmfullDot}
+				\def\sb@begin{\sb@labelthmfullDot}
+				\def\sb@end{}
 				\def\sb@beginbox{}
 				\def\endbox{}
 			\fi
 		\fi
 	\or %15
-		\def\sb@title{\sb@labelthmfullDot}
+		\def\sb@begin{\sb@labelthmfullDot}
+		\def\sb@end{}
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				enhanced,
@@ -931,13 +960,15 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@title{\sb@labelthmfullDot}
+				\def\sb@begin{\sb@labelthmfullDot}
+				\def\sb@end{}
 				\def\sb@beginbox{}
 				\def\endbox{}
 			\fi
 		\fi
 	\or %16
-		\def\sb@title{\sb@labelthmfullDot}
+		\def\sb@begin{\sb@labelthmfullDot}
+		\def\sb@end{}
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				enhanced,
@@ -1017,13 +1048,15 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@title{\sb@labelthmfullDot}
+				\def\sb@begin{\sb@labelthmfullDot}
+				\def\sb@end{}
 				\def\sb@beginbox{}
 				\def\endbox{}
 			\fi
 		\fi
 	\or %17
-		\def\sb@title{}
+		\def\sb@begin{}
+		\def\sb@end{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				enhanced,
@@ -1058,17 +1091,19 @@
 				}
 				]
 			}
-		\def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}\end{tcolorbox}}
+		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
         \ifsb@InTcolorbox
             \Ifsb@hideboxInTcb
-                \def\sb@title{\sb@labelthmshortDot}
+                \def\sb@begin{\sb@labelthmshortDot}
+				\def\sb@end{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
                 \def\sb@beginbox{}
-                \def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
+                \def\endbox{}
             \fi
         \fi
 	\or %18
-		\def\sb@title{}
+		\def\sb@begin{}
+		\def\sb@end{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				enhanced,
@@ -1103,17 +1138,19 @@
 				}
 				]
 			}
-		\def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}\end{tcolorbox}}
+		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
         \ifsb@InTcolorbox
             \Ifsb@hideboxInTcb
-                \def\sb@title{\sb@labelthmshortDot}
+                \def\sb@begin{\sb@labelthmshortDot}
+				\def\sb@end{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
                 \def\sb@beginbox{}
-                \def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
+                \def\endbox{}
             \fi
         \fi
 	\or %19
-		\def\sb@title{}
+		\def\sb@begin{}
+		\def\sb@end{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				enhanced,
@@ -1148,17 +1185,19 @@
 				}
 				]
 			}
-		\def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}\end{tcolorbox}}
+		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
         \ifsb@InTcolorbox
             \Ifsb@hideboxInTcb
-                \def\sb@title{\sb@labelthmshortDot}
+                \def\sb@begin{\sb@labelthmshortDot}
                 \def\sb@beginbox{}
-                \def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
+				\def\sb@end{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
+                \def\endbox{}
             \fi
         \fi
 	\or %20
-		\def\sb@title{}
+		\def\sb@begin{}
+		\def\sb@end{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				enhanced,
@@ -1202,17 +1241,19 @@
 				}
 				]
 			}
-		\def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}\end{tcolorbox}}
+		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
         \ifsb@InTcolorbox
             \Ifsb@hideboxInTcb
-                \def\sb@title{\sb@labelthm.}
+                \def\sb@begin{\sb@labelthm\theorem@separator}
+				\def\sb@end{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
                 \def\sb@beginbox{}
-                \def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
+                \def\endbox{}
             \fi
         \fi
 	\or %21
-		\def\sb@title{}	
+		\def\sb@begin{}	
+		\def\sb@end{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}	
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				enhanced,
@@ -1260,13 +1301,15 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
         \ifsb@InTcolorbox
             \Ifsb@hideboxInTcb
-                \def\sb@title{\sb@labelthm.}
+                \def\sb@begin{\sb@labelthm\theorem@separator}
+				\def\sb@end{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
                 \def\sb@beginbox{}
-                \def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
+                \def\endbox{}
             \fi
         \fi
 	\or %22
-		\def\sb@title{\sb@labelthmfullDot}
+		\def\sb@begin{\sb@labelthmfullDot}
+		\def\sb@end{}
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				breakable,
@@ -1284,13 +1327,15 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
         \ifsb@InTcolorbox
             \Ifsb@hideboxInTcb
-                \def\sb@title{\sb@labelthmfullDot}
+                \def\sb@begin{\sb@labelthmfullDot}
+				\def\sb@end{}
                 \def\sb@beginbox{}
                 \def\endbox{}
             \fi
         \fi
 	\or %23
-		\def\sb@title{\sb@labelthmfullDot}
+		\def\sb@begin{\sb@labelthmfullDot}
+		\def\sb@end{}
 		\def\sb@beginbox{\begin{tcolorbox}[
 			breakable,
 			enhanced,
@@ -1335,13 +1380,15 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
         \ifsb@InTcolorbox
             \Ifsb@hideboxInTcb
-                \def\sb@title{\sb@labelthmfullDot}
+                \def\sb@begin{\sb@labelthmfullDot}
+				\def\sb@end{}
                 \def\sb@beginbox{}
                 \def\endbox{}
             \fi
         \fi
 	\or %24
-		\def\sb@title{\sb@labelthmfullDot}
+		\def\sb@begin{\sb@labelthmfullDot}
+		\def\sb@end{}
 		\def\sb@beginbox{
 		\begin{tcolorbox}[
 			enhanced,
@@ -1365,13 +1412,15 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
         \ifsb@InTcolorbox
             \Ifsb@hideboxInTcb
-                \def\sb@title{\sb@labelthmfullDot}
+                \def\sb@begin{\sb@labelthmfullDot}
+				\def\sb@end{}
                 \def\sb@beginbox{}
                 \def\endbox{}
             \fi
         \fi
 	\or %25
-		\def\sb@title{\sb@labelthmfullDot}
+		\def\sb@begin{\sb@labelthmfullDot}
+		\def\sb@end{}
 		\def\sb@beginbox{
 		\begin{tcolorbox}[
 			enhanced,
@@ -1462,13 +1511,15 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
         \ifsb@InTcolorbox
             \Ifsb@hideboxInTcb
-                \def\sb@title{\sb@labelthmfullDot}
+                \def\sb@begin{\sb@labelthmfullDot}
+				\def\sb@end{}
                 \def\sb@beginbox{}
                 \def\endbox{}
             \fi
         \fi
 	\or %26
-		\def\sb@title{\sb@labelthmfullDot}
+		\def\sb@begin{\sb@labelthmfullDot}
+		\def\sb@end{}
 		\def\sb@beginbox{\begin{tcolorbox}[
 			breakable,
 			enhanced,
@@ -1554,13 +1605,15 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
         \ifsb@InTcolorbox
             \Ifsb@hideboxInTcb
-                \def\sb@title{\sb@labelthmfullDot}
+                \def\sb@begin{\sb@labelthmfullDot}
+				\def\sb@end{}
                 \def\sb@beginbox{}
                 \def\endbox{}
             \fi
         \fi
 	\or %27
-		\def\sb@title{\sb@labelthmfullDot}
+		\def\sb@begin{\sb@labelthmfullDot}
+		\def\sb@end{}
 		\def\sb@beginbox{\begin{tcolorbox}[
 			breakable,
 			enhanced,
@@ -1623,13 +1676,15 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
         \ifsb@InTcolorbox
             \Ifsb@hideboxInTcb
-                \def\sb@title{\sb@labelthmfullDot}
+                \def\sb@begin{\sb@labelthmfullDot}
+				\def\sb@end{}
                 \def\sb@beginbox{}
                 \def\endbox{}
             \fi
         \fi
 	\or %28
-		\def\sb@title{\sb@labelthmfullDot}
+		\def\sb@begin{\sb@labelthmfullDot}
+		\def\sb@end{}
 		\def\sb@beginbox{\begin{tcolorbox}[
 			breakable,
 			enhanced,
@@ -1718,13 +1773,15 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
         \ifsb@InTcolorbox
             \Ifsb@hideboxInTcb
-                \def\sb@title{\sb@labelthmfullDot}
+                \def\sb@begin{\sb@labelthmfullDot}
+				\def\sb@end{}
                 \def\sb@beginbox{}
                 \def\endbox{}
             \fi
         \fi
 	\or %29
-		\def\sb@title{\sb@labelthmfullDot}
+		\def\sb@begin{\sb@labelthmfullDot}
+		\def\sb@end{}
 		\def\sb@beginbox{\begin{tcolorbox}[
 			breakable,
 			enhanced,
@@ -1774,13 +1831,15 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
         \ifsb@InTcolorbox
             \Ifsb@hideboxInTcb
-                \def\sb@title{\sb@labelthmfullDot}
+                \def\sb@begin{\sb@labelthmfullDot}
+				\def\sb@end{}
                 \def\sb@beginbox{}
                 \def\endbox{}
             \fi
         \fi
 	\or %30
-		\def\sb@title{}
+		\def\sb@begin{}
+		\def\sb@end{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
 		\def\sb@beginbox{
 			\settowidth\sb@titleWidth{\sb@labelthmshort}
 			\begin{tcolorbox}[
@@ -1814,17 +1873,18 @@
 					}	 	      
 				]
 			}
-		\def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}\end{tcolorbox}}
+		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@title{\sb@labelthmshortDot}
+				\def\sb@begin{\sb@labelthmshortDot}
+				\def\sb@end{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
 				\def\sb@beginbox{}
-				\def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
+				\def\endbox{}
 			\fi
 		\fi
 	\or %31
-		\def\sb@title{}
+		\def\sb@begin{}
 		\def\loxoh{%
 			\tikzpicture[transform shape,scale=0.6]
 			\node[circle,scale=1.35,draw=\sb@colframe,fill=white](1){};
@@ -1857,13 +1917,15 @@
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@title{}
+				\def\sb@begin{}
+				\def\sb@end{}
 				\def\sb@beginbox{}
 				\def\endbox{}
 			\fi
 		\fi
 	\or %32
-		\def\sb@title{}
+		\def\sb@begin{}
+		\def\sb@end{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				enhanced,
@@ -1892,17 +1954,19 @@
 				title={\sb@labelthmshort}
 				]%
 			}
-		\def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}\end{tcolorbox}}
+		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@title{\sb@labelthmshortDot}
+				\def\sb@begin{\sb@labelthmshortDot}
+				\def\sb@end{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
 				\def\sb@beginbox{}
-				\def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
+				\def\endbox{}
 			\fi
 		\fi
 	\or %33
-		\def\sb@title{}
+		\def\sb@begin{}
+		\def\sb@end{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				enhanced,
@@ -1935,17 +1999,19 @@
 				title={\sb@labelthmshort}
 				]%
 			}
-		\def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}\end{tcolorbox}}
+		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@title{\sb@labelthmshortDot}
+				\def\sb@begin{\sb@labelthmshortDot}
+				\def\sb@end{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
 				\def\sb@beginbox{}
-				\def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
+				\def\endbox{}
 			\fi
 		\fi
 	\or %34
-		\def\sb@title{}
+		\def\sb@begin{}
+		\def\sb@end{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
 		\def\sb@beginbox{
 			\begin{tcolorbox}[
 				enhanced,
@@ -1976,17 +2042,18 @@
 				title={\sb@labelthmshort}
 				]%
 			}
-		\def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}\end{tcolorbox}}
+		\def\endbox{\end{tcolorbox}}
 		%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 		\ifsb@InTcolorbox
 			\Ifsb@hideboxInTcb
-				\def\sb@title{\sb@labelthmshortDot}
+				\def\sb@begin{\sb@labelthmshortDot}
+				\def\sb@end{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
 				\def\sb@beginbox{}
-				\def\endbox{\par\noindent\hfill\textit{\sb@sublabelthmBracket}}
+				\def\endbox{}
 			\fi
 		\fi
 	\else %35 trở lên
-		\def\sb@title{\sb@labelthmfullDot}
+		\def\sb@begin{\sb@labelthmfullDot}
 		\def\sb@beginbox{}
 		\def\endbox{}
 	\fi
@@ -2013,7 +2080,8 @@
 \def\sb@labelthmfull{}
 \def\sb@labelthmshortDot{}
 \def\sb@labelthmfullDot{}
-\def\sb@title{}
+\def\sb@begin{}
+\def\sb@end{}
 \def\sb@colbacktitle{}
 \def\sb@colback{}
 \def\sb@colframe{}
@@ -2024,20 +2092,20 @@
 \newsavebox{\sb@labelthmfullDotBox}
 %%% Hàm hỗ trợ hiện label nếu không \immini và \sochc ở đầu nội dung
 %%% Nếu không thấy \sochc và \immini mới hiện tiêu đề, cần phải khai báo lại tiêu đề tương ứng trong các khai báo kiểu khung
-\def\sb@addTitle{%
-	\def\labelthmfull{\ifthenelse{\equal{\sb@title}{}}{}{\sb@title~}}%
+\def\sb@addBegin{%
+	\def\labelthmfull{\ifthenelse{\equal{\sb@begin}{}}{}{\sb@begin~}}%
     \@ifnextchar\immini{%
         \sb@check@immini%
     }{%
         \@ifnextchar\sochc%
         {}%
-        {\ignorespaces{\ifthenelse{\equal{\sb@title}{}}{}{\sb@title~}}}%
+        {\ignorespaces{\ifthenelse{\equal{\sb@begin}{}}{}{\sb@begin~}}}%
     }%
 }
 \def\sb@check@immini#1{% #1 là \immini
     \@ifnextchar[%
         {\sb@check@bracket{#1}}%
-        {\ignorespaces{\ifthenelse{\equal{\sb@title}{}}{}{\sb@title~}}#1}%
+        {\ignorespaces{\ifthenelse{\equal{\sb@begin}{}}{}{\sb@begin~}}#1}%
 }
 \def\sb@check@bracket#1[#2]{% #1 là \immini, #2 là nội dung trong []
     \def\tmp@arg{#2}%
@@ -2050,8 +2118,12 @@
     {% TH1: nội dung là [thm]
         #1[#2]%
     }{% TH2: nội dung khác
-        \ignorespaces{\ifthenelse{\equal{\sb@title}{}}{}{\sb@title~}}#1[#2]%
+        \ignorespaces{\ifthenelse{\equal{\sb@begin}{}}{}{\sb@begin~}}#1[#2]%
     }%
+}
+%%% Hàm hỗ trợ thêm nội dung cuối theorem
+\def\sb@addEnd{%
+	\sb@end
 }
 %%% Hàm kiểm tra tham số là số hay là command
 \newcommand{\IfIsCommand}[3]{%
@@ -2141,9 +2213,11 @@
 			% Bắt đầu tcolorbox
 			\sb@beginbox%
 			% Xoá labelthm nếu có \immini ngay đầu \BODY
-			\par\noindent\expandafter\sb@addTitle%
+			\par\noindent\expandafter\sb@addBegin%
 			% Nội dung
 			\BODY
+			% Thêm nội dung cuối theorem
+			\sb@end
 			% Kết thúc tcolorbox nếu còn trong tcolorbox
 			% Nếu môi trường ex đã đóng lại tcolorbox trước khi đến chc thì sẽ bỏ qua
 			\ifsb@InTcolorbox\endbox\fi\par%
@@ -2243,10 +2317,12 @@
 			\addvspace{\theorempreskipamount}%
 			% Bắt đầu tcolorbox
 			\sb@beginbox%
-			% Thêm title
-			\par\noindent\sb@addTitle%
+			% Xoá labelthm nếu có \immini ngay đầu \BODY
+			\par\noindent\expandafter\sb@addBegin%
 			% Nội dung
 			\BODY
+			% Thêm nội dung cuối theorem
+			\sb@end
 			% Kết thúc tcolorbox nếu còn trong tcolorbox
 			% Nếu môi trường ex đã đóng lại tcolorbox trước khi đến chc thì sẽ bỏ qua
 			\ifsb@InTcolorbox\endbox\fi\par%
@@ -2330,7 +2406,9 @@
 }
 %%% Tạo kiểu khung mới dựa trên \bgBOX của ex_test.sty
 \newcommand{\bgBOXnew}{%
-	\def\sb@title{}
+	\def\sb@begin{}
+	\def\sb@end{\par\noindent\hfill\bf\color{red!30!black}
+								\fontfamily{qag}\selectfont\textit{\sb@sublabelthmBracket}}
 	\def\sb@beginbox{
 		\begin{tcolorbox}[%
 			enhanced,
@@ -2365,16 +2443,16 @@
 			title={\sb@labelthmshort}
 			]
 		}
-	\def\endbox{\par\noindent\hfill\bf\color{red!30!black}
-								\fontfamily{qag}\selectfont\textit{\sb@sublabelthmBracket}\end{tcolorbox}}
+	\def\endbox{\end{tcolorbox}}
 	%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 	\ifsb@InTcolorbox
 		\Ifsb@hideboxInTcb
-			\def\sb@title{\bf\color{red!30!black}
+			\def\sb@begin{\bf\color{red!30!black}
 			\fontfamily{qag}\selectfont\sb@labelthmshortDot}
-			\def\sb@beginbox{}
-			\def\endbox{\par\noindent\hfill\bf\color{red!30!black}
+			\def\sb@end{\par\noindent\hfill\bf\color{red!30!black}
 			\fontfamily{qag}\selectfont\textit{\sb@sublabelthmBracket}}
+			\def\sb@beginbox{}
+			\def\endbox{}
 		\fi
 	\fi
 }
