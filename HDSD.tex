@@ -270,19 +270,21 @@
 		\makeatletter
 		\newcommand{<tên kiểu>}{%
 				%%% Khai báo khung.
-				\def\sb@title{<Định dạng 1>}
+				\def\sb@begin{<Định dạng 1>}
+				\def\sb@end{<Định dạng 2>}
 				\def\sb@beginbox{%
 						\begin{tcolorbox}[
-								<Định dạng 2>
+								<Định dạng 3>
 								]
 						}
-				\def\endbox{%<Định dạng 3>\end{tcolorbox}}
+				\def\endbox{\end{tcolorbox}}
 				%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 				\ifsb@InTcolorbox
 						\Ifsb@hideboxInTcb
-								\def\sb@title{<Định dạng 4>}
-								\def\sb@beginbox{<Định dạng 5>}
-								\def\endbox{<Định dạng 6>}
+								\def\sb@begin{<Định dạng 1>}
+								\def\sb@end{<Định dạng 2>}
+								\def\sb@beginbox{<Định dạng 3>}
+								\def\endbox{<Định dạng 4>}
 						\fi
 				\fi
 		}
@@ -292,13 +294,20 @@
 	\newpage
 	Ở mỗi phần này, chúng ta để phải khai báo đầy đủ 3 \texttt{macro} như sau:
 	\begin{itemize}
-		\item \verb|\sb@title|: Tiêu đề xuất hiện ở đầu đoạn nội dung.
+		\item \verb|\sb@begin|: Xuất hiện ở đầu đoạn nội dung.
 		\begin{itemize}
-			\item Khi ta cần hiện tiêu đề nằm trên khung, thì ta phải ẩn tiêu đề ở đầu đoạn nội dung. Ta khai báo \verb|\def\sb@title{}|.
+			\item Khi ta cần hiện tiêu đề nằm trên khung, thì ta phải ẩn tiêu đề ở đầu đoạn nội dung. Ta khai báo \verb|\def\sb@begin{}|.
 			\item Ngược lại, ta cần hiện tiêu đề ở đầu đoạn nội dung. Ta khai báo\\
-			\verb|\def\sb@title{\sb@labelthmfullDot}|\\
-			hoặc \verb|\def\sb@title{\sb@labelthmshortDot}|
-			\item Khai báo \verb|\sb@title| đầy đủ để giúp lệnh \verb|\immini| và \verb|\sochc| có thể hoạt động đúng.
+			\verb|\def\sb@begin{\sb@labelthmfullDot}|\\
+			hoặc \verb|\def\sb@begin{\sb@labelthmshortDot}|
+			\item Khai báo \verb|\sb@begin| đầy đủ để giúp lệnh \verb|\immini| và \verb|\sochc| có thể hoạt động đúng.
+		\end{itemize}
+		\item \verb|\sb@end|: Xuất hiện ở cuối đoạn nội dung.
+		\begin{itemize}
+			\item Nếu ta cần hiện tiêu đề phụ ở cuối (thường dùng để ghi nguồn ví dụ, bài tập,...) thì ta có thể khai báo\\
+			\verb|\def\sb@end{\par\noindent\hfill|\\
+			\verb|\textit{\sb@sublabelthmBracket}\end{tcolorbox}}|
+			\item Nếu ta không cần có tiêu đề phụ ở cuối khung thì ta chỉ cần khai báo \verb|\def\sb@end{}| là được.
 		\end{itemize}
 		\item \verb|\sb@beginbox|: 
 		\begin{itemize}
@@ -307,72 +316,69 @@
 		\end{itemize}
 		\item \verb|\endbox|:
 		\begin{itemize}
-			\item Nếu ta đã có dùng \verb|\begin{tcolorbox}| thì \textbf{bắt buộc} phải có \verb|\end{tcolorbox}| ở cuối nội dung khai báo \verb|\def\endbox{...}|. Nếu ta không cần có tiêu đề phụ ở cuối khung thì ta chỉ cần khai báo \verb|\def\endbox{\end{tcolorbox}}| là được. Ngược lại ta cần hiện tiêu đề phụ ở cuối (thường dùng để ghi nguồn ví dụ, bài tập,...) thì ta có thể khai báo\\
-			\verb|\def\endbox{\par\noindent\hfill|\\
-			\verb|\textit{\sb@sublabelthmBracket}\end{tcolorbox}}|
-			\item Nếu không khai báo \verb|\begin{tcolorbox}| thì ta không cần \verb|\end{tcolorbox}|. Làm tương tự như trên nhưng không chèn \verb|\end{tcolorbox}|. Chẳng hạn, \verb|\def\endbox{}| hoặc \\
-			\verb|\def\endbox{\par\noindent\hfill|\verb|\textit{\sb@sublabelthmBracket}}|
+			\item Nếu ta dùng \verb|\begin{tcolorbox}| trong \verb|\sb@beginbox| thì \textbf{bắt buộc} phải khai báo \verb|\def\endbox{\end{tcolorbox}}|.
+			\item Ngược lại, nếu ta không dùng \verb|\begin{tcolorbox}| trong \verb|\sb@beginbox| thì khai báo \verb|\def\endbox{}|.
 		\end{itemize}
 	\end{itemize}\par
 	Gói \texttt{set\_box} đã khai báo sẵn lệnh \verb|\bgBOXnew| dựa trên \verb|\bgBOX| của gói \texttt{ex\_test}. Ngoài ra thầy cô có thể tham khảo cách khai báo bên trong file \texttt{set\_box.sty}.
 	\begin{verbatim}
 		\makeatletter
 		\newcommand{\bgBOXnew}{%
-				\def\sb@title{}
-				\def\sb@beginbox{
-						\begin{tcolorbox}[%
-								enhanced,
-								breakable,
-								drop fuzzy shadow southeast,
-								before skip=4mm,
-								after skip=4mm,
-								colback=yellow!7,
-								colframe=red!50!black,
-								boxrule=1pt,
-								attach boxed title to top left={
-										xshift=1cm,yshift*=1mm-\tcboxedtitleheight},
-										boxed title style={frame code={
-												\path[fill=red!30!black]
-												([yshift=-1mm,xshift=-1mm]frame.north west)
-												arc[start angle=0,end angle=180,radius=1mm]
-												([yshift=-1mm,xshift=1mm]frame.north east)
-												arc[start angle=180,end angle=0,radius=1mm];
-												\path[left color=red!60!black, 
-												right color=red!60!black,
-												middle color=red!85!black]
-												([xshift=-2mm]frame.north west) -- 
-												([xshift=2mm]frame.north east)
-												[rounded corners=1mm]-- 
-												([xshift=1mm,yshift=-1mm]frame.north east)
-												-- (frame.south east) -- (frame.south west)
-												-- ([xshift=-1mm,yshift=-1mm]frame.north west)
-												[sharp corners]-- cycle;
-												},
-										interior engine=empty},
-								fonttitle=\color{white}\bf\fontfamily{qag}\selectfont,
-								title={\sb@labelthmshort}
-								]
-						}
-				\def\endbox{\par\noindent\hfill\bf\color{red!30!black}
-								\fontfamily{qag}\selectfont\sb@sublabelthmBracket\end{tcolorbox}}
-				%%% Nếu trong tcolorbox khác thì sẽ mất khung.
-				\ifsb@InTcolorbox
-						\Ifsb@hideboxInTcb
-								\def\sb@title{\bf\color{red!30!black}
-								\fontfamily{qag}\selectfont\sb@labelthmshortDot}
-								\def\sb@beginbox{}
-								\def\endbox{\par\noindent\hfill\bf\color{red!30!black}
-								\fontfamily{qag}\selectfont\sb@sublabelthmBracket}
-						\fi
+			\def\sb@begin{}
+			\def\sb@end{\par\noindent\hfill\textbf{\textit{\sb@sublabelthmBracket}}}
+			\def\sb@beginbox{
+				\begin{tcolorbox}[%
+					enhanced,
+					breakable,
+					drop fuzzy shadow southeast,
+					before skip=4mm,
+					after skip=4mm,
+					colback=yellow!7,
+					colframe=red!50!black,
+					boxrule=1pt,
+					attach boxed title to top left={
+						xshift=1cm,yshift*=1mm-\tcboxedtitleheight},
+						boxed title style={frame code={
+							\path[fill=red!30!black]
+							([yshift=-1mm,xshift=-1mm]frame.north west)
+							arc[start angle=0,end angle=180,radius=1mm]
+							([yshift=-1mm,xshift=1mm]frame.north east)
+							arc[start angle=180,end angle=0,radius=1mm];
+							\path[left color=red!60!black, 
+							right color=red!60!black,
+							middle color=red!85!black]
+							([xshift=-2mm]frame.north west) -- 
+							([xshift=2mm]frame.north east)
+							[rounded corners=1mm]-- 
+							([xshift=1mm,yshift=-1mm]frame.north east)
+							-- (frame.south east) -- (frame.south west)
+							-- ([xshift=-1mm,yshift=-1mm]frame.north west)
+							[sharp corners]-- cycle;
+							},
+						interior engine=empty},
+					fonttitle=\color{white}\bf\fontfamily{qag}\selectfont,
+					title={\sb@labelthm \sb@Currentlabel}
+					]
+				}
+			\def\endbox{\end{tcolorbox}}
+			%%% Nếu trong tcolorbox khác thì sẽ mất khung.
+			\ifsb@InTcolorbox
+				\Ifsb@hideboxInTcb
+					\def\sb@begin{\sb@labelthmshortDot}
+					\def\sb@end{\par\noindent\hfill\textbf{\textit{\sb@sublabelthmBracket}}}
+					\def\sb@beginbox{}
+					\def\endbox{}
 				\fi
+			\fi
 		}
-	\end{verbatim}
-	Ở tham số thứ 2 của lệnh \verb|\setTheoBox|, thầy cô không dùng số mà dùng câu lệnh vừa khai báo:
-	\begin{verbatim}
-		% Đã định dạng chữ trong lệnh \bgBOXnew
-		\setTheoBox*{nx}{\bgBOXnew}{Nhận xét}
+		\makeatother
 	\end{verbatim}
 	\newpage
+	Ở tham số thứ hai của lệnh \verb|\setTheoBox|, thầy cô dùng câu lệnh vừa khai báo thay vì số:
+	\begin{verbatim}
+		% Đã định dạng chữ trong lệnh \bgBOXnew
+		\setTheoBox*{nx}{\bgBOXnew}
+	\end{verbatim}
 	Ta thu được kết quả như sau khi Nhận xét nằm \textbf{bên ngoài} với Định nghĩa:
 	\begin{dn}
 		Nội dung định nghĩa...
@@ -418,7 +424,8 @@
 			\verb|\setboxColbacktitle{<tên môi trường>}{<màu>}|
 		\end{lrbox}
 		\item Lệnh \fbox{\usebox{\myverbcontent}}: đổi màu nền tiêu đề của môi trường.
-	\end{itemize}\par
+	\end{itemize}
+	\newpage
 	Cần lưu ý rằng các lệnh này chỉ áp dụng với các kiểu khung có sẵn của \texttt{set\_box}. Nếu thầy cô muốn áp dụng trên kiểu của thầy cô tự tạo thì nên dùng các lệnh sau để khai báo màu:
 	\begin{center}
 		\begin{tabular}{|m{4cm}|m{4.5cm}|m{6.8cm}|}
@@ -433,7 +440,6 @@
 			\\\hline
 		\end{tabular}
 	\end{center}\par
-	\newpage
 	\subsubsection{Minh hoạ}
 	\begin{verbatim}
 		\documentclass[12pt,a4paper,twoside]{article}
