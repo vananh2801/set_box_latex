@@ -2407,8 +2407,7 @@
 %%% Tạo kiểu khung mới dựa trên \bgBOX của ex_test.sty
 \newcommand{\bgBOXnew}{%
 	\def\sb@begin{}
-	\def\sb@end{\par\noindent\hfill\bf\color{red!30!black}
-								\fontfamily{qag}\selectfont\textit{\sb@sublabelthmBracket}}
+	\def\sb@end{\par\noindent\hfill\textbf{\textit{\sb@sublabelthmBracket}}}
 	\def\sb@beginbox{
 		\begin{tcolorbox}[%
 			enhanced,
@@ -2440,17 +2439,15 @@
 					},
 				interior engine=empty},
 			fonttitle=\color{white}\bf\fontfamily{qag}\selectfont,
-			title={\sb@labelthmshort}
+			title={\sb@labelthm \sb@Currentlabel}
 			]
 		}
 	\def\endbox{\end{tcolorbox}}
 	%%% Nếu trong tcolorbox khác thì sẽ mất khung.
 	\ifsb@InTcolorbox
 		\Ifsb@hideboxInTcb
-			\def\sb@begin{\bf\color{red!30!black}
-			\fontfamily{qag}\selectfont\sb@labelthmshortDot}
-			\def\sb@end{\par\noindent\hfill\bf\color{red!30!black}
-			\fontfamily{qag}\selectfont\textit{\sb@sublabelthmBracket}}
+			\def\sb@begin{\sb@labelthmshortDot}
+			\def\sb@end{\par\noindent\hfill\textbf{\textit{\sb@sublabelthmBracket}}}
 			\def\sb@beginbox{}
 			\def\endbox{}
 		\fi
