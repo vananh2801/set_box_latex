@@ -311,7 +311,7 @@
 		\end{itemize}
 		\item \verb|\sb@beginbox|: 
 		\begin{itemize}
-			\item Ta khai báo định dạng \texttt{tcolorbox} trong cặp $[...]$ của lệnh \verb|\begin{tcolorbox}|.
+			\item Ta khai báo định dạng \texttt{tcolorbox} trong cặp $[...]$ của lệnh \verb|\begin{tcolorbox}|. Thầy cô nên thêm \verb|resetlist| để \verb|itemize| và \verb|enumerate| đánh số theo cấp ban đầu.
 			\item Nếu muốn mất khung như kiểu số $0$ thì ta khai báo \verb|\def\sb@beginbox{}|
 		\end{itemize}
 		\item \verb|\endbox|:
@@ -328,6 +328,7 @@
 			\def\sb@end{\par\noindent\hfill\textbf{\textit{\sb@sublabelthmBracket}}}
 			\def\sb@beginbox{
 				\begin{tcolorbox}[%
+					resetlist,
 					enhanced,
 					breakable,
 					drop fuzzy shadow southeast,
