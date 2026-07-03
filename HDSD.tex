@@ -4,6 +4,7 @@
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm]{geometry}
 \usepackage{xcolor}
 \usepackage[breakable,most,many,skins]{tcolorbox}
+\usepackage{fontawesome5}
 \usepackage{ntheorem}
 \usepackage[loigiai]{ex_test}
 \usepackage{set_box}
@@ -143,12 +144,12 @@
 	\subsection{Nguyên nhân ra đời}
 	\begin{itemize}
 		\item Đơn giản hoá bước tạo các khung nội dung mới theo mẫu có sẵn.
-		\item Các khung được tạo tương thích tốt với gói lệnh \texttt{ex\_test.sty} đã rất phổ biến hiện nay.
+		\item Các khung được tạo tương thích tốt với gói lệnh \texttt{ex\_test} đã rất phổ biến hiện nay.
 		\item Giải quyết được các vấn đề về lồng môi trường vào nhau, cũng như ẩn hiện môi trường được đóng khung.
 	\end{itemize}
 	\subsection{Một số lưu ý}
 	\begin{itemize}
-		\item Gói lệnh nên đi kèm và khai báo phía sau hai gói \texttt{ex\_test.sty} và \texttt{ntheorem.sty}. 
+		\item Gói lệnh nên đi kèm và khai báo phía sau ba gói \texttt{fontawasome5}, \texttt{ntheorem} và \texttt{ex\_test}. Có thể dùng \texttt{fontawasome} thay cho \texttt{fontawasome5}.
 		\item Chỉ nên cài đặt khung cho \texttt{theorem} mới hoặc đã áp dụng khung trước đó. Hạn chế áp dụng thêm các tác động khác ngoài gói này, có thể gây lỗi.
 	\end{itemize}
 	\subsection{Đường dẫn cập nhật}
